@@ -1,0 +1,7 @@
+private     weibo
+http://glacial-temple-87885.herokuapp.com/
+
+compact computer     weibo
+https://tranquil-peak-17203.herokuapp.com/
+compact computer     laravel
+https://secret-fortress-80043.herokuapp.com/ 

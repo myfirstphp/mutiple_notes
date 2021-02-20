@@ -1,0 +1,214 @@
+----Vagrant是一个基于Ruby的工具,用于创建和部署虚拟化开发环境
+----Laravel Homestead 是 Laravel 官方预封装的 Vagrant Box，它为你提供了一个完美的开发环境，让你不需要再本地开发机器上安装 PHP、Web 服务器以及其他的服务器软件
+----Nginx (engine x) 是一个高性能的HTTP和反向代理web服务器，同时也提供了IMAP/POP3/SMTP服务；和Apache类似，都是web服务器
+----Bootstrap，来自 Twitter，是目前最受欢迎的前端框架。Bootstrap 是基于 HTML、CSS、JAVASCRIPT 的，它简洁灵活，使得 Web 开发更加快捷。
+----Eloquent；Laravel 的 Eloquent ORM 提供了一种漂亮简洁的关系映射的模型来与数据库进行交互；Eloquent 是 Laravel 的 'ORM'，即 'Object Relational Mapping'，对象关系映射,Eloquent 让一个 'Model类' 对应一张数据库表，并且在底层封装了很多 'function'，可以让 Model 类非常方便地调用；Eloquent 提供了简洁优雅的 ActiveRecord 实现来跟数据库进行交互。Active Record 是一种领域模型模式；
+Eloquent Article 模型默认情况下会使用类的「下划线命名法」与「复数形式名称」来作为数据表的名称生成规则
+e.x User 数据模型类对应 users 表；BlogPost 数据模型类对应 blog_posts 表；
+Eloquent 将会假设 Article 模型被存储记录在 articles 数据表中。如果你需要指定自己的数据表，则可以通过 table 属性来定义
+e.x  protected $table = 'my_articles';
+----服务容器是一个用于管理类依赖以及实现依赖注入的强有力工具
+----控制反转（IoC）;由外部负责其依赖需求的行为
+----DI （依赖注入）;由外部以参数或其他形式注入的依赖，都属于 依赖注入
+----vcs  版本控制系统
+----Variable handling 函数；https://www.php.net/manual/zh/book.var.php
+----final 关键字。如果父类中的方法被声明为 final，则子类无法覆盖该方法。如果一个类被声明为 final，则不能被继承;final放在最前面
+----extends；继承关键字，如果父类定义方法时使用了 final，则该方法不可被覆盖。但是可以通过 parent::method_name 来访问父类被覆盖的方法或属性。当覆盖方法时，参数必须保持一致否则 PHP 将发出 E_STRICT 级别的错误信息。但构造函数例外，构造函数可在被覆盖时使用不同的参数。
+子类可以继承和重写父类的所有成员（除了用关键字final修饰的方法）
+----重载（overloaded）：PHP中的重载与其它绝大多数面向对象语言不同。传统的重载是用于提供多个同名的类方法，但各方法的参数类型和个数不同；php中的重载不常用，想了解的话自行百度
+----重写（override）：重写（还可以称为覆盖）就是在子类中将父类的成员方法的名称保留，重写成员方法的实现内容，更改成员方法的存储权限，或是修改成员方法的返回值类型；
+当覆盖方法时，参数必须保持一致（也就是指个数一样多）否则 PHP 将发出 E_STRICT 级别的错误信息。但构造函数例外，构造函数可在被覆盖时使用不同的参数
+----类常量，const关键字声明类常量，类常量声明和调用都不用$符号；类常量可以被类名或实例对象通过::调用；$this->property（其中 property 是该属性名）这种方式来访问非静态属性。静态属性则是用 ::（双冒号）：self::$property 来访问；静态属性和常量可以通过$this或者self通过::调用，但是常量调用的时候，不要加上$符号，而静态属性要加上$;非静态属性，只能通过$this调用，且不要加上$符号
+----命名空间，namespace关键字，最好用一个大括号，所有代码都必须放到命名空间的大括号中
+----自动加载类spl_autoload_register；当需要使用的类没有被引入时，这个函数会在PHP报错前被触发，未定义的类名会被当作参数传入
+----__construct；构造函数关键字；如果子类中定义了构造函数则不会隐式调用其父类的构造函数。要执行父类的构造函数，需要在子类的构造函数中调用 parent::__construct()
+----当构造器参数带访问控制（visibility modifier）时，PHP 会同时把它当作对象属性和构造器参数， 并赋值到属性；放在构造器提升参数里的属性会同时复制为属性和参数。
+----?int 定义为 int 或 NULL
+----返回类型声明,就是在函数后面加上冒号再加上一个空格再加上数据类型，e.g. final function foo(----arguments): static(----code)
+----Static 创造方法;   在new static()中，static 关键词会被翻译成代码所在类的类名
+----析构函数，和构造函数类似，析构函数会在到某个对象的所有引用都被删除或者当对象被显式销毁时执行。关键字__destruct;PHP页面加载完毕之后；unset()类；变量引用指向别的对象或值时,都会把对象的引用销毁，对没有任何引用的对象，系统会进行销毁回收
+----范围解析操作符（也可称作 Paamayim Nekudotayim）或者更简单地说是一对冒号，可以用于访问静态成员，类常量，还可以用于覆盖类中的属性和方法。静态属性不可以由对象通过 -> 操作符来访问,静态方法可以；静态属性和静态方法都能通过一个类已实例化的对象来访问。
+----self表示此类本省，parent表示此类的父类；
+----abstract，定义抽象类，方法的关键字
+----interface，接口关键字；类中必须实现接口中定义的所有方法，否则会报一个致命错误。类可以实现多个接口，用逗号来分隔多个接口的名称。接口也可以继承，通过使用 extends 操作符
+接口中的常量不能被子类或子接口所覆盖
+----trait,php从以前到现在一直都是单继承的语言，无法同时从两个基类中继承属性和方法，为了解决这个问题，php出了Trait这个特性;通过在类中使用use 关键字，声明要组合的Trait名称，具体的Trait的声明使用Trait关键词，Trait不能实例化;Trait中的方法会覆盖 基类中的同名方法，而本类会覆盖Trait中同名方法
+----匿名类;用法和匿名函数差不多
+----魔术方法，所有的魔术方法 必须 声明为 public；PHP 将所有以 __（两个下划线）开头的类方法保留为魔术方法。所以在定义类方法时，除了上述魔术方法，建议不要以 __ 为前缀。
+----clone，对象复制关键字；当对象被复制后，PHP 5 会对对象的所有属性执行一个浅复制（shallow copy）。所有的引用属性 仍然会是一个指向原来的变量的引用。
+----对象比较，当使用比较运算符（==）比较两个对象变量时，比较的原则是：如果两个对象的属性和属性值 都相等，而且两个对象是同一个类的实例，那么这两个对象变量相等；而如果使用全等运算符（===），这两个对象变量一定要指向某个类的同一个实例（即同一个对象）
+----后期静态绑定；使用 self:: 或者 __CLASS__ 对当前类的静态引用，取决于定义当前方法所在的类，而static::指当前所在类，跟方法所在类没关系
+----序列化对象；序列化一个对象将会保存对象的所有变量，但是不会保存对象的方法，只会保存类的名字。
+----instanceof 用于确定一个 PHP 变量是否属于某一个类或其父类或其实现的接口或相同类的对象  的实例：
+----Closure 类：用于代表 匿名函数 的类.
+----__callStatic；当调用不存在的静态方法时，会调用这个函数
+----implements，接口关键字；类中必须实现接口中定义的所有方法，否则会报一个致命错误。类可以实现多个接口，用逗号来分隔多个接口的名称。接口也可以继承，通过使用 extends 操作符
+----Tinker 是一个 REPL (read-eval-print-loop)，REPL 指的是一个简单的、可交互式的编程环境;php artisan tinker这个命令来进入tinker环境
+----路由的resource 方法将遵从 RESTful 架构为用户资源生成路由。该方法接收两个参数，第一个参数为资源名称，第二个参数为控制器名称
+----Gravatar 为 “全球通用头像”，当你在 Gravatar 的服务器上放置了自己的头像后，可通过将自己的 Gravatar 登录邮箱进行 MD5 转码，并与 Gravatar 的 URL 进行拼接来获取到自己的 Gravatar 头像
+----DRY（Don’t repeat yourself）原则
+----Blade 是 Laravel 提供的一个简单而又强大的模板引擎。和其他流行的 PHP 模板引擎不同，Blade 并不限制你在视图中使用原生 PHP 代码
+----art tinker 是 Laravel 框架自带的命令，用以调出 Laravel 的交互式运行时
+----NPM 是 Node.js 的包管理和任务管理工具，其强大的功能也是 Node.js 能够如此成功的因素之一。在使用 NPM 安装第三方模块（也可理解为扩展包）时，你需要在 package.json 中对要安装的模块指定好名称和版本号,然后运行下面命令进行安装:npm install
+----Yarn 是 Facebook 在 2016 年 10 月开源的一个新的包管理器，用于替代现有的 NPM 客户端或者其他兼容 NPM 仓库的包管理工具。Yarn 在保留 NPM 原有工作流特性的基础上，使之变得更快、更安全、更可靠;
+当执行 yarn install 命令时，Yarn 会先判断当前文件夹中是否存在 yarn.lock 文件，存在的话会按照文件中特定的包版本进行安装，否则读取  package.json 文件中的内容并发送到服务器上解析，解析成功后把结果写入 yarn.lock 文件中，最后安装扩展包。 Laravel 自带 yarn.lock 文件，此文件的作用与 composer.lock 一致，是为了保证项目依赖代码版本号绝对一致而存在的
+yarn add [package]安装指定包
+----composer
+https://learnku.com/articles/42616
+Composer 是 PHP 的一个依赖管理工具。我们可以在项目中声明所依赖的外部工具库，Composer 会帮你安装这些依赖的库文件，有了它，我们就可以很轻松的使用一个命令将其他人的优秀代码引用到我们的项目中来
+----Laravel Mix
+https://learnku.com/courses/laravel-essential-training/7.x/laravel-front-end-workflow/8380
+Laravel Mix 一款前端任务自动化管理工具，使用了工作流的模式对制定好的任务依次执行。Mix 提供了简洁流畅的 API，让你能够为你的 Laravel 应用定义 Webpack 编译任务。Mix 支持许多常见的 CSS 与 JavaScript 预处理器，通过简单的调用，你可以轻松地管理前端资源。我们可以在 webpack.mix.js 文件中制定一些如资源文件的编译、压缩等任务。Laravel 已默认为我们生成了 webpack.mix.js 文件，并集成了 laravel-mix 模块。
+----Node.js
+简单的说 Node.js 就是运行在服务端的 JavaScript。
+Node.js 是一个基于Chrome JavaScript 运行时建立的一个平台。
+Node.js是一个事件驱动I/O服务端JavaScript环境，基于Google的V8引擎，V8引擎执行Javascript的速度非常快，性能非常好。
+【1】数据库迁移文件在   appName/database/migrations下面
+
+【2】creating 用于监听模型被创建之前的事件，created 用于监听模型被创建之后的事件
+
+【3】{{code}}  表示code是用php代码写的
+
+【4】session  (会话)
+由于 HTTP 驱动的应用程序是无状态的，Session 提供了一种在多个请求之间存储有关用户信息的方法，Laravel 通过同一个可读性强的 API 处理各种自带的后台驱动程序。支持诸如比较热门的 Memcached, Redis 和数据库。
+
+【5】邮件发送
+在 Laravel 中，可以通过 Mail 接口的 send 方法来进行邮件发送
+e.g. 
+Mail::send($view, $data, function ($message) use ($from, $name, $to, $subject) {
+    $message->from($from, $name)->to($to)->subject($subject);
+});
+
+第一个参数是包含邮件消息的视图名称。
+第二个参数是要传递给该视图的数据数组。
+最后是一个用来接收邮件消息实例的闭包回调，我们可以在该回调中自定义邮件消息的发送者、接收者、邮件主题等信息。
+
+【6】Laravel 应用的所有请求入口都是 public/index.php 文件。而所有的请求都是经由你的 Web 服务器（Apache/Nginx）通过配置引导到这个文件
+
+【7】根据进入应用程序的请求类型来将传入的请求发送到 HTTP 内核或控制台内核。而这两个内核是用来作为所有请求都要通过的中心位置
+
+【8】HTTP 内核继承了 Illuminate\Foundation\Http\Kernel 类，该类定义了一个 bootstrappers 数组。 这个数组中的类在请求被执行前运行，这些 bootstrappers 配置了错误处理，日志，检测应用环境，以及其它在请求被处理前需要执行的任务。
+
+【9】HTTP 内核还定义了所有请求被应用程序处理之前必须经过的 HTTP 中间件。这些中间件处理 HTTP 会话 读写 HTTP session、判断应用是否处于维护模式、验证 CSRF 令牌 等等。
+
+【10】所有应用下的服务提供者均配置到了 config/app.php 配置文件中的 providers 数组中，第一步，所有服务提供者的 register 方法会被调用，然后一旦所有服务提供者均注册后， boot 方法才被调用，
+一旦所有服务提供者启动，Request 会被递送给路由。路由将会调度请求，交给绑定的路由或控制器，也当然包括路由绑定的中间件
+
+【11】类依赖和依赖注入；通俗来说，就是你当前操作一个类，但是这个类的某些方法或者功能不是单单只靠这个类就能完成的，而是要借助另一个类的才能完成的。
+
+最直接的标志就是传参数据为对象的时候。
+
+严格来说，你目前操作的是两个类，这两个类之间相互依赖，传参的方式叫注入
+【12】$this 在类中叫做伪变量;在静态方法中不可用
+
+【13】一个类的变量才称为属性，常量和函数不属于属性
+
+【14】类成员，包括属性，方法，类常量
+
+【15】 每个HTML 表单中要加上@csrf来防止跨站请求伪造
+
+【16】所有中间件都位于app/Http/Middleware；php artisan make:middleware CheckAge这个命令用来创建新的中间件
+
+【17】include和require的区别：include 结构会发出一条警告，下面的代码还会执行；require会报错，之后的代码不会被执行
+e.g.  include 'vars.php';
+
+【18】php中的引用并不像 C 的指针：例如你不能对他们做指针运算，他们并不是实际的内存地址；只是符号表alias
+
+【19】use关键字，导入类或函数或常量然后通过as可以为他们起一个alias
+e.g.  use some\namespace\{ClassA, ClassB, ClassC as C};
+
+【20】如果你希望中间件在应用处理每个 HTTP 请求期间运行， 只需要在  app/Http/Kernel.php  中的 $middleware 属性中列出这个中间件
+
+【21】闭包指的是匿名函数
+
+【22】回调函数是一个我们定义的函数，但是不是我们直接来调用，而是通过另一个函数来调用，这个函数通过接收回调函数的名字和参数来实现对它的调用
+
+【23】匿名函数可以赋值给一个变量，然后通过这个变量就可以调用匿名函数
+
+【24】全局空间
+如果没有定义任何命名空间，所有的类与函数的定义都是在全局空间，与 PHP 引入命名空间概念前一样。在名称前加上前缀 \ 表示该名称是全局空间中的名称，即使该名称位于其它的命名空间中时也是如此
+
+【25】session的解释
+https://blog.csdn.net/weixin_42217767/article/details/92760353
+
+【26】类的初始化
+就是指调用类的构造函数
+
+【27】homestead.yaml里面指定的数据库，会在provision的时候就生成了，应用的.env文件里面关于数据库的都是指应用要访问的数据库
+
+【28】当用户在查看一个网页时，一个完整的访问过程如下
+1.打开浏览器在地址栏输入 URL 并访问；
+2.路由将 URL 请求映射到指定控制器上；
+3.控制器收到请求，开始进行处理。如果视图需要动态数据进行渲染，则控制器会开始从模型中读取数据；
+4.数据读取完毕，将数据传送给视图进行渲染；
+5.视图渲染完成，在浏览器上呈现出完整页面；
+
+【29】user模型
+模型的创建用php artisan make:model model_name
+1.table 属性，来指明要进行数据库交互的数据库表名称
+2.fillable属性, 过滤用户提交的字段，只有包含在该属性中的字段才能够被正常更新
+3.hidden属性,当我们需要对用户密码或其它敏感信息在用户实例通过数组或 JSON 显示时进行隐藏
+
+【30】Eloquent模型默认情况下会使用类的「下划线命名法」与「复数形式名称」来作为数据表的名称生成规则
+e.g.
+Article 数据模型类对应 articles 表；
+User 数据模型类对应 users 表；
+BlogPost 数据模型类对应 blog_posts 表；
+
+【31】在上面代码中，由于 show() 方法传参时声明了类型 —— Eloquent 模型 User，对应的变量名 $user 会匹配路由片段中的 {user}，这样，Laravel 会自动注入与请求 URI 中传入的 ID 对应的用户模型实例
+
+【32】路由模型绑定
+https://learnku.com/docs/laravel/7.x/routing/7458#%E9%9A%90%E5%BC%8F%E7%BB%91%E5%AE%9A
+1.隐式绑定
+需要满足两个条件
+(1)路由声明时必须使用 Eloquent 模型的单数小写格式来作为路由片段参数，User 对应 {user}
+(2)控制器方法传参中必须包含对应的 Eloquent 模型类型声明，并且是有序的
+,这里的有序应该是指传递多个模型参数时,参数顺序应该和控制器里面函数的参数顺序一致
+2.显式绑定
+要注册显式绑定，请使用路由器的 model 方法为给定参数指定类。您应该在 RouteServiceProvider 类(
+路径 \weibo\app\Providers)的 boot 方法中定义显式模型绑定
+e.g.
+
+public function boot()
+{
+    parent::boot();
+
+    Route::model('user', App\User::class);
+}
+【33】composer create-project laravel/laravel Laravel --prefer-dist "8.*"
+这个命令后面的数字指的是版本的意思，7.版本的app,不能用8.版本的vendor文件
+
+【34】php artisan key:generate
+https://learnku.com/laravel/t/41250 关于app_key的讲解
+在创建应用是系统会自动生成.env文件；里面有自动生成的app_key；
+这个命令会生成一个新的app_key，然后替换掉.env文件中的app_key；
+如果加上参数--show，则不会替换.env文件中的app_key，仅在命令行上展示出来；开发环境和生产环境应禁止使用相同的APP_KEY
+
+【35】生成ssh_key
+ssh-keygen -t rsa -C "your_email@example.com"
+然后一路回车就行了，生成的文件默认放在C:\Users\名字下面
+
+【36】eval "$(ssh-agent -s)"
+启动ssh-agent程序
+ssh-add ~/.ssh/id_rsa  添加ssh_key到代理；只有先启动才能添加
+
+【37】虚拟机初始化时，会将主机的所有 SSH 私钥文件复制到虚拟机的 /home/vagrant/.ssh/ 文件夹中，从而使虚拟机能共享主机上的 SSH 私钥文件;主机上的.ssh文件和虚拟机上的.ssh是在不同的路径，改完主机上的.ssh要vagrant reload --provision一次，让它同步过去
+
+【38】ls –all
+显示所有文件，包括隐藏文件
+
+【39】浏览器缓存
+现代化的浏览器，会对静态文件进行缓存，静态文件在本课程的范畴内，指的是 .css 、.js 后缀的文件
+解决这个问题可以在webpack.mix.js最后加上.version();来解决
+然后修改模板，使其动态加载样式代{{ mix('css/app.css') }}
+mix 函数用来加载相应的带哈希值的前端资源
+注意：webpack.mix.js 文件只在 npm run watch-poll 指令执行时引入，之后指令后台运行不再重新引入。如果你后台运行 watch-poll 命令的话，需关闭 watch-poll 服务（Ctrl + C），再次启动（ npm run watch-poll ）即可生效
+
+【40】我们在头部视图的文件名前面加了下划线 _，这样做是为了指定该视图文件为局部视图，为局部视图增加前缀下划线是『约定俗成』
+
+【41】route() 方法由 Laravel 提供，通过传递一个具体的路由名称来返回完整的 URL
+
+【42】静态页面和静态文件是不一样的
+
+【43】模型的bcrypt 方法，加密用的
+e.x  'password'=>bcrypt('password')

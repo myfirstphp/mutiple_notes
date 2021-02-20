@@ -1,0 +1,21 @@
+CREATE TABLE `ts_areas` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '地区id',
+  `parent_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '地区父id',
+  `area_name` varchar(25) NOT NULL DEFAULT '' COMMENT '地区名称',
+  `area_code` int(11) unsigned DEFAULT '0' COMMENT '地区国家编码',
+  `area_pinyin` varchar(25) DEFAULT '' COMMENT '地区大写拼音',
+  `weather_citycode` int(11) unsigned DEFAULT '0' COMMENT '地区国家编码',
+  `area_type` tinyint(1) NOT NULL DEFAULT '2' COMMENT '地区类型 0:country,1:province,2:city,3:district',
+  `longitude` decimal(18,15) DEFAULT NULL COMMENT '中心点经纬度',
+  `latitude` decimal(18,15) DEFAULT NULL COMMENT '中心店经纬度',
+  `path` varchar(50) DEFAULT '' COMMENT '父级路径',
+  `sort` int(11) DEFAULT '0' COMMENT '序号  ',
+  `ctime` int(11) DEFAULT NULL COMMENT '创建时间',
+  `max_drugstore_area_id` int(11) unsigned NOT NULL COMMENT '该城市(3个月内)采购药店最多的街道ID，只填写area_type为城市的行。定时任务，每天更新一次',
+  `mdatetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `area_code` (`area_code`) USING BTREE,
+  KEY `area_name` (`area_name`),
+  KEY `parent_id` (`parent_id`),
+  KEY `mdatetime_idx` (`mdatetime`)
+) ENGINE=InnoDB AUTO_INCREMENT=141159 DEFAULT CHARSET=utf8;

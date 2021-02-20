@@ -1,0 +1,57 @@
+业务平台数据库192.168.0.42:63306  yuanshuaifeng   ysf$@KWix12
+邻药汇数据库192.168.0.25:63307   yuanshuaifeng  JKD8283JN
+
+1   db_ysb_salesmen.ts_user_otherinfo     ehr_post  用户开始时间  带教期限
+2   db_ysb_salesmen.ts_user      role_id  state（1表示启用）
+3   db_ysb_salesmen.ts_user_areas
+4   db_ysb_dictionary.ts_areas
+5   db_ysb_dictionary.ts_sys_dict   ehr_post编码
+6   db_ysb_salesmen.ts_task_area  城市负责人    个人首推金额下限系数
+7   db_ysb_salesmen.ts_salesmen_task    拼团基准值
+8   db_ysb_form.ts_salesmen_order_month_keep
+9   db_ysb_order.ts_ws_order_after
+10 db_ysb_admin.ts_sys_config活动配置
+11 db_ysb_order.ts_teambuy_order     拼团订单  改完数据之后要mdatetime字段才能更新到es
+12 db_ysb_dictionary.ts_drugstore_branch   药店证件状态
+13 db_ysb_form.ts_salesmen_order_month_keep    药店用户类型；当月的store_tag_3
+14 db_ysb_log.ts_table_log    审核记录表
+15 db_ysb_salesmen.ts_user_drugstorebranch   认领人的药店表
+16 db_ysb_admin.ts_drugstore_blacklist   业绩药店黑名单表
+17 db_merp.ts_fr_article    业务平台文章表
+18 db_ysb_salesmen.ts_team_buy_stat   拼团店数考核基准值
+19 db_ysb_order.ts_wholesale_order   总订单表，这个表改完之后，要改下面的表的mtime字段才能升级到es；订单是根据add_time统计时间的
+20 db_ysb_order.ts_wholesale_order_ext   更改mtime为当前时间来更新到es
+21 db_ysb_salesmen.ts_user_instruct  学徒关系表
+22 db_ysb_salesmen.ts_user_signed_log   签到数据
+23 db_ysb_order.ts_wholesale_order_detail        unit_price amount
+24 db_arch_form.ts_user_dyn    用户动态记录
+
+
+
+                销售经理       销售组长    销售代表
+role_id          14                16              15
+
+店员版用户id          1008001  对应账号  15136839250
+             area_id       area_code
+广州市   31677          4401
+广东省   31676          44
+             user_id
+黄文豪    5518
+黄锦洪    7794
+魏剑辉    6437
+hrbp账号13531570233   15622120805
+
+ehr_post     CM         BDM       BD            高级BD      BDM（协管）
+               254456    254435     254437     303726      255538
+
+              代理BDM
+              330796
+
+
+####去退款，去优惠算法
+two.total_cost - two.coupon_pay - two.coupon_pay_spe - two.coupon_pay_prov - two.sub_pay - (
+                    two.refund_total_cost - two.refund_coupon_pay - two.refund_coup_spe - two.refund_coup_pay_p - two.refund_sub_pay
+                    )
+
+#####公司坐标
+113.33027,23.101722

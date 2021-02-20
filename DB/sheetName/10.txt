@@ -1,0 +1,12 @@
+CREATE TABLE `ts_sys_config` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键UID/更改了',
+  `item` varchar(55) NOT NULL DEFAULT '' COMMENT '系统配置项',
+  `values` mediumtext NOT NULL COMMENT '值',
+  `note` varchar(255) DEFAULT NULL COMMENT '备注',
+  `flag` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0-纯文本 1-html',
+  `usage_type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '用途分类:0-未分类 1-java内部配置 2-前端配置(需要登录) 3-前端配置(无需要登录)',
+  `ctime` int(11) NOT NULL DEFAULT '0' COMMENT '注册时间',
+  `mtime` int(11) NOT NULL DEFAULT '0' COMMENT '修改时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `item_key` (`item`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1178 DEFAULT CHARSET=utf8;

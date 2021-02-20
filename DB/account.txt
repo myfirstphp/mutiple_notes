@@ -1,0 +1,3 @@
+业务平台数据库192.168.0.42:63306  yuanshuaifeng   ysf$@KWix12
+邻药汇数据库192.168.0.25:63307   yuanshuaifeng  JKD8283JN
+

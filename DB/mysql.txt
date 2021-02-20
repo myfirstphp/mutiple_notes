@@ -1,0 +1,100 @@
+
+【1】查找6437（经理或组长）下级和自己的所有药店（剔除业绩黑名单药店和areas_id等于0的）
+SELECT
+	*
+FROM
+	db_ysb_dictionary.ts_drugstore_branch tdb,
+	(
+		SELECT
+			*
+		FROM
+			db_ysb_salesmen.ts_user_drugstorebranch tud
+		WHERE
+			tud.user_id IN (
+				SELECT
+					tu.id
+				FROM
+					db_ysb_salesmen.ts_user tu
+				WHERE
+					tu.parent_id IN (
+						SELECT
+							tu.id
+						FROM
+							db_ysb_salesmen.ts_user tu
+						WHERE
+							tu.parent_id = 7794
+					)
+				OR tu.parent_id = 7794
+				OR tu.id = 7794
+			)
+		AND tud.drugstore_branch_id NOT IN (
+			SELECT
+				tdb.drugstore_branch_id
+			FROM
+				db_ysb_admin.ts_drugstore_blacklist tdb
+		)
+	) b
+WHERE
+	tdb.id = b.drugstore_branch_id
+AND tdb.area_id <> 0
+
+
+【2】查询下属中state=1（启用状态），ehr_post是BD，高级BD，BDM（协管）的人数
+SELECT
+	* 
+FROM
+	db_ysb_salesmen.ts_user_otherinfo tuo 
+WHERE
+	tuo.user_id IN (
+	SELECT
+		tu.id 
+	FROM
+		db_ysb_salesmen.ts_user tu 
+	WHERE
+		(
+			tu.parent_id IN ( SELECT tu.id FROM db_ysb_salesmen.ts_user tu WHERE tu.parent_id = 7794 ) 
+			OR tu.parent_id = 7794
+		) 
+		AND tu.state = 1 
+	) 
+	AND tuo.ehr_post in (254437, 303726, 255538)
+
+【3】迭代查询下级，目前没有权限用不了
+
+#delimiter !!
+# DROP FUNCTION IF EXISTS queryChildrenAreaInfo!!
+CREATE DEFINER = CURRENT_USER FUNCTION `queryChildrenAreaInfo`(`areaid` BIGINT)
+	RETURNS varchar(4000)
+BEGIN
+	DECLARE sTemp VARCHAR(4000);
+  DECLARE sTempChd VARCHAR(4000);
+ 
+  SET sTemp = '$';
+  SET sTempChd = cast(areaId as char);
+ 
+  WHILE sTempChd is not NULL DO
+  SET sTemp = CONCAT(sTemp,',',sTempChd);
+  SELECT group_concat(id) INTO sTempChd FROM db_ysb_salesmen.ts_user where FIND_IN_SET(parent_id,sTempChd)>0;
+  END WHILE;
+  return sTemp;
+END;
+
+
+#delimiter ;
+--调用方式
+select queryChildrenAreaInfo(7794);
+#select * from t_areainfo where FIND_IN_SET(id, queryChildrenAreaInfo(1));
+
+
+【4】查找开通首营的药店
+SELECT
+	tcr.relation_id,
+	tc.id
+FROM
+	db_ysb_dx.ts_company tc,
+	db_ysb_dx.ts_company_relation tcr 
+WHERE
+	tc.id = tcr.company_id 
+	AND tcr.company_type = 0 
+	AND tcr.confirm_flag = 1 
+	AND tc.STATUS = 1

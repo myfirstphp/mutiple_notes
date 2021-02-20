@@ -1,0 +1,42 @@
+【1】var_dump会显示类型；print_r不会显示类型，但是可以加上true参数，把输出结果赋值给某个变量
+
+【2】=&；这是引用赋值，应该注意的是 =& 不是一个运算符，不能看成一个整体。
+
+【3】reset() 将 array 的内部指针倒回到第一个单元并返回第一个数组单元的值。参数是数组名
+current() - 返回数组中的当前单元
+each() - 返回数组中当前的键／值对并将数组指针向前移动一步
+end() - 将数组的内部指针指向最后一个单元
+next() - 将数组中的内部指针向前移动一位
+prev() - 将数组的内部指针倒回一位
+【4】foreach遍历数组或对象，语法：
+foreach (引用变量 as $value){
+    each $value
+}
+
+【5】array_unshift — 在数组开头插入一个或多个单元；返回新数组的成员个数
+array_unshift ( array &$array , mixed ...$values ) : int
+
+【6】call_user_func_array
+call_user_func_array ( callable $callback , array $param_arr ) : mixed
+把第一个参数作为回调函数（callback）调用，把参数数组作（param_arr）为回调函数的的参数传入；返回回调函数的结果。如果出错的话就返回false；也可以回调类的方法，但是第一个参数必须是array(className, classMethod)这种形式，而且className不能是对象变量，只能是类名
+
+【7】class_alias
+class_alias ( string $original , string $alias [, bool $autoload = true ] ) : bool
+基于用户定义的类 original 创建别名 alias。 这个别名类和原有的类完全相同。成功时返回 true， 或者在失败时返回 false。+++++在命名空间下的时候起的别名受到命名空间的限制；+++++$original也可以是带有命名空间的类，使用别名的时候不需要再带上原类的命名空间；
+
+
+【8】get_class ([ object $object = null ] ) : string 返回对象的类名
+返回对象实例 object 所属类的名字。 如果 object 不是一个对象则返回 false。
+
+如果在一个类里，省略了参数 object， 则返回当前所在类的名称。
+
+如果 object 是命名空间中某个类的实例，则会返回带上命名空间的类名
+通过别名创建的对象，用这个函数输出的还是原来的类名（有命名空间）
+
+【9】bcrypt('my-secret-password');
+使用 Bcrypt 哈希给定的数值。你可以使用它替代 Hash facade
+
+【10】compact ( mixed $var_name , mixed ...$var_names ) : array
+创建一个包含变量与其值的数组。
+
+对每个参数，compact() 在当前的符号表中查找该变量名并将它添加到输出的数组中，变量名成为键名而变量的内容成为该键的值。简单说，它做的事和 extract() 正好相反。返回将所有变量添加进去后的数组

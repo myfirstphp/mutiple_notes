@@ -1,0 +1,96 @@
+https://www.runoob.com/html/html5-intro.html
+
+href            abbr(hypertext reference)
+
+
+【1】meta
+可提供有关页面的元信息（meta-information），比如针对搜索引擎和更新频度的描述和关键词；
+ 标签位于文档的头部，不包含任何内容。<meta> 标签的属性定义了与文档相关联的名称/值对。
+e.g.    <meta charset="ISO-8859-1">  表示使用ISO-8859-1字符集
+
+【2】a
+ 标签定义超链接，它用于从一个页面连接到另一个页面。
+target属性规定在何处打开目标url，仅在href属性存在时使用
+https://www.runoob.com/tags/tag-a.html
+e.g.  <a href="http://www.html5star.com">html5星空</a>
+
+【3】link
+HTML外部资源链接元素 (<link>) 规定了当前文档与外部资源的关系。该元素最常用于链接样式表，此外也可以被用来创建站点图标(比如PC端的“favicon”图标和移动设备上用以显示在主屏幕的图标) 。
+e.x  <link rel="stylesheet" href="/css/app.css">  rel常用的就是stylesheet；href默认读取路径是在程序的public文件夹下
+
+【4】li
+<li> 标签定义列表项目。
+<li> 标签可用在有序列表（<ol>）、无序列表（<ul>）和菜单列表（<menu>）中。
+ul和ol区别：ul表头用点代替，ol表头用从1开始的有序数字代替
+
+【5】class
+class是选择bai调用CSS样式的属性的，可以复用，zhi也就是说一个class的属性的样式可dao以zhuan用在多个标签上面shu，也可以同时使用多个class，多个class之间用空格隔开
+
+【6】表示大小的缩写
+xs          extra Small 超小
+sm         small
+md        medium
+lg          large
+xl          extra Large 超大
+col- 针对所有设备
+col-sm- 平板 - 屏幕宽度等于或大于 576px
+col-md- 桌面显示器 - 屏幕宽度等于或大于 768px)
+col-lg- 大桌面显示器 - 屏幕宽度等于或大于 992px)
+col-xl- 超大桌面显示器 - 屏幕宽度等于或大于 1200px)
+
+【7】div
+HTML <div> 元素是块级元素，它可用于组合其他 HTML 元素的容器。
+<div> 元素没有特定的含义。除此之外，由于它属于块级元素，浏览器会在其前后显示折行。
+如果与 CSS 一同使用，<div> 元素可用于对大的内容块设置样式属性。
+<div> 元素的另一个常见的用途是文档布局。它取代了使用表格定义布局的老式方法。使用 <table> 元素进行文档布局不是表格的正确用法。<table> 元素的作用是显示表格化的数据。
+
+【8】HTML区块元素
+块级标签：块级元素在浏览器显示时，通常会以新行来开始（和结束）
+（1）块元素，比如div，在没有任何布局属性作用时，默认排列方式为换行排列
+
+（2）高度，宽度以及外边距和内边距都可以进行控制
+
+（3）宽度始终与浏览器宽度一样，与内容无关
+
+（4）可以容纳内联元素和其他块元素
+
+内敛标签：根据内容多少占用空间大小,内联元素在显示时通常不会以新行开始。
+（1）在没有任何布局属性作用时，默认同行排列方式，直到宽度超出包含它容器的宽度才会自动换行
+
+（2）设置宽度无效
+
+（3）设置高度无效，可以通过line-height设置
+
+（4）设置marging 只有左右marging有效，上下无效
+
+（5）设置padding 上下左右都有效，会撑大空间但是不会产生边距效果
+
+行内块状元素
+  行内块状元素综合了行内元素和块状元素的特性，在日常使用中，由于其特性，使用还是比较多
+
+（1）默认不会自动换行
+
+（2）可以对宽度 高度进行设置
+
+（3）默认排列方式为从左到右
+举例：
+
+　　块级：div ul  ol  form h1-h6  menu  p  table  dl  dt   dd  等
+
+　　内敛：span  a  b  i  em  img  lable  input  sub  sup  u  br 等
+
+行内块状：button  del  iframe  ins插入的文本 等，可以根据环境去改变其元素
+综上所述，HTML可以将元素分为三大块：块状元素，行内元素，行内块状元素，并且这三者可以互相转换，需要使用display属性
+  (1)  display:inline; 转换为行内元素
+
+  (2)  display:block; 转换为块状元素
+
+  (3)  display:inline-block; 转换为行内块状元素
+
+【9】布局，应该是指页面整体的样式，就是这个词语的字面意思
+
+【10】role属性
+html 里面的 role 本质上是增强语义性，当现有的HTML标签不能充分表达语义性的时候，就可以借助role来说明。通常这种情况出现在一些自定义的组件上，这样可增强组件的可访问性、可用性和可交互性。role的作用是描述一个非标准的tag的实际作用。比如用div做button，那么设置div 的 role=“button”，辅助工具就可以认出这实际上是个button比如，<div role="checkbox" aria-checked="checked"></div>辅助工具就会知道，这个div实际上是个checkbox的角色，为选中状态
+
+【11】全局属性style
+用法e.x <div style="width:200px; height:200px; background-color:Blue; color:Black;"></div>

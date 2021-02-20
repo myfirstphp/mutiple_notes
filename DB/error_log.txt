@@ -1,0 +1,4 @@
+【1】mysql子查询不支持limit问题解决
+1、例如：select * from table where id in (select t.id from (select * from table limit 3)as t)
+2、把限制条件放到from而非where子句中，就不必出现嵌套再嵌套。
+例如：select * from (select id from table limit 3) as foo

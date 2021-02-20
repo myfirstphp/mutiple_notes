@@ -1,0 +1,60 @@
+----Every derived table must have its own alias
+
+
+【1】locate(substr,str) 
+第一个语法返回字符串 str中子字符串substr的第一个（次）出现位置
+str不一定是字符串类型，数字类型也可以，位置是从1开始计数的，并不是0；该函数不区分大小写；未找到值返回0；当某个参数为null，则返回NULL
+
+【2】FIND_IN_SET(str,strlist) 
+和locate类似，只不过，这里的strlist指的是列表；精准匹配
+e.g.   find_in_set('ab', 'abc, addd')这个返回的是0
+
+【3】CONCAT（）函数用于将多个字符串连接成一个字符串
+
+【4】插入多条数据
+insert into 表名(列名1，列明2，....) values (列1值，列2值...),(列1值，列2值...),(列1值，列2值...),(列1值，列2值...)
+
+【5】更新多行数据
+update test set id = 3 where name = 'kakaxi'
+
+【6】case when 用两种用法，这个语句的结果也可以作为列，可以给他起个别名
+CASE [col_name] WHEN [value1] THEN [result1]…ELSE [default] END
+
+CASE WHEN [expr] THEN [result1]…ELSE [default] END
+
+【7】substring_index(str,delim,count)字符串截取函数
+
+      str:要处理的字符串
+
+      delim:分隔符
+
+      count:计数
+也就是说，如果count是正数，那么就是从左往右数，第count个分隔符的左边的全部内容；当字符串中没有分隔符的时候返回整个字符串
+
+【8】group_concat(agru1,agru2,.....)
+必须和group by结合使用
+agru1参数可以是列名，也可以是指定字符串
+把相同行，指定字段连接为一行;默认是逗号为分隔符
+e.g.  group_concat(id, pid, 'dl')
+e.g.  group_concat(distinct id order by id desc separator '**')
+这个例子中，distinct表示删除相同数据，同一行中id倒序排列，分隔符为**
+
+【9】IFNULL(expr1,expr2)
+假如expr1 不为 NULL，则 IFNULL() 的返回值为 expr1; 否则其返回值为 expr2。IFNULL()的返回值是数字或是字符串，具体情况取决于其所使用的语境。mysql查询不到数据会返回一个N/A，这个不属于任何数据类型，也不属于null，可以在字段上加上max()函数来返回null
+
+【10】mysql修改字段名：
+ALTER  TABLE 表名 CHANGE [column] 旧字段名 新字段名 新数据类型;
+
+【11】由于数据库数据太多，不适用迭代查询，太慢，可以用无限套子查询来手动计算
+
+【12】replace(object,search,replace)
+把object中出现search的全部替换为replace，并返回替换后的object
+
+【14】mysql中空格也是算字符串的，如果一个字符串前面有空格，用等号和in是匹配不到的
+
+【15】LTRIM(str)
+删除str字符串左边的空白
+
+【16】`keyword`这个符号用来屏蔽mysql的关键字
+
+【17】cast()用来转换类型的

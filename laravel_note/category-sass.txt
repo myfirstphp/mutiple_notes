@@ -1,0 +1,52 @@
+【1】样式文件导入
+@import '~bootstrap/scss/bootstrap';
+上面代码将导入 node_modules/bootstrap/scss/bootstrap.scss 文件
+可以看出路径完整形式是要在之后加一个斜杠的/
+你也可以使用下面代码来对单独一个文件进行导入：
+@import "node_modules/bootstrap/scss/_alert.scss";
+
+【2】变量
+Sass 还允许你在代码中加入变量，所有的变量均以 $ 开头
+$navbar-color: #3c3e42;
+.navbar-inverse {
+  background-color: $navbar-color;
+}
+上面代码定义了一个 $navbar-color 颜色变量，在编译成功之后，变量将被替代为它所对应的值
+
+【3】嵌套
+body div {
+  color: red;
+}
+
+body h1 {
+  margin-top: 10px;
+}
+
+可以嵌套成下面的形式
+body {
+  div {
+    color: red;
+  }
+
+  h1 {
+    margin-top: 10px;
+  }
+}
+
+【4】引用父选择器
+a {
+  color: white;
+}
+
+a:hover {
+  color: blue;
+}
+
+a {
+  color: white;
+  &:hover {
+    color: blue;
+  }
+}
+
+【5】sass可以在一个层次上设置同名变量，但只有最后那一个会生效

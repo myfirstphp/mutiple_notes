@@ -1,0 +1,15 @@
+【1】回调函数
+A "callback" is any function that is called by another function which takes the first function as a parameter. （在一个函数中调用另外一个函数就是callback）
+e.x
+function callback() {
+    alert("I am in the callback!");
+}
+
+function work(func) {
+    alert("I am calling the callback!");
+    func(); 
+}
+
+work(callback);
+
+在这个例子中callback()就是回调函数

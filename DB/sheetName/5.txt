@@ -1,0 +1,13 @@
+CREATE TABLE `ts_sys_dict` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID标识',
+  `cls_code` varchar(64) NOT NULL DEFAULT '' COMMENT '分类编码：区分该编码的用途，大小写敏感，建议全大写，一个分类编码一般有多个编号。需要在对应表字段备注中注明该字段的定义参考TS_SYS_DICT CLS_CODE:xxxx',
+  `cls_name` varchar(64) NOT NULL DEFAULT '' COMMENT '分类名称：该分类的作用，建议提及哪个表使用了该分类编码',
+  `code_value` varchar(10) NOT NULL DEFAULT '' COMMENT '编号值：对应表中具体取值',
+  `code_name` varchar(255) NOT NULL DEFAULT '' COMMENT '编号名称：对应查询转译结果',
+  `listorder` smallint(6) NOT NULL DEFAULT '0' COMMENT '排序ID：输出数据按ORDER_NO、CODE排序',
+  `is_delete` tinyint(1) NOT NULL DEFAULT '0' COMMENT '删除状态，参考TS_SYS_DICT CLS_CODE:IS_DELETE_STATUS 0: 正常,1: 已删除,2: 无效',
+  `remark` varchar(255) DEFAULT NULL COMMENT '备注 ',
+  `mtime` int(11) NOT NULL DEFAULT '0' COMMENT '创建或者更新时间',
+  PRIMARY KEY (`cls_code`,`code_value`),
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7182 DEFAULT CHARSET=utf8 COMMENT='系统字典表';

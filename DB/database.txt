@@ -1,0 +1,1 @@
+ehr职务  在db_ysb_salesmen.ts_user_otherinfo   关联表 db_ysb_dictionary.ts_sys_dict

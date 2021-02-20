@@ -1,0 +1,211 @@
+https://www.git-scm.com/book/zh/v2/Git-%E5%9F%BA%E7%A1%80-%E8%8E%B7%E5%8F%96-Git-%E4%BB%93%E5%BA%93
+
+树对象
+3c4e9cd789d88d8d89c1073707c3585e41b0e614
+d8329fc1cc938780ffdd9f94e0d364e0ea74f579
+0155eb4229851634a0f03eb265b69f5a2d56f341
+
+提交对象
+first commit
+46c26c9cf9165083cc65eb39896d4379d9811030
+second commit
+4874a6dd6e86d4e9d4f2a872ece21c01ba66b5f1
+third commit
+ad838da4970038f06ebae55134e5deb19fa2739b
+
+
+git cat-file -p <SHA-1>     查看文件内容
+git cat-file -t <SHA-1>     查看文件类型
+git cat-file -s <SHA-1>     查看文件大小
+git cat-file -p master^{tree}    查看master分支最新的提交所指向的树对象
+git branch -d删除分支，只能删除已合并的分支
+git branch -D强制删除分支，未合并的也可以删除
+git branch <branchname>新建分支
+git checkout <branchname>切换分支
+git merge --abort  终止当前的合并
+git branch  查看所有分支
+git branch -v查看每个分支的最后一次提交
+git branch --merged查看哪些分支已经合并到当前分支
+git branch --no-merged查看哪些分支未合并到当前分支
+git branch --no-merged master也可以加上提交或分支名，来查看指定的提交或分支名的情况
+git remote show <remote>查看远程分支的信息
+git ls-remote <remote>显式地获得远程引用的完整列表
+git fetch <remote>从远程抓取本地没有的数据，并且更新本地数据库，移动 origin/master 指针到更新之后的位置
+git checkout -b serverfix origin/serverfix  把远程分支origin/serverfix给本地分支serverfix
+git checkout --track origin/serverfix设置serverfix分支的上游分支为origin/serverfix，并切换到serverfix分支
+git branch -u origin/serverfix显式地设置上游分支（upstream）
+git branch -vv查看设置的所有跟踪分支，这个只是看的本地的，不会显示服务器的变动
+git push origin --delete serverfix从服务器上删除 serverfix 分支
+
+----git help <command>用来查看命令说明
+【1】创建树对象的前提 是 提交文件到暂存区或暂存区有更新；Git 根据某一时刻暂存区（即 index 区域，下同）所表示的状态创建并记录一个对应的树对象；树对象的创建是在提交操作中
+
+【2】在object中，一个文件对应一条内容，但未保存文件名
+
+【3】一个树对象包含了一条或多条树对象记录（tree entry），每条记录含有一个指向数据对象或者子树对象的 SHA-1 指针，以及相应的模式、类型、文件名信息
+
+【4】被改动的文件以数据对象的形式保存在object中
+
+【5】git add 和 git commit 命令时，Git 所做的工作实质就是将被改写的文件保存为数据对象， 更新暂存区，记录树对象，最后创建一个指明了顶层树对象和父提交的提交对象；提交对象是git commit命令创建的
+
+【6】引用（refs）,就是文件名，这个文件中保存着，某个提交对象的SHA-1值，调用这个引用，等同于调用对象的SHA-1，分支其实就是引用
+
+【7】HEAD 文件通常是一个符号引用（symbolic reference），指向目前所在的分支。 所谓符号引用，表示它是一个指向其他引用的指针
+
+【8】git branch <branch> 这样的命令，取得当前所在分支最新提交对应的 SHA-1 值，并将其加入你想要创建的任何新引用中
+
+【9】git所有对象都存放在object中
+
+【10】附注标签，Git 会创建一个标签对象，并记录一个引用的值（是一个SHA-1）来指向该标签对象，而不是直接指向提交对象
+
+【11】标签对象并非必须指向某个提交对象；你可以对任意类型的 Git 对象打标签
+
+【12】引用共有3种，HEAD引用(符号引用)，标签引用（标签对象），远程引用
+
+【13】引用指向提交对象，提交指向树对象
+
+【14】Git 分支的本质：一个指向某一系列提交之首（最新一次）的指针或引用
+
+【15】远程引用，在refs/remotes里面，Git 会记录最近一次推送操作时每一个分支所对应的值（只记录有推送分支记录的值，不记录没有推送分支的值）
+
+【16】packfile 包文件：把多个松散格式（可以理解为非包文件）的对象，打包成一个包文件（binary格式），以此来减少存储空间，提升传输效率
+
+【17】附注标签，可以理解为指针的指针，它会创建一个标签对象，并记录一个引用来指向该标签对象，而不是直接指向提交对象
+
+【18】 提交对象：git commit 时，该命令会创建一个提交对象，并用 HEAD 文件中那个引用所指向的 SHA-1 值设置其父提交字段。
+
+【19】hook，也叫钩子（狗子），一些git命令会触发脚本文件，这些命令被称为钩子
+
+【20】git add   如果参数是目录的路径，该命令将递归地跟踪该目录下的所有文件，也可以只跟踪单个文件；这个命令可以用于把未跟踪文件变为跟踪的，并放到暂存区，也可以把未添加到暂存区的文件，添加到暂存区
+
+【21】git diff 本身只显示尚未暂存的改动；git diff --staged显示暂存区的改动
+
+【22】已跟踪文件，全部放在staged中
+
+【23】git commit 加上 -a 选项，Git 就会自动把所有已经跟踪过的文件暂存起来一并提交，从而跳过 git add 步骤；此命令如果不加上-m参数，系统会自动打开编辑器，让你填写备注
+
+【24】git rm用于删除已在暂存区的文件，同时删除工作区文件，不能删除A(新建文件添加到暂存区)和M(暂存区文件修改后再次放到暂存区)的文件，要删除A和M要加上-f参数
+
+【25】git rm --cached 只删除暂存区文件，不删除工作区文件
+
+【26】git ls-files查看暂存区文件
+
+【27】git mv <old name> <new name> 文件重命名
+这个命令其实相当于下面三个命令
+mv README.md README
+git rm README.md
+git add README
+
+【28】git log 会按时间先后顺序列出所有的提交，最近的更新排在最上面
+
+【29】git log -p -2  按 补丁 的格式输出前两条记录
+
+【30】git log --stat        git log -p这个命令的简略信息
+
+【31】git log --pretty=oneline  所有提交记录放在一行显示
+git log --pretty=short
+git log --pretty=full
+git log --pretty=fuller
+git log --pretty=format:"%h - %an, %ar : %s"按定制格式显示
+git log --pretty=format:"%h %s" --graph   展示分支、合并历史
+
+【32】git log --since=2.weeks    列出近两周的所有提交
+
+【33】git log -S <字符串>    查找添加或删除该字符串的提交
+
+【34】git log --grep <字符串> 查找提交说明中包含指定字符串的提交
+
+【35】git commit --amend   替换最近一次的提交，但是上次提交的备注会保留，仅仅是把这次的提交的SHA-1，替换为上一次提交的SHA-1
+
+【36】git reset HEAD <file>或git restore --staged <file>取消暂存的文件
+
+【37】git restore <file>或git checkout -- <file>恢复修改
+
+【38】git tag 查看所有标签
+
+【39】git tag -l 'v1.0*'     模糊匹配v1.0的所有标签
+
+【40】git tag -a v1.4 -m "my version 1.4"  创建附注标签；-m表示备注，给最近一次提交打上标签
+
+【41】git show v1.4   查看标签信息和与之对应的提交信息
+
+【42】git tag v1.4-lw  创建轻量标签,不需要任何参数
+
+【43】git push origin v1.5  推送指定标签
+
+【44】git push origin --tags 这将会把所有不在远程仓库服务器上的标签全部传送到那里
+
+【45】git tag -d <tagname>  删除指定标签，删除的是git版本库中，不是远程的
+
+【46】git push origin :refs/tags/v1.4-lw   删除远程仓库中的标签；冒号前的空格，表示把空值推送给标签，相当于删除，git push origin --delete <tagname>这两个标签是等效的
+
+【47】git checkout <tagname>查看某个标签所指向的文件版本,会使你的仓库处于“分离头指针（detached HEAD）”的状态
+
+【48】git config --global alias.ci commit给commit起一个别名
+
+【49】snapshot一般是指文件，但你也可以把树对象看作snapshot
+
+【50】git log --oneline --decorate 查看各个分支当前所指的对象
+
+【51】git checkout -b <newbranchname>创建分支并切换过去
+
+【52】新创建的提交对象指向的是它的父对象（就是上一个提交对象），这个前提是项目只有一个分支
+
+【53】git checkout用这个命令切换分支时，如果两个分支不完全相同，那么本地文件是会发生变化的
+
+【54】fast-forward合并，指的是两个分支在一条线上，没有分叉
+
+【55】合并提交，当两个分支不在一条直线上时，进行合并时，会创建一个新的提交对象，他有两个父对象，当前分支会移动到此对象上
+
+【56】合并冲突（merge conflicts）当要合并的两个分支，对一个文件的相同部分有不同的修改时，合并和暂停，这时候可以打开有冲突的文件，根据系统的特殊标记，来手动选择要保留哪一部分内容，然后通过git add命令来把冲突文件的状态变为已修改已暂存，然后通过git commit命令来继续合并
+
+【57】已被合并的分支，可以删除掉，删除了也不会失去任何东西
+
+【58】当设置好跟踪分支后，可以通过简写 @{upstream} 或 @{u} 来引用它的上游分支
+
+【59】ahead表示待推送到服务器的提交数
+behind表示meaning that there is one commit on the server we haven’t merged in yet
+
+【60】git fetch 命令从服务器上抓取本地没有的数据时，它并不会修改工作目录中的内容。 它只会获取数据然后让你自己合并；git pull命令就像是git fetch和git merge的集合，但是一般不要用这个命令
+
+【61】git clean
+删除untraced file
+-d递归目录
+-f强制
+
+【62】remote origin already exists解决方法
+1、先输入 git remote rm origin
+2、再输入 git remote add <shortname就是远程仓库名字的简写，默认是origin> <url>
+也可以进到.git/config里面手动修改url
+
+【63】git push -u origin master
+这条命令使用以后，下次用git push 等价于git push origin master
+
+【64】 Permission to xxxxx.git denied to xxxxxxxx
+解决方法
+https://www.jianshu.com/p/12badb7e6c10
+
+【65】一台电脑只能映射一个账号；但是一个账号可以绑定多台电脑（多个ssh_key）
+
+【66】git remote -v
+查看现在连接的远程仓库
+
+【67】设置用户名和邮箱
+git config --global user.name '名字要加上引号'
+git config --global user.email 不用引号
+global的意思大概是指对同一个远程仓库下的所有项目都适用，在本机上
+
+【68】git clone
+这个命令会自动生成.git文件，并自动添加克隆的仓库为目标远程仓库
+
+【69】git clean -fd -n
+查看将要删除的untracked文件名和文件夹
+
+【70】git checkout .
+放弃所有的文件修改
+
+【71】git pull
+把远程仓库的改动和当前分支合并
+
+【72】git config --global core.quotepath false
+这个命令来设置中文显示不正常问题

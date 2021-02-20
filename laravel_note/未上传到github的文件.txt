@@ -1,0 +1,4 @@
+1.   node_modules文件夹
+2.   .env文件
+3.   vendor文件夹
+4.   .git文件夹

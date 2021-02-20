@@ -1,0 +1,27 @@
+https://www.php.cn/manual/view/34100.html
+
+【1】背景色是浅色就用.navbar-light；背景色是深色就用.navbar-dark
+
+【2】Bootstrap 3 的 container class 用于包裹页面上的内容，主要作用就是让包裹里面的内容居中对齐
+
+【3】我们可以使用 .navbar 类来创建一个标准的导航栏，后面紧跟: .navbar-expand-xl|lg|md|sm 类来创建响应式的导航栏 (大屏幕水平铺开，小屏幕垂直堆叠)。导航栏上的选项可以使用 <ul> 元素并添加 class="navbar-nav" 类, 然后在 <li> 元素上添加 .nav-item 类 ，<a> 元素上使用 .nav-link 类
+
+【4】bootStrap4中内容对齐有五种模式
+ justify-content-{around | between | start | center | end}
+
+【5】jumbotron（超大屏幕）会创建一个大的灰色背景框，里面可以设置一些特殊的内容和信息。
+提示: jumbotron 里头可以放一些 HTML标签，也可以是 Bootstrap 的元素
+
+【6】为了给段落添加强调文本，则可以添加 class="lead"，这将得到更大更粗、行高更高的文本
+
+【7】btn-success只是表示一种背景颜色
+https://m.runoob.com/bootstrap/bootstrap-buttons.html
+
+【8】Bootstrap4 网格系统
+col-*-*     第一个星号 (*) 表示响应的设备: sm, md, lg 或 xl, 第二个星号 (*) 表示一个数字, 同一行的数字相加为 12。在移动设备上，即屏幕宽度小于 576px 时，下面两个列将会上下堆叠排版
+<div class="row">
+  <div class="col-sm-4">.col-sm-4</div>
+  <div class="col-sm-8">.col-sm-8</div>
+</div>
+偏移列通过 offset-*-* 类来设置。第一个星号( * )可以是 sm、md、lg、xl，表示屏幕设备类型，第二个星号( * )可以是 1 到 11 的数字。
+为了在大屏幕显示器上使用偏移，请使用 .offset-md-* 类。这些类会把一个列的左外边距（margin）增加 * 列
