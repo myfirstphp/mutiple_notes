@@ -94,3 +94,66 @@ html 里面的 role 本质上是增强语义性，当现有的HTML标签不能�
 
 【11】全局属性style
 用法e.x <div style="width:200px; height:200px; background-color:Blue; color:Black;"></div>
+
+【12】<img>标签alt属性
+alt 属性是一个必需的属性，它规定在图像无法显示时的替代文本。
+假设由于一些原因（比如网速太慢、src 属性中的错误、浏览器禁用图像、用户使用的是屏幕阅读器）用户无法查看图像，alt 属性可以为图像提供替代的信息。
+
+注释：从技术上讲，图像并不会插入 HTML 页面中，而是链接到 HTML 页面上。<img> 标签的作用是为被引用的图像创建占位符。
+
+提示：通过在 <a> 标签中嵌套 <img> 标签，给图像添加到另一个文档的链接
+e.x   
+<a href="https://www.baidu.com/">
+    <img src="smiley-2.gif" alt="Smiley face" width="42" height="42">
+</a>
+
+【13】section和div的区别
+https://www.cnblogs.com/tianjuan/p/5251318.html
+
+【14】form
+<form> 标签用于创建供用户输入的 HTML 表单。
+<form> 元素包含一个或多个如下的表单元素：
+<input>
+<textarea>
+<button>
+<select>
+<option>
+<optgroup>
+<fieldset>
+<label>
+基本的表单结构是 Bootstrap 自带的，个别的表单控件自动接收一些全局样式。下面列出了创建基本表单的步骤：
+向父 <form> 元素添加 role="form"。
+把标签和控件放在一个带有 class .form-group 的 <div> 中。这是获取最佳间距所必需的。
+向所有的文本元素 <input>、<textarea> 和 <select> 添加 class ="form-control" 
+
+【14】input
+<input> 标签规定了用户可以在其中输入数据的输入字段。
+<input> 元素在 <form> 元素中使用，用来声明允许用户输入数据的 input 控件。
+输入字段可通过多种方式改变，取决于 type 属性。
+name 属性规定 <input> 元素的名称。
+name 属性用于在 JavaScript 中引用元素，或者在表单提交后引用表单数据。
+注意：只有设置了 name 属性的表单元素才能在提交表单时传递它们的值
+
+【15】href属性默认是使用get请求方式
+
+【16】<hr> 生成一条分割线
+
+【17】<small>定义小型文本
+https://www.runoob.com/tags/tag-small.html
+
+【18】<textarea>  rows属性，规定文本可见的行数
+http://www.html5star.com/manual/html5/html5_textarea.htm
+
+【19】<aside> 标签定义 <article> 标签外的内容。
+aside 的内容应该与附近的内容相关
+https://www.runoob.com/tags/tag-aside.html
+
+【20】onsubmit 事件在提交表单时调用
+https://www.runoob.com/jsref/event-form-onsubmit.html
+
+【21】全局属性class主要是用来加载样式的;
+id 属性规定 HTML 元素的唯一的 id。
+id 在 HTML 文档中必须是唯一的。
+id 属性可用作链接锚（link anchor），通过 JavaScript（HTML DOM）或通过 CSS 为带有指定 id 的元素改变或添加样式
+
+【22】<strong>加粗文本</strong>

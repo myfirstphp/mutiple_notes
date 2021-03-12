@@ -1,0 +1,21 @@
+https://learnku.com/articles/20712
+我要给阿Q做正传，已经不止一两年了。但一面要做，一面又往回想，这足见我不是一个“立言”的人，因为从来不朽之笔，须传不朽之人，于是人以文传，文以人传——究竟谁靠谁传，渐渐的不甚了然起来，而终于归接到传阿Q，仿佛思想里有鬼似的
+【1】在providers/EventServiceProvider.php中的$listen数组中 注册事件和 Listener
+
+【2】在用 artisan 命令生成 Event 的时候，对应的 Listner 也一并生成好了
+
+【3】Event::fire (new PodcastWasPurchased ($podcast));
+这就是触发事件的写法，PodcastWasPurchased就是一个事件（当然是定义它为一个事件，事件就是一种概念，你可以定义任何东西为事件）
+用辅助函数写法  event(new PodcastWasPurchased($podcast));
+
+【4】如果要处理的事件很多，那么会影响当前进程的执行效率，这时我们需要把事件加入队列，让它延迟异步执行，只需要加上implements ShouldQueue
+
+【5】在监听器中    可以通过在handle方法中使用 if (true) {$this->release(10)}来做到延迟处理
+
+【6】事件订阅 (Event Subscribers)，一般一个 listener 里只能放一个 hander（），事件订阅可以把很多处理器（handler）放到一个类里面，然后用一个 listner 把它们集合起来
+
+【7】你只需要将监听器和事件添加到 EventServiceProvider 中，并使用 event:generate 命令。这个命令会生成在 EventServiceProvider 中列出的所有事件和监听器。当然，已经存在的事件和监听器将保持不变
+
+【8】事件类是一个保存与事件相关信息的容器
+
+【9】通常，事件应该通过 EventServiceProvider 的 $listen 数组来注册的，然而，你也可以在 EventServiceProvider 的 boot 方法中手动的注册基于闭包的事件

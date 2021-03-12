@@ -25,3 +25,54 @@ col-*-*     第一个星号 (*) 表示响应的设备: sm, md, lg 或 xl, 第二
 </div>
 偏移列通过 offset-*-* 类来设置。第一个星号( * )可以是 sm、md、lg、xl，表示屏幕设备类型，第二个星号( * )可以是 1 到 11 的数字。
 为了在大屏幕显示器上使用偏移，请使用 .offset-md-* 类。这些类会把一个列的左外边距（margin）增加 * 列
+row在bootstrap中是左右边距都是15px
+
+【9】css中的alert类
+一般alert是必须要有，后面再跟个颜色的类
+ex. <div class="alert alert-danger"></div>
+https://www.runoob.com/bootstrap4/bootstrap4-alerts.html
+
+【10】Bootstrap4 下拉菜单
+.dropdown 类用来指定一个下拉菜单。
+我们可以使用一个按钮或链接来打开下拉菜单， 按钮或链接需要添加 .dropdown-toggle 和 data-toggle="dropdown" 属性。
+<div> 元素上添加 .dropdown-menu 类来设置实际下拉菜单，然后在下拉菜单的选项中添加 .dropdown-item 类。
+https://www.runoob.com/bootstrap4/bootstrap4-dropdowns.html
+
+【11】aria-haspopup :true表示点击的时候会出现菜单或是浮动元素； false表示没有pop-up(弹出)效果。
+aria-expanded:表示展开状态。默认为undefined, 表示当前展开状态未知。其它可选值：true表示元素是展开的；false表示元素不是展开的。
+这些都是无障碍网页应用的配置项，如果不考虑这些人群的话，就不需要
+http://www.zhangxinxu.com/wordpress/2012/03/wai-aria-无障碍阅读/
+
+【12】aria-label和aria-labelledby的区别
+这两个属性都是用于 Accessibility，两者设立的目的是一样的，用于屏幕阅读器(Screen Reader)，都是为了帮助残障人士更好的识别当前元素。W3 提到两者用法的区别在于： 如果你的需求是，不需要页面上显示 Accessibility 文本，那就要用aria-label；如果已经在页面上显示了 Accessibility 文本，那就要用aria-labelledby。最近再次审视这两个属性，发现之前的理解还不够深入，aria-labelledby 更准确的用法应该是标记弹窗层的父级元素，用于阅读器，告诉残障人士：这个元素是一个功能的合集，一般通过 enter 键可以进入下一级的选项。
+
+【13】dropdown-divider下拉选项的分割线
+
+【14】class  .form-check
+复选框用于让用户从一系列预设置的选项中进行选择，可以选一个或多个
+https://www.runoob.com/bootstrap4/bootstrap4-forms-inputs.html
+
+【15】有card和没有card的区别就是card更好看
+https://www.runoob.com/bootstrap4/bootstrap4-cards.html
+
+【14】.btn-block 块级按钮(拉伸至父元素100%的宽度)
+
+【15】关于下拉选项，div和a的位置可以随便放，只要在同一个li中就行
+
+【16】form-check-input是控制下边距用的
+
+【17】加入.list-group-flush选择器，可以实现移除部分边框以及圆角，从而产生边缘贴齐的列表组，这在诸如Card卡片等容器中很实用（达成更好的呈现效果）
+https://www.bookstack.cn/read/bootstrap-v4.0-zh/f4246cf304c0cbef.md
+在ul中用list-group那么li中就要用list-group-item
+
+【18】Bootstrap 提供了很好的方式来处理多媒体对象（图片或视频）和内容的布局。应用场景有博客评论、微博等:
+要创建一个多媒体对象，可以在容器元素上添加 .media 类，然后将多媒体内容放到子容器上，子容器需要添加 .media-body 类
+https://www.runoob.com/bootstrap4/bootstrap4-media-objects.html
+
+【19】元素之间距离
+https://blog.csdn.net/weixin_39987434/article/details/97111457
+https://www.runoob.com/cssref/pr-margin.html
+https://www.runoob.com/w3cnote/px-em-rem-different.html
+
+【20】list-unstyled未定义样式列表，即不是有序列表，也不是无序列表
+https://www.runoob.com/bootstrap/bootstrap-typography.html

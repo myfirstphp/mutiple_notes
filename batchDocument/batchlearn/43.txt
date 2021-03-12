@@ -1,0 +1,11 @@
+43、退格符
+
+【1】作用
+“”放在汉字等双字节后面是退2个字节，放在英文等单字节后面就退一个字节！也就是说它符合就近的原则。
+
+这个跟批处理无关，取决于操作系统如何实现。退一个字节或者一个字符都有可能。比如在CentOS5.1中就是退一个字节。
+类似地，\n在Linux中当然表示一个换行符，但MinGW gcc 2.95（其他版本我暂时未用过）在Windows上自动将其扩展为\r\n，而Windows上的js却没有这么实现，new ActiveXObject('Scripting.FileSystemObject').OpenTextFile('1.txt',2,true).Write('hello\nbathome')，用记事本打开1.txt可以看到换行符显示为一个小黑块。
+
+【2】怎么获取退格符
+(1)在cmd的编辑模式下按ctrl+p后，松开，再按退格键获得(我没找到emmm)
+(2)直接复制别人的

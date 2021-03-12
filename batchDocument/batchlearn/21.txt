@@ -1,0 +1,52 @@
+21、type
+Type命令对一般文本文件（.txt）进行处理，对其他类型文件就不好用了。
+
+基本语法 type [drive] [path] [filename]，本命令是用于打开txt文档，并在cmd窗口显示txt中的内容。
+
+【注意】type后面可以跟多个文件，但是这时文件名也会显示出来
+【注意】type显示内容，光标在显示内容末尾，光标不会移到下一行，若连续用两个type命令那么结果将在同行显示
+例如：
+
+@echo off
+echo pen.txt below:
+type pen.txt
+rem echo.相当于回车
+echo.   
+echo.
+echo apple.txt below:
+type apple.txt
+echo.
+type pen.txt apple.txt
+pause
+
+执行结果：
+
+pen.txt below:
+I have a pen,
+
+apple.txt below:
+I have an apple.
+
+pen.txt
+
+
+I have a pen,
+apple.txt
+
+
+
+I have an apple.
+
+请按任意键继续 . . .
+
+
+【type的其他用法】
+
+(1) type 文件名 | more
+
+“type 文件名”是将内容一次性打印出来，加上“more”命令是分页打印，并且按任意键可以获得后续内容，很适合内容多的文件
+
+
+(2) type 文件名 | findstr [/i] 内容
+   
+该命令类似于查找命令，即查找“内容”并打印出来，其他的无关内容不会打印出来，/i表示是否区分大小写

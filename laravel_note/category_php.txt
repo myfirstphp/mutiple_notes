@@ -13,3 +13,76 @@ function work(func) {
 work(callback);
 
 在这个例子中callback()就是回调函数
+
+【2】compact()函数
+如果要传入普通变量要加引号，e.x $foo=1; compact('foo');
+传入数组变量，不用加引号，e.x $foo=[1,2];compact($foo);
+注意在第一个例子中变量$foo的值给了数组的foo键，这时候不能通过arrayName[0]调用，要通过arrayName['foo']调用；数组的话，里面的元素的值也必须是'foo'这种形式
+
+
+【3】trim ( string $str , string $character_mask = " \t\n\r\0\x0B" ) : string
+此函数返回字符串 str 去除首尾空白字符后的结果。如果不指定第二个参数，trim() 将去除这些字符：
+
+" " (ASCII 32 (0x20))，普通空格符。
+"\t" (ASCII 9 (0x09))，制表符。
+"\n" (ASCII 10 (0x0A))，换行符。
+"\r" (ASCII 13 (0x0D))，回车符。
+"\0" (ASCII 0 (0x00))，空字节符。
+"\x0B" (ASCII 11 (0x0B))，垂直制表符。
+
+str
+待处理的字符串。
+character_mask
+可选参数，过滤字符也可由 character_mask 参数指定。一般要列出所有希望过滤的字符，也可以使用 “..” 列出一个字符范围。
+
+【4】单引号和双引号的区别
+在PHP中，字符串的定义可以使用英文单引号' '，也可以使用英文双引号" "。
+一般情况下两者是通用的.但双引号内部变量会解析,单引号则不解析.
+PHP允许我们在双引号串中直接包含字串变量。
+而单引号串中的内容总被认为是普通字符，因此单引号中的内容不会被转义效率更高。
+
+【5】count() 函数用于计算数组中的单元数目或对象中的属性个数，返回数组的单元个数或对象中的属性个数；
+
+【6】self parent $this 的区别
+self指的是定义它的那个类，$this指的是调用它的那个类
+parent是指定义它的那个类的父类
+e.x
+<?php
+class A {
+	
+    public static function who() {
+        echo __CLASS__."\n";
+    }
+}
+
+class B extends A {
+    public static function test() {
+        A::who();
+        parent::who();
+        self::who();
+    }
+
+    public static function who() {
+        echo __CLASS__."\n";
+    }
+}
+class C extends B {
+    public static function who() {
+        echo __CLASS__."\n";
+    }
+}
+
+C::test();
+
+?>
+
+【7】后期静态绑定
+https://learnku.com/articles/8964/understanding-of-static-binding-at-the-later-stage-of-php
+看下自己的评论
+
+【8】(expr1) ?? (expr2)
+当expr1为空时，整体的值为expr2，当expr1非空是，整体值为expr1
+
+【9】array_push ( array &$array , mixed $value1 , mixed $... = ? ) : int
+array_push() 将 array 当成一个栈，并将传入的变量压入 array 的末尾
+返回之后的数组元素个数

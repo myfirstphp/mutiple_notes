@@ -1,0 +1,281 @@
+48、errorlevel
+
+【英文版】
+ATTRIB.EXE
+(a) Target file/folder not found                = ERRORLEVEL 1
+(b) Invalid switch                               = ERRORLEVEL 1
+(c) Sharing violation (target file in use)       = ERRORLEVEL 1
+(d) Invalid drive specification                    = ERRORLEVEL 1
+(e) Drive not ready (either Abort or Fail reply) = ERRORLEVEL 1
+(f) Invalid/wrong number of parameters          = ERRORLEVEL 1
+
+CHOICE.COM
+(a) With reply list, and reply nn in list       = ERRORLEVEL nn
+(This reply list position = return code is main use of CHOICE)
+(b) Invalid switch                               = ERRORLEVEL 255
+(c) Invalid switch syntax                          = ERRORLEVEL 255
+(d) Timeout default not in reply list              = ERRORLEVEL 255
+(e) choice /?                                      = ERRORLEVEL 255
+
+CSCRIPT.EXE
+(a) Cannot find script file                      = ERRORLEVEL 1
+(b) No script engine for file extension          = ERRORLEVEL 1
+(c) No file extension in script file             = ERRORLEVEL 1
+(d) Drive not ready                                = ERRORLEVEL 1
+(There is no Abort, Retry, Fail stall)
+
+DELTREE.EXE
+(a) Required parameter missing                   = ERRORLEVEL 1
+(b) Invalid switch                               = ERRORLEVEL 1
+(c) deltree /?                                  = ERRORLEVEL 1
+(d) Not ready reading drive (Abort reply)       = ERRORLEVEL 18
+(Note: Fail reply returns ERRORLEVEL 0)
+
+EXTRACT.EXE
+(a) Invalid switch                               = ERRORLEVEL 1
+
+FC.EXE
+(a) Insufficient number of filespecs             = ERRORLEVEL 1
+(b) Too many filenames on command line          = ERRORLEVEL 1
+(c) Sharing Violation + Abort reply             = ERRORLEVEL 5
+(Note: Fail reply returns ERRORLEVEL 0)
+(d) Drive not ready                                = ERRORLEVEL 18
+(Note: Fail reply returns ERRORLEVEL 0)
+
+FIND.EXE
+(a) Target string found (=f0und)                 = ERRORLEVEL 0
+(b) Target string missing (=m1ssing)             = ERRORLEVEL 1
+(c) find /?                                     = ERRORLEVEL 1
+(d) Parameter format not correct                = ERRORLEVEL 2
+(e) Specified file to search not found          = ERRORLEVEL 2
+(f) Specified file in use + Fail reply          = ERRORLEVEL 2
+(g) Drive not ready + Fail reply                = ERRORLEVEL 2
+(h) Specified file in use + Abort reply          = ERRORLEVEL 5
+(i) Drive not ready + Abort reply                = ERRORLEVEL 5
+
+FORMAT.COM
+(a) Drive not ready                                = ERRORLEVEL 4
+(There is no Abort, Retry, Fail stall)
+
+FTP.EXE
+(a) Brief help (use: ftp -h for Brief help)        = ERRORLEVEL 2
+(b) Error opening script file (file missing)    = ERRORLEVEL 2
+(c) Invalid switch                               = ERRORLEVEL 2
+
+KEYB.COM
+(a) Invalid switch                               = ERRORLEVEL 1
+(b) Invalid keyboard code specified             = ERRORLEVEL 1
+(c) keyb /?                                     = ERRORLEVEL 1
+
+MEM.EXE
+(a) Invalid switch                               = ERRORLEVEL 1
+
+MODE.COM
+(a) Invalid parameter                            = ERRORLEVEL 1
+(b) Invalid switch                               = ERRORLEVEL 1
+
+MORE.COM
+(a) Invalid switch (MORE doesn't accept switches)   = ERRORLEVEL 1
+(b) Drive not ready (Abort reply)                = ERRORLELEL 5
+(Note: Fail reply returns ERRORLEVEL 0)
+
+MOVE.EXE
+(a) Required parameter missing                   = ERRORLEVEL 1
+(b) Unable to create destination                = ERRORLEVEL 1
+(c) Unable to open source                          = ERRORLEVEL 1
+(you see this when trying to MOVE a folder from one drive
+    to another. You need to use XCOPY /S followed by DELTREE,
+    since MOVE won't handle folder moves across drives)
+(d) Sharing violation + Fail reply                 = ERRORLEVEL 1
+(Note: file is nevertheless COPIED, not moved, in this case)
+(e) Sharing violation + Abort reply             = ERRORLEVEL 5
+(Note: file is nevertheless COPIED, not moved, in this case)
+(f) Drive not ready (Abort reply)                = ERRORLEVEL 18
+(Note: Fail reply - unusually - returns ERRORLEVEL 1)
+
+PING.EXE
+(a) Unknown host                                   = ERRORLEVEL 1
+(usually=name not found on DomainNameServer)
+(b) Brief help (with no parameter)                 = ERRORLEVEL 1
+Note: for PING Brief help with /? switch, ERRORLEVEL is 0
+(c) Invalid switch                               = ERRORLEVEL 1
+(and displays the Brief help as well)
+(d) Interrupted with [Ctrl-C]                   = ERRORLEVEL 255
+
+SORT.EXE
+(a) Invalid switch                               = ERRORLEVEL 1
+(b) Drive not ready (Abort reply)                = ERRORLEVEL 15
+(Note: Fail reply returns ERRORLEVEL 0)
+
+START.EXE
+(a) start /? (real mode)                         = ERRORLEVEL 1
+(b) start /? (GUI)                               = ERRORLEVEL 255
+(c) Can't find file specified for START          = ERRORLEVEL 255
+(d) No file association for specified file       = ERRORLEVEL 255
+(e) Drive not ready                                = ERRORLEVEL 255
+(There is no Abort, Retry, Fail stall)
+
+SUBST.EXE
+(a) Invalid parameter                            = ERRORLEVEL 1
+(b) Invalid switch                               = ERRORLEVEL 1
+(c) Path not found                               = ERRORLEVEL 1
+(d) Drive not ready (Abort reply)                = ERRORLEVEL 21
+(Note: Fail reply - unusually - returns ERRORLEVEL 1)
+
+TRACERT.EXE
+(a) Unable to resolve target system name           = ERRORLEVEL 1
+(usually=name not found on DomainNameServer)
+(b) Invalid switch                               = ERRORLEVEL 1
+(c) Brief help (no parameter)                   = ERRORLEVEL 1
+(d) Interrupted with [Ctrl-C]                   = ERRORLEVEL 255
+Note: for TRACERT Brief help, type command without parameters
+
+XCOPY.EXE
+(a) File not found                               = ERRORLEVEL 1
+(b) Invalid date in /d switch                   = ERRORLEVEL 4
+(c) Invalid number of parameters                = ERRORLEVEL 4
+(d) Invalid parameter                            = ERRORLEVEL 4
+(e) Device not ready                            = ERRORLEVEL 4
+(f) Unable to create directory                   = ERRORLEVEL 4
+(g) System can't find file                      = ERRORLEVEL 5
+
+
+【某大佬的翻译版】
+
+ATTRIB.EXE
+（一）未找到目标文件/文件夹= ERRORLEVEL 1
+（二）无效的开关= ERRORLEVEL 1
+（三）共享冲突（目标文件中使用）= 1的ERRORLEVEL
+（四）无效驱动器规格的ERRORLEVEL 1
+（E）驱动器未就绪（无论是中止或失败答复）= ERRORLEVEL 1
+（F）无效/错误的参数= ERRORLEVEL 1
+
+CHOICE.COM
+（一）回复列表，在列表答复NN = ERRORLEVEL的NN
+（此答复列表中的位置=返回代码是主要使用的首选）
+（二）无效的开关= 255的ERRORLEVEL
+（三）开关的语法无效= 255的ERRORLEVEL
+（四）超时默认情况下不回复列表= 255的ERRORLEVEL
+（五）选择/？ = ERRORLEVEL的255
+
+Cscript.exe将
+（一）无法找到脚本文件= ERRORLEVEL的1
+（b）没有文件扩展名= ERRORLEVEL的1的脚本引擎
+（三）没有在脚本文件= ERRORLEVEL的1中的文件扩展名
+（D）驱动器未准备好= ERRORLEVEL 1
+（有没有中止，重试，失败摊位）
+
+DELTREE.EXE
+（一）所需的参数= ERRORLEVEL 1失踪
+（二）无效的开关= ERRORLEVEL 1
+（三）DELTREE /？ = ERRORLEVEL 1
+（d）不准备读取驱动器（中止答复）= ERRORLEVEL的18
+（注：失败答复返回的ERRORLEVEL 0）
+
+EXTRACT.EXE
+（一）无效的开关= ERRORLEVEL 1
+
+FC.EXE
+（一）数量不足filespecs = ERRORLEVEL 1
+（二）在命令行太多的文件名= ERRORLEVEL 1
+（三）共享冲突+中止答复= 5的ERRORLEVEL
+（注：失败答复返回的ERRORLEVEL 0）
+（D）驱动器未准备好= 18的ERRORLEVEL
+（注：失败答复返回的ERRORLEVEL 0）
+
+Find.exe的
+（一）发现目标字符串（= f0und）= ERRORLEVEL 0
+（b）目标字符串失踪（= m1ssing）= 1的ERRORLEVEL
+（C）/？ = ERRORLEVEL 1
+（四）参数的格式不正确的ERRORLEVEL 2
+（E）指定的文件搜索没有发现= ERRORLEVEL的2
+（六）使用指定的文件+失败答复= ERRORLEVEL的2
+（G）驱动器未就绪+失败答复= ERRORLEVEL的2
+（H）使用指定的文件+中止答复= ERRORLEVEL的5
+（我）驱动器未准备好+中止答复= ERRORLEVEL的5
+
+FORMAT.COM
+（一）驱动器未就绪= ERRORLEVEL 4
+（有没有中止，重试，失败摊位）
+
+FTP.EXE
+（一）简短的帮助（使用：简短的帮助FTP - H）= 2的ERRORLEVEL
+（二）错误打开脚本文件（文件丢失）= 2的ERRORLEVEL
+（三）无效的开关= ERRORLEVEL的2
+
+KEYB.COM
+（一）无效的开关= ERRORLEVEL 1
+（二）= ERRORLEVEL 1指定的键盘代码无效
+（三）KEYB /？ = ERRORLEVEL 1
+
+MEM.EXE
+（一）无效的开关= ERRORLEVEL 1
+
+MODE.COM
+（一）无效的参数= ERRORLEVEL 1
+（二）无效的开关= ERRORLEVEL 1
+
+MORE.COM
+（一）无效的开关（更不接受交换机）= 1的ERRORLEVEL
+（二）驱动器未就绪（中止答复）= ERRORLELEL 5
+（注：失败答复返回的ERRORLEVEL 0）
+
+MOVE.EXE
+（一）所需的参数= ERRORLEVEL 1失踪
+（二）无法创建目标= ERRORLEVEL 1
+（三）无法开源的ERRORLEVEL 1
+（如果您看到此试图移动一个文件夹从一个驱动器时，
+    到另一个地方。您需要使用XCOPY / S的DELTREE其次，
+    因为此举将不会处理所有驱动器的文件夹的移动）
+（四）违反共享+失败答复= ERRORLEVEL 1
+（注：文件仍然是复制不动，在这种情况下，）
+（e）分享违反+中止答复= 5的ERRORLEVEL
+（注：文件仍然是复制不动，在这种情况下，）
+（F）驱动器未就绪（中止答复）= ERRORLEVEL的18
+（注：失败的答复 - 不寻常 - 返回的ERRORLEVEL 1）
+
+PING.EXE
+（一）未知的主机= ERRORLEVEL 1
+（通常=名称上找不到DomainNameServer）
+（二）简短的帮助（不带参数）= ERRORLEVEL 1
+注：平安与/简短的帮助？开关，ERRORLEVEL的是0
+（三）无效的开关= ERRORLEVEL 1
+（并显示简短的帮助以及）
+（四）中断[按Ctrl - C] = 255的ERRORLEVEL
+
+SORT.EXE
+（一）无效的开关= ERRORLEVEL 1
+（二）驱动器未就绪（中止答复）= ERRORLEVEL的15
+（注：失败答复返回的ERRORLEVEL 0）
+
+START.EXE
+（一）启动/？ （真实模式）= ERRORLEVEL 1
+（二）启动/？ （GUI）= ERRORLEVEL的255
+（三）无法找到指定的文件开始= 255的ERRORLEVEL
+（d）没有指定的文件= ERRORLEVEL的255的文件关联
+（E）驱动器未准备好= 255的ERRORLEVEL
+（有没有中止，重试，失败摊位）
+
+SUBST.EXE
+（一）无效的参数= ERRORLEVEL 1
+（二）无效的开关= ERRORLEVEL 1
+（三）未找到路径= ERRORLEVEL 1
+（D）驱动器未就绪（中止答复）= ERRORLEVEL的21
+（注：失败的答复 - 不寻常 - 返回的ERRORLEVEL 1）
+
+TRACERT.EXE
+（一）无法解析目标系统名称= ERRORLEVEL 1
+（通常=名称上找不到DomainNameServer）
+（二）无效的开关= ERRORLEVEL 1
+（三）简短的帮助（无参数）= ERRORLEVEL 1
+（四）中断[按Ctrl - C] = 255的ERRORLEVEL
+注：TRACERT简短的帮助，键入不带参数的命令
+
+XCOPY.EXE
+（一）未找到文件的ERRORLEVEL 1
+（二）无效的日期/ d开关= 4的ERRORLEVEL
+（三）无效的参数= ERRORLEVEL的4号
+（四）无效的参数= 4的ERRORLEVEL
+（五）设备未就绪= ERRORLEVEL的4
+（F）无法创建目录的ERRORLEVEL 4
+（g）系统无法找到文件= 5的ERRORLEVEL

@@ -1,0 +1,13 @@
+【1】当用户认证成功，他们会被重定向到 /home 这个 URI 下。 你可以使用 RouteServiceProvider 中定义的 HOME 常量来自定义身份验证后的重定向路径
+
+【2】Laravel 还提供了一种机制，用于将其它设备上的用户 Session 失效和「注销」，而不会使当前设备上的 Session 失效。 当你想要用户更改或更新密码时可以使其他设备上的会话无效并且保持当前设备的登录状态时，可以使用此功能。
+在开始之前，你应该确保 Illuminate\Session\Middleware\AuthenticateSession 在你的 app / Http / Kernel.php 类中的 web 中间件组中存在并且没有被注释掉
+然后， 你就可以使用 Auth facade 上的 logoutOtherDevices 方法。此方法要求用户提供其当前密码，你的应用程序应通过输入表单接受该密码
+
+【3】Laravel 使得实现身份验证非常简单。 事实上，几乎所有的配置都是现成的。 身份验证配置文件位于 config/auth.php， 其中包含几个有良好文档记录的选项，用于调整身份验证服务的行为。
+在其核心，Laravel 的认证设施由「守卫」和「提供者」组成。守卫决定如何对每个请求的用户进行身份验证。比如，Laravel 带有一个 session 保护，它使用会话存储和 Cookies 来维护状态。
+提供者决定如何从持久储存中检索用户。 Laravel 支持使用 Eloquent 和数据库查询生成器检索用户。但是，你可以根据应用程序的需要来自由定义其他提供者
+
+【4】Auth::id() 默认调用的是Auth::guard('web')->id();
+guards是在auth.php文件中配置的，里面还有guards的defaults值 
+Auth::guard('web')会返回一个看守器实例

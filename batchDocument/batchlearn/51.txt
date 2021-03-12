@@ -1,0 +1,2 @@
+解压ttta.7z到当前目录
+7za x C:\Users\ysb\Desktop\ttta.7z

@@ -60,3 +60,8 @@ include(file) - Includes another template
 
 【1】@include 是 Blade 提供的视图引用方法，可通过传参一个具体的文件路径名称来引用视图
 e.x @include('layouts._header')
+
+【2】在这些指令中不用加上{{}}  e.x  @if(Auth::user())
+
+【3】@can做授权判断用的，第一个参数是策略中的方法名，第二个参数是要操作的对象实例
+https://learnku.com/docs/laravel/7.x/authorization/7475#generating-policies

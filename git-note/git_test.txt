@@ -36,7 +36,7 @@ git checkout --track origin/serverfix设置serverfix分支的上游分支为orig
 git branch -u origin/serverfix显式地设置上游分支（upstream）
 git branch -vv查看设置的所有跟踪分支，这个只是看的本地的，不会显示服务器的变动
 git push origin --delete serverfix从服务器上删除 serverfix 分支
-
+----SHA-1 哈希值命名的文件，里面的内容是经过加密的，当我们push时git会自动帮我们转换为正常文件
 ----git help <command>用来查看命令说明
 【1】创建树对象的前提 是 提交文件到暂存区或暂存区有更新；Git 根据某一时刻暂存区（即 index 区域，下同）所表示的状态创建并记录一个对应的树对象；树对象的创建是在提交操作中
 
@@ -209,3 +209,6 @@ global的意思大概是指对同一个远程仓库下的所有项目都适用�
 
 【72】git config --global core.quotepath false
 这个命令来设置中文显示不正常问题
+
+【73】git pull 默认把当前所在的本地分支匹配远程同名分支并合并
+git branch -vv可以查看跟踪的所有分支

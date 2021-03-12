@@ -1,0 +1,2 @@
+【1】confirm()函数
+https://www.runoob.com/jsref/met-win-confirm.html

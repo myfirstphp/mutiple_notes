@@ -1,0 +1,120 @@
+36、cd
+显示当前目录名或改变当前目录。
+
+CHDIR [/D] [drive:][path]
+CHDIR […]
+CD [/D] [drive:][path]
+CD […]
+
+… 指定要改成父目录。
+
+键入 CD drive: 显示指定驱动器中的当前目录。
+不带参数只键入 CD，则显示当前驱动器和目录。
+
+使用 /D 开关，除了改变驱动器的当前目录之外，
+还可改变当前驱动器。
+
+如果命令扩展被启用，CHDIR 会如下改变:
+
+当前的目录字符串会被转换成使用磁盘名上的大小写。所以，
+如果磁盘上的大小写如此，CD C:\TEMP 会将当前目录设为
+C:\Temp。
+
+CHDIR 命令不把空格当作分隔符，因此有可能将目录名改为一个
+带有空格但不带有引号的子目录名。例如:
+
+ cd \winnt\profiles\username\programs\start menu
+
+与下列相同:
+
+ cd "\winnt\profiles\username\programs\start menu"
+
+在扩展停用的情况下，你必须键入以上命令。
+
+1.同一个分区的切换
+目录切换格式：格式:CD [盘符][路径]
+如果当前目录是C:\Documents and Settings\mzybar，我们要切换到同一分区下不同的目录，请看下面的例子。(
+注：下面例子中的>表示命令行下的提示符，>前面的表示当前目录。)
+
+例1
+切换到C:\WINDOWS目录
+
+C:\Documents and Settings\mzybar>cd C:\WINDOWS
+C:\WINDOWS>
+
+例2
+切换到C:\WINDOWS\system32目录
+
+C:\Documents and Settings\mzybar>cd C:\WINDOWS\system32
+C:\WINDOWS\system32>
+
+如果当前目录是C:\WINDOWS\system32，我们要返回到上一层目录，即返回到C:\WINDOWS时，我们可以这样：
+
+例3
+
+C:\WINDOWS\system32>cd..
+C:\WINDOWS>
+
+在这里，cd…是不是简单了很多？呵呵！当然了，你也可以cd C:\WINDOWS
+
+如果当前目录是C:\WINDOWS\system32，我们要返回根目录，即返回到C:\时，你可以试下这个：
+
+例4
+
+C:\WINDOWS\system32>cd\
+C:\ >
+
+在这里返回根目录时，我们用的是cd\命令，当然你也是可以cd c:\
+
+其实在DOS命令中.、…和\都是表示相对路径的，.是当前目录，…是上一层目录，而\则表示根目录。我们来试下cd.
+
+例5
+
+C:\WINDOWS\system32>cd.
+C:\WINDOWS\system32>
+
+看到了吧，当输入cd.后还是在原来的位置，因为 。是当前目录，切换到当前目录当然没有变罗。
+
+2.不同分区的切换
+格式：格式:CD /d [盘符][路径]
+如果当前目录是C:\Documents and Settings\mzybar，我们需要切换到其它分区目录，请看：
+
+例1
+切换到D:\123\abc
+
+C:\Documents and Settings\mzybar>cd /d d:\123\abc
+D:\123\abc>
+
+如果我们要切换到D盘的根目录，则有更简单的方法，请看：
+
+例2
+
+C:\Documents and Settings\mzybar>D:
+D:\>
+
+在这里，我们直接输入驱动器号 冒号，就可以切换到它的根目录。
+
+3.显示当前的完整路径，一般用通过 %cd% 加以引用
+例1
+
+@echo off
+echo 当前路径是 %cd%
+pause
+
+执行显示的是当前的完整路径。
+【4】当输入的是当前驱动器号+冒号的时候，将显示当前目录的完整路径；当输入的是当前驱动器号+冒号+反斜杠的时候，将跳转到当前路径的根目录下。
+
+例1
+C:\Users\86151\Desktop
+λ cd c:
+C:\Users\86151\Desktop
+
+例2
+C:\Users\86151\Desktop
+λ cd c:\
+
+c:\
+λ
+
+【注意】例1仅仅是显示，并不会跳转。例2会跳转
+

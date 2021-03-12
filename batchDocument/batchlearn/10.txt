@@ -1,0 +1,228 @@
+10、set
+1】set命令简介
+
+set，设置。
+
+2】set命令使用
+
+1. 打印系统环境变量。set命令可以打印系统所有的环境变量信息。
+
+****环境变量****（environment variables）
+一般是指在操作系统中用来指定操作系统运行环境的一些参数，如：临时文件夹位置和系统文件夹位置等。
+环境变量是在操作系统中一个具有特定名字的对象，它包含了一个或者多个应用程序所将使用到的信息。例如Windows和DOS操作系统中的path环境变量，当要求系统运行一个程序而没有告诉它程序所在的完整路径时，系统除了在当前目录下面寻找此程序外，还应到path中指定的路径去找。用户通过设置环境变量，来更好的运行进程。
+
+应用示例：新建文本文件，命名为set_sys，修改文件类型为bat，用Notepad++打开编辑内容如下：
+
+@echo off
+::set 显示所有系统环境变量
+::set (暂时屏蔽掉，需要执行请去掉::)
+pause>nul
+::set c 显示所有以C开头的环境变量(不区分大小写)
+set c
+pause>nul
+::set q 显示所有以Q开头的环境变量(不区分大小写)
+set q
+pause>nul
+
+执行结果：
+CommonProgramFiles=C:\ Program Files\ Common Files 
+Common ProgranFiles(x86)=C:\ Program Files 〈x86)\ Common Files 
+CommonProgramW6432=C:\ Program Files\ Common Files 
+COMPUTERNAME=ADDF-AA-PC 
+ComSpec=C:\ Windows\ system32\ cmd. exe 
+QTDIR=C:\ Qt\ Qt5.3.2\5.3\ msvc2010_openg1
+QTI TANDIR=E:\ CBB\ ThirdPart\ Qtitan
+
+命令解析：
+
+　　第 3 行：由于打印系统环境变量信息太多，暂时屏蔽掉，若有兴趣在本机测试时候可以去掉屏蔽命令（::）
+
+　　第 6 行：打印所有以C开头的环境变量信息（不区分大小写）
+
+　　第 9 行：打印所有以Q开头的环境变量信息（不区分大小写） 
+
+2. 变量设置值。
+
+　　应用示例：新建文本文件，命名为set_value，修改文件类型为bat，用Notepad++打开编辑内容如下：
+
+@echo off
+set var=呵呵~我是变量var的值
+echo %var%
+set var=abcdefg
+echo %var%
+set var="abcdefg"
+echo %var%
+set "var=abcdefg"
+echo %var%
+pause>nul
+
+执行结果：
+可呵~我是变量var的值
+abcdefg
+"abcdefg"
+abcdefg
+
+命令解析：
+
+注意：各种为变量赋值的写法，以及存在的差异性。
+
+3. set /p命令。（这个主要用来获取键盘的输入的不加/p无法获取键盘数据，只能在文本里面给变量赋值）
+
+应用示例：新建文本文件，命名为set_p，修改文件类型为bat，用Notepad++打开编辑内容如下：
+
+@echo off
+set /p var=请输入变量的值：
+echo 你输入的值是：%var%
+pause>nul
+
+执行结果：
+请输入变量的值：123
+你输入的看是：123
+
+一、set的主要作用是赋值
+1、set /p a=promptstring
+先显示promptstring，再接受用户输入的内容,以回车表示结束，赋值给变量a
+
+2、set /p a=promptstring<1.txt
+先显示promptstring，再把"<"管道号右边的1.txt文件中从第一个字符开始直到碰到回车符的内容赋值给变量a （通常表现为第一行）。
+
+3、set /p a=promptstring<nul
+先显示promptstring，再把"<"管道号右边nul中内容赋值给变量a ，不用用户按回车就结束语句。因nul是空设备，故没有内容可赋值，变量a仍属未定义。
+
+二、因为在接受用户输入前可先显示promptstring，故此set还可当作显示命令用（仅作为显示命令使用时，可省略变量a）
+1、set /p =promptstring
+显示promptstring，再接受用户输入的内容,以回车表示结束。如用户直接按回车则仅显示promptstring。（赋值给空变量，赋值意义已丧失，仅作显示之用，需用户按回车键结束语句，无多大实际用途）
+
+2、set /p =promptstring<1.txt
+先显示promptstring，再把"<"管道号右边的1.txt文件中从第一个字符开始直到碰到回车符的内容赋值给空变量（无实际用途）
+
+3、set /p =promptstring<nul
+先显示promptstring，再把"<"管道号右边nul中内容赋值给空变量，不用用户按回车就结束语句，实际中常用这个句式作为显示语句。因显示promptstring后光标不换行，故实际中这个句式用到很多
+
+4、echo %变量名%     和    set /p =%变量名%<nul的区别
+在批处理中回显信息有两个命令，echo和set /p=<nul，它们的共同点在于都是对程序执行信
+息的屏幕输出，区别在于echo是换行输出，而set /p=<nul是不换行追回输出
+命令解析：
+
+/p命令语法，作用可以在用户输入前加一段说明性的描述，即想让用户输入什么内容之类的说明。
+
+4. set /a命令。
+
+　　应用示例：新建文本文件，命名为set_a，修改文件类型为bat，用Notepad++打开编辑内容如下：
+
+
+@echo off
+rem +运算符
+set /a var=1+1
+echo %var%
+rem ()运算符
+set /a var=(1+1) + (1+1)
+echo %var%
+rem *运算符
+set /a var*=2
+echo %var%
+rem ,运算符 注意：求varB和varC时，两种写法的区别
+set /a varA=var, varB=%var%*2, varC=var*3
+echo %varA% %varB% %varC%
+rem 与运算符，必须双引号括起来
+set /a varD=1"&"0
+echo %varD%
+rem 或运算符，必须双引号括起来
+set /a varE=1"|"0
+echo %varE%
+rem 异运算符，必须双引号括起来
+set /a varF=0"^"0
+echo %varF%
+pause>nul
+ 
+执行结果：
+2
+4
+8
+8  16  24
+0
+1
+0
+
+命令解析：
+
+详情见脚本注释。/a expression 即可以用各种表达式为变量赋值。 
+
+5. set替换作用
+
+　　应用示例：新建文本文件，命名为set_swap，修改文件类型为bat，用Notepad++打开编辑内容如下：
+@echo off
+set src= China I love you
+echo 替换前的值: "%src%"
+set des=%src:love=hate%
+echo 替换后的值: "%des%"
+set des=%src: =123%
+echo 替换后的值: "%des%"
+set des=%src:I=me%
+echo 替换后的值: "%des%"
+set des=%src:you=she%
+echo 替换后的值: "%des%"
+pause>nul
+
+执行结果：
+替换前的值：" China I love you"
+替换后的值：" China I hate you"
+替换后的值："123China123I123love123you"
+替换后的值：" Chmena me love you"
+替换后的值：" China I love she"
+
+命令解析：
+
+同样的语句，写了那么多，如果你有点归纳总结的能力，估计应该可以看出来了。
+
+总结个模板，即如此：set des=%src:str1=str2%
+
+作用简述：把源变量src的值中所有的str1字符串替换成str2字符串，从而组合形成目标变量des的值。
+
+6. set取舍作用
+
+　　应用示例：新建文本文件，命名为set_at，修改文件类型为bat，用Notepad++打开编辑内容如下：
+@echo off
+set src=www.baidu.com.cn
+echo %src%
+set des=%src:~1,2%
+echo %des%
+set des=%src:~4,5%
+echo %des%
+set des=%src:~1,7%
+echo %des%
+set des=%src:~5%
+echo %des%
+set des=%src:~-5%
+echo %des%
+set des=%src:~0,-5%
+rem 【这个也可以不写0，即%src:~,-5%】
+echo %des%
+set des=%src:~2,-3%
+echo %des%
+pause>nul
+
+执行结果：
+www.baidu.com.cn 
+ww 
+baidu 
+ww.baid 
+aidu.com.cn 
+om.cn 
+www.baidu.c
+w.baidu.com
+
+命令解析：
+字符串的第一个字符是它的第0位
+
+第 4 行：~1,2 表示：把源变量src的值字符串从第1个索引位开始，取2位组成目标变量des的值（即：ww）。
+
+第 6 行：~4,5 表示：把源变量src的值字符串从第4个索引位开始，取5位组成目标变量des的值（即：baidu）。
+
+第 8 行：同理第4、6行（结果即：ww.baid）。
+
+第 10 行：~5 表示：把源变量src的值字符串从第5个索引位开始，取后面所有组成目标变量des的值（即：aidu.com.cn）。
+
+第 12 行：~-5 表示：把源变量src的值字符串从尾部开始取5个字符组成目标变量des的值（即：om.cn）。
+
+第 14 行：~0,-5 表示：把源变量src的值字符串从0索引位开始，至尾部数第五个索引位为止取出组成目标变量des的值（即：www.baidu.c）【这个也可以不写0，即 ~,-5】

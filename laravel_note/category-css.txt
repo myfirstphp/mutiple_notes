@@ -7,3 +7,15 @@ float意思就是漂浮在标准流之上；float-right，就是浮动且靠右�
 假如某个div元素A是浮动的，如果A元素上一个元素也是浮动的，那么A元素会跟随在上一个元素的后边(如果一行放不下这两个元素，那么A元素会被挤到下一行)；如果A元素上一个元素是标准流中的元素，那么A的相对垂直位置不会改变，也就是说A的顶部总是和上一个元素的底部对齐
 div的顺序是HTML代码中div的顺序决定的。
 页面左边是前的话，那么后边就是后，页面右边是前，那么左边就是后，这里前后是相对的
+
+【3】bootstrap中的card
+定义卡片用的，用card修饰input输入框，样式更好看
+  <div class="card">
+    <div class="card-header">头部</div>
+    <div class="card-body">内容</div> 
+    <div class="card-footer">底部</div>
+  </div>
+
+【4】css样式优先级
+https://www.runoob.com/w3cnote/css-style-priority.html
+属性后插有 !important 的属性拥有最高优先级
