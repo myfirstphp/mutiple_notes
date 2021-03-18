@@ -1,0 +1,23 @@
+【1】Auth::routes()  改为 Auth::routes(['verify' => true])
+
+【2】User模型，实现接口
+class User extends Authenticatable implements MustVerifyEmailContract
+引用trait
+use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
+User类内部 use MustVerifyEmailTrait
+
+【3】app/Providers/EventServiceProvider.php
+此文件中放着事件对应的监听器的配置，在$listen变量中
+事件的完全限定类名是键，值是数组，数组里面放的是监听器的完全限定类名
+
+【4】监听器的动作放在handle方法中
+
+【5】创建中间件用来过滤用户的所有需求，然后注册中间件，在app/Http/Kernel.php的$middlewareGroups数组的web键中，位置要放在StartSession后面
+
+【6】中间件的执行顺序
+先执行 Illuminate\Foundation\Http\Kernel $middlewarePriority 再执行路由中的中间件 最后执行 Controller 中的中间件$middlewarePriority中的中间件会按上下放置的顺序执行
+
+【7】$request->expectsJson()
+若返回的是json这个就返回true，否则返回false
+什么是ajax
+https://www.runoob.com/php/php-ajax-php.html

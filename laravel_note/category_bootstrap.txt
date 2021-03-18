@@ -33,7 +33,7 @@ ex. <div class="alert alert-danger"></div>
 https://www.runoob.com/bootstrap4/bootstrap4-alerts.html
 
 【10】Bootstrap4 下拉菜单
-.dropdown 类用来指定一个下拉菜单。
+.dropdown 类用来指定一个下拉菜单。（最外层的标签要加上这个类）
 我们可以使用一个按钮或链接来打开下拉菜单， 按钮或链接需要添加 .dropdown-toggle 和 data-toggle="dropdown" 属性。
 <div> 元素上添加 .dropdown-menu 类来设置实际下拉菜单，然后在下拉菜单的选项中添加 .dropdown-item 类。
 https://www.runoob.com/bootstrap4/bootstrap4-dropdowns.html

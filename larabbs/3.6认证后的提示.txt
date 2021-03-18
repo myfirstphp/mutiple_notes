@@ -1,0 +1,16 @@
+【1】中间件是放在控制器的构造函数中的
+e.x $this->middleware('throttle:6,1')->only('verify', 'resend');
+
+【2】signed 中间件是一种由框架提供的很方便的 URL 签名认证方式
+路由签名，就是在请求的url后面加一个动态的参数值
+https://learnku.com/laravel/t/9404/laravel-56-new-function-routing-signature
+
+【3】动作频率限制
+e.x throttle:6,1  表示一分钟最多6次
+
+
+【4】查看VerifiesEmails  trait中的监听事件（一般监听事件的命名空间有一个event），邮箱认证成功后会触发的事件
+
+【5】生成监听器命令
+php artisan event:generate
+这个命令会生成在 EventServiceProvider 中列出的所有事件和监听器。当然，已经存在的事件和监听器将保持不变

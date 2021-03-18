@@ -1,3 +1,6 @@
+如何查看laravel门脸类包含方法的源码
+https://www.cnblogs.com/itbsl/p/10813018.html
+
 ----faker用来造假数据的
 https://learnku.com/courses/laravel-essential-training/7.x/list-all-user/8411
 ----contract Laravel 的契约就是php的接口只不过叫法不一样，它们由框架提供并定义了核心服务。 例如，Illuminate\Contracts\Queue\Queue 契约定义了队列任务需要的方法，而 Illuminate\Contracts\Mail\Mailer 契约定义了发送邮件需要的方法。
@@ -297,13 +300,11 @@ Illuminate\Http\Request 类的 flash 方法会将当前输入数据闪存到 Ses
 ],
 这是非常通用的功能，所以在 GitHub 上有人专门为此写了一个扩展包 - overtrue/laravel-lang 来对 Laravel 提供默认提示信息添加多语言版本翻译
 安装命令
-composer require caouecs/laravel-lang
-安装成功后，在 config/app.php 文件中将以下这一行：
-Illuminate\Translation\TranslationServiceProvider::class,
-替换为：
-Overtrue\LaravelLang\TranslationServiceProvider::class,
+
+composer require "overtrue/laravel-lang:~4.0"
+如果上面的命令报错了，就去安装最新版的，
 然后设置项目语言为中文
-config/app.php文件中'locale' => 'zh-CN',
+config/app.php文件中'locale' => 'zh_CN'
 
 【54】查看当前使用php版本号
 先切换到应用的根目录下
@@ -473,6 +474,17 @@ laravel集合
 预加载和懒加载
 加载是针对内存来说的
 https://learnku.com/docs/laravel/7.x/eloquent-relationships/7500#eager-loading
+
+trait怎么使用
+先在类的上面用 use trait的完全限定名称
+然后，在类里面用  use trait非完全限定名称 
+
+??     当 expr1 为 null，表达式 (expr1) ?? (expr2) 等同于 expr2，否则为 expr1
+
+可以省略三元运算符中间那部分。表达式 expr1 ?: expr3 在 expr1 求值为 true 时返回 expr1，否则返回 expr3。
+
+insteadof
+
 【77】钩子 hook
 https://blog.csdn.net/wanglitaow/article/details/52598750
 
@@ -483,3 +495,19 @@ Carbon 是 PHP 知名的日期和时间操作扩展，Laravel 框架中使用此
 
 【80】预加载load()和with()区别：它们的结果是一样的，只不过load把查询分为两步执行（意思就是有多条查询，把这些多条查询分成两份来分步执行），with直接全部执行
 https://www.cnblogs.com/cjjjj/p/9839725.html
+---------------------larabbs项目-----------------------------
+----Font Awesome 提供了可缩放的矢量图标，允许我们使用 CSS 所提供的所有特性对它们进行更改，包括：大小、颜色、阴影或者其它任何支持的效果
+【81】我们把所有的『自定义辅助函数』存放于 app/helpers.php 文件中
+
+【82】Linux 的 touch touch 命令有两个功能：一是用于把已存在文件的时间标签更新为系统当前的时间（默认方式），它们的数据将原封不动地保留下来；二是用来创建新的空文件
+
+【83】<meta name="csrf-token" content="{{ csrf_token() }}">
+csrf-token 标签是为了方便前端的 JavaScript 脚本获取 CSRF 令牌
+
+【84】Laravel 提供的本地化特性，使用 __() 函数来辅助实现。按照约定，本地化文件存储在 resources/lang 文件夹中，为 JSON 格式。
+
+【85】我们将以第三方扩展包 mews/captcha 作为基础来实现 Laravel 中的验证码功能
+安装命令
+composer require "mews/captcha:~3.0"
+
+【86】如果不想受 fillable 或者 guarded 等的影响，还可以使用 forceFill(array $attributes) 强制来批量赋值
