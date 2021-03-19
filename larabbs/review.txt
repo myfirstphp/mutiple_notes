@@ -50,6 +50,7 @@ attempt 方法的每个参数是一个关联数组。数组值用于在数据库
 这个模型其实不需要中间表，只要逻辑是有三个表就可以
 belongsToMany(User::class, 'followers', 'user_id', 'follower_id')
 
+
 【15】$user->followings和$user->followings()的区别
 ps:follonwings是定义在模型中的关联方法
 https://learnku.com/laravel/t/8035/should-there-be-three-tables-for-many-to-many-relationships-how-can-a-users-table-and-an-intermediate-table-followers-and-fan-list-follower-be-not-if-not-how-do-i-connect-them
@@ -91,6 +92,7 @@ $boo为 xname
 
 【24】抽象类
 继承一个抽象类的时候，子类必须定义父类中的所有抽象方法；另外，这些方法的访问控制必须和父类中一样（或者更为宽松）
+----类中必须实现接口中定义的所有方法，否则会报一个致命错误
 
 【25】定义常量
 你可以用 define() 函数，或 const 两种方法来定义一个常量
@@ -100,13 +102,13 @@ https://www.php.net/manual/zh/language.constants.syntax.php
 【26】类中的静态方法和属性，主要作用就是可以不实例化，直接调用
 
 【27】当以属性方式（指动态属性，如$user->followings（followings是模型中定义的关联方法））访问 Eloquent 关联时，关联数据「懒加载」
-这是就要使用预加载来解决关联模型查询时出现的N+1问题
+这时就要使用预加载来解决关联模型查询时出现的N+1问题
 就是调用模型的静态方法with，e.x  User::with('followings')
 ps:followings是模型中定义的关联方法
 
 【28】每个 Eloquent 模型都相当一个查询构造器，查询构造器实例可以调用诸如get(),where()，pluck()等函数
 
-【29】Eloquent 返回的所有结果集都是 Illuminate\Database\Eloquent\Collection 对象的实例包括通过 get 方法检索或通过访问关联关系获取到的结果
+【29】Eloquent 返回的所有结果集都是 Illuminate\Database\Eloquent\Collection 对象的实例包括通过 get 方法检索或通过访问关联关系(这里应该是指通过动态属性返回的)获取到的结果
 
 【30】Eloquent其实就是模型，每个数据库表都有一个对应的「模型」用来与该表交互
 
@@ -119,3 +121,24 @@ post     以 HTTP post 事务（事务，在这里可以理解成sql语句）的
 【33】抽空总结下laravel启动过程
 https://learnku.com/docs/laravel/7.x/lifecycle/7453
 https://blog.csdn.net/yu_20170610/article/details/104903479
+
+【34】初始化就是指给变量赋值，类的初始化也是如此，只不过类的初始化，有时候会放在类的构造函数中
+
+【35】事件分发  你可以将事件实例传递给 event 辅助函数。该辅助函数将会把事件分发到所有该事件已注册的监听器上，event 辅助函数可以全局使用
+e.x  event(new OrderShipped($order))   $order是模型实例
+
+【36】上面的例子中事件会保存模型实例为自己的属性，然后监听器会通过在handle函数中传递一个对应事件的类型提示参数，然后这个参数会在一堆实例中，通过反射来找到对应的类
+
+【37】模型事件的三种实现方法
+1.在模型中使用 $dispatchesEvents 属性去注册事件对象
+e.x
+protected $dispatchesEvents = [
+    'saving' => \App\Events\UserSaving::class,
+];
+
+
+【38】instanceof用于确定一个变量是不是某个类或者实现了某个接口的类的实例
+
+【39】模型中update和save的区别
+update是批量赋值，并未实际生成模型实例，不会触发模型事件
+save会触发模型事件saved

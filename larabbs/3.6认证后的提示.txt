@@ -1,11 +1,11 @@
-【1】中间件是放在控制器的构造函数中的
+【1】中间件是放在控制器的构造方法中的
 e.x $this->middleware('throttle:6,1')->only('verify', 'resend');
 
 【2】signed 中间件是一种由框架提供的很方便的 URL 签名认证方式
 路由签名，就是在请求的url后面加一个动态的参数值
 https://learnku.com/laravel/t/9404/laravel-56-new-function-routing-signature
 
-【3】动作频率限制
+【3】动作频率限制中间件
 e.x throttle:6,1  表示一分钟最多6次
 
 
