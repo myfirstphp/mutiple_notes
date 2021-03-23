@@ -278,7 +278,7 @@ https://learnku.com/articles/8207/5-auxiliary-functions-that-make-your-developme
 
 【48】ClassName::class   返回带命名空间的类名
 
-【49】辅助函数old('value', 'default')。重定向用的；第一个参数是对应标签name属性的值
+【49】辅助函数old('value', 'default')。重定向用的；第一个参数是对应标签name属性的值，第二个是默认值
 Laravel 能够将本次请求的数据保留到下一次，这个特性能实现表单验证失败后，再次返回表单填写页的时候，旧输入数据仍然填充在表单里。如果使用了 Laravel 的本身的验证特性，更是不需要你手动使用下面要说的这些方法了，因为内置的验证功能会自动调用这些方法。
 
 闪存数据到 Session
@@ -511,3 +511,6 @@ csrf-token 标签是为了方便前端的 JavaScript 脚本获取 CSRF 令牌
 composer require "mews/captcha:~3.0"
 
 【86】如果不想受 fillable 或者 guarded 等的影响，还可以使用 forceFill(array $attributes) 强制来批量赋值
+
+【87】使用Intervention/image 扩展包来处理图片裁切的逻辑
+composer require intervention/image

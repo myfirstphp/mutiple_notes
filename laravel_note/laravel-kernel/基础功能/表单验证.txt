@@ -1,0 +1,19 @@
+【1】验证表单请求
+命令创建表单请求类
+php artisan make:request StoreBlogPost
+生成的文件在app/Http/Requests 目录下
+
+怎么使用呢？  就是在控制器方法中以类型提示传入这个类（e.x StoreBlogPost $request）同时在上面用use导入这个类，然后它会自动在调用控制器方法之前验证传入的表单请求
+
+否则抛出异常，并重定向至上一个页面，附带验证失败的信息
+
+【2】您永远不应该将任何用户控制的请求输入传递给 ignore 方法。您应该只通过 Eloquent 模型的实例来传递系统生成的唯一 ID 
+
+【3】unique:table,column,except,idColumn
+第一个参数可以是模型类，也可以是数据库表名
+第二个参数是指定的列名
+第三个参数是要忽略的ID
+第四个参数，如果你的数据表使用的主键名称不是 id，那么你可以在第四个参数中来指定它
+e.x   'email' => 'unique:users,email_address,'.$user->id.',user_id'
+
+【4】重写messages方法来，来自定义错误提示信息

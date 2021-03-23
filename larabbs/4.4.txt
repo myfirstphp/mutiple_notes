@@ -1,0 +1,20 @@
+【1】上传文件用html的input的type和class属性分别是  什么
+
+【2】获取用户上传的图片（数据库存的是文件的url）
+// 第一种方法
+$file = $request->file('avatar');
+
+// 第二种方法，通过动态属性
+$file = $request->avatar;
+----当使用动态属性时，Laravel 将会先从请求体中查找参数。如果该值不存在，则从路由参数中查找
+
+【3】enctype="multipart/form-data"
+enctype就是encodetype
+在图片或者文件上传时， 为表单添加此句声明是必须的
+
+【4】重定向到新的 URL 的同时 传送数据给 session用  with函数
+这个函数内部也是调用了一个session()->flash()
+e.x  redirect('dashboard')->with('status', 'Profile updated!')
+
+【5】什么时候用Auth::user(),什么时候用$user
+一般需要显示登录用户就用Auth::user()，需要显示从数据库获取的用户模型就用$user

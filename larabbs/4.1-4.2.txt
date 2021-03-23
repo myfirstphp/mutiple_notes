@@ -1,0 +1,19 @@
+【1】Route::resource中only的用法
+e.x  Route::resource('users', 'UsersController', ['only' => ['show', 'update', 'edit']]);
+
+【2】数据库中图片字段存放的是图片在服务器上的url
+
+【3】old函数第二个参数一般用在哪个页面
+
+【4】表单请求验证，创建命令php artisan make:request UserRequest
+然后，生成的文件在App\Http\Requests中
+文件中的函数，authorize为权限验证，rules为表单数据验证，messages来自定义错误提示信息
+
+【5】unique:table,column,except,idColumn
+第一个参数可以是模型类，也可以是数据库表名
+第二个参数是指定的列名
+第三个参数是要忽略的ID
+第四个参数，如果你的数据表使用的主键名称不是 id，那么你可以在第四个参数中来指定它
+e.x   'email' => 'unique:users,email_address,'.$user->id.',user_id'
+
+【6】重写messages方法来，来自定义错误提示信息
