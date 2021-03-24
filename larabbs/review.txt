@@ -175,6 +175,7 @@ Route::get('eat', function() {
 然后通过make函数传递一个键名来调用这个闭包，就生成了一个类的实例
 
 【45】Facade的实现方式，
+----原类要先注册到容器中
 首先定义一个类，这个类要继承Facade类，类的命名可以是原类名+Facade，然后在getFacadeAccessor()（static方法）方法中返回原类在容器中注册的键名
 ，这样就可以了，一般还会再为原类名+Facade定义一个别名，这样就可以
 use+别名来引用了，不过上面创建的门面并不会自动创建别名
@@ -184,7 +185,8 @@ use+别名来引用了，不过上面创建的门面并不会自动创建别名
 
 【47】自动依赖注入：现在只知道是通过反射来实现的，具体怎么实现不知道，在laravel中是通过类型提示来是使用自动依赖注入
 
-【48】一般要想改重定向的话，是在对应的控制器上，重写protected $redirectTo属性就行
+【48】重定向在哪里修改
+一般要想改重定向的话，是在对应的控制器上，重写protected $redirectTo属性就行
 
 【49】控制反转是一种解决问题的思路，而依赖注入就是这种思路的具体实现
 
@@ -194,6 +196,11 @@ use+别名来引用了，不过上面创建的门面并不会自动创建别名
 --绑定实例$this->app->instance(),参数是什么
 --绑定基本值    这个应该很少用，就是给类传参数用的
 --绑定接口到实现$this->app->bind(),参数是什么
+e.x
+$this->app->bind(
+    'App\Contracts\EventPusher',
+    'App\Services\RedisEventPusher'
+);
 这个是指当一个类需要实现 EventPusher 时，应该注入 RedisEventPushe
 --上下文绑定  这个就是指当多个类都使用了同一个接口（例如通过接口类型提示传参），但是每个类都要求注入这个接口的不同实现，此时就用这个
 --标记   $this->app->tag(['SpeedReport', 'MemoryReport'], 'reports');
