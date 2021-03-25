@@ -13,7 +13,7 @@ https://insp.top/article/learn-laravel-container
 https://segmentfault.com/a/1190000007250604
 https://www.php.net/manual/zh/language.oop5.magic.php
 
-【4】反射api：就是通过对象，来获得对象所在类的信息的一组api
+【4】反射api：---以后再看
 
 【5】中间件的逻辑：每个请求都要经过中间件处理，有两种结果，通过或者不通过，中间件要放在构造函数中
 
@@ -37,18 +37,19 @@ attempt 方法的每个参数是一个关联数组。数组值用于在数据库
 【11】Auth::login($user);
 给一个用户实例创建登录session
 
-【12】redirect 函数返回 重定向 HTTP 响应，如果不带参数调用则返回重定向器实例
+【12】redirect() 带参数会返回 重定向 HTTP 响应，如果不带参数调用则返回重定向器实例
 
 【13】请求中放的值的键都是前端name属性中的值
 
 【14】belongsToMany是多对多关联
 可以接受四个参数，
 第一个是关联模型名，
-第二个是中间表别名
+第二个是中间表表名
 第三个是定义关联的所在模型在中间表的外键名
 第四个是关联模型在中间表的外键名
 这个模型其实不需要中间表，只要逻辑是有三个表就可以
 belongsToMany(User::class, 'followers', 'user_id', 'follower_id')
+----如果不指定第二个参数，Eloquent 会默认中间表为按照字母顺序连接两个关联模型的名字
 
 
 【15】$user->followings和$user->followings()的区别
@@ -70,7 +71,7 @@ https://learnku.com/docs/laravel/7.x/eloquent-relationships/7500#eager-loading
 先在类的上面用 use trait的完全限定名称
 然后，在类里面用  use trait非完全限定名称 
 trait也可以像上面那样使用，trait也可以调用trait
-优先顺序是来自当前类的成员覆盖了 trait 的方法，而 trait 则覆盖了被继承的方法
+----优先顺序是来自当前类的成员覆盖了 trait 的方法，而 trait 则覆盖了被继承的方法
 
 【19】??     当 expr1 为 null，表达式 (expr1) ?? (expr2) 等同于 expr2，否则为 expr1
 
@@ -110,7 +111,7 @@ ps:followings是模型中定义的关联方法
 
 【28】每个 Eloquent 模型都相当一个查询构造器，查询构造器实例可以调用诸如get(),where()，pluck()等函数
 
-【29】Eloquent 返回的所有结果集都是 Illuminate\Database\Eloquent\Collection 对象的实例包括通过 get 方法检索或通过访问关联关系(这里应该是指通过动态属性返回的和通过实例调用关联方法)获取到的结果
+【29】Eloquent 返回的所有结果集都是 Illuminate\Database\Eloquent\Collection 对象的实例包括通过 get 方法检索或通过访问关联关系(这里应该是指通过动态属性返回的)获取到的结果
 
 【30】Eloquent其实就是模型，每个数据库表都有一个对应的「模型」用来与该表交互
 
@@ -213,3 +214,18 @@ extend 方法接受一个闭包，该闭包唯一的参数就是这个服务， 
 
 【52】命名空间的三种方式，重点
 https://www.php.cn/blog/detail/26466.html
+
+【53】require和include区别
+假如a.php文件中有return；b.php文件中没有return
+然后
+$a = include 'a.php';
+$b = include 'b.php';
+那么$a,$b的值分别为什么
+https://www.php.net/manual/zh/function.include.php
+
+【54】中间件是在请求之前或之后执行，取决于中间件本身，是怎么实现的？
+https://learnku.com/docs/laravel/7.x/middleware/7459
+
+【55】Laravel 的入口文件是哪个，这个文件主要是来干什么用的
+index.php 文件加载 Composer 生成的自动加载设置，然后从 bootstrap/app.php 脚本中检索 Laravel 应用程序的实例。 Laravel 本身采取的第一个动作是创建一个应用程序 / 服务容器
+----Application 类继承自 Container 类，所以创建的应用实例可以使用容器的方法，同时Application 类是绑定的是一个单例，所以它的实例是唯一的

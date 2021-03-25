@@ -15,6 +15,7 @@ User类内部 use MustVerifyEmailTrait
 
 【5】在哪里注册中间件
 创建中间件用来过滤用户的所有需求，然后注册中间件，在app/Http/Kernel.php的$middlewareGroups数组的web键中，位置要放在StartSession后面
+----中间件的处理请求的逻辑放在handle函数中
 
 【6】中间件的执行顺序
 先执行 Illuminate\Foundation\Http\Kernel $middlewarePriority 再执行路由中的中间件 最后执行 Controller 中的中间件
