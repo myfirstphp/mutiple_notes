@@ -214,7 +214,7 @@ extend 方法接受一个闭包，该闭包唯一的参数就是这个服务， 
 
 【52】命名空间的三种方式，重点
 https://www.php.cn/blog/detail/26466.html
-
+https://www.php.net/manual/zh/language.namespaces.basics.php
 【53】require和include区别
 假如a.php文件中有return；b.php文件中没有return
 然后
@@ -228,4 +228,56 @@ https://learnku.com/docs/laravel/7.x/middleware/7459
 
 【55】Laravel 的入口文件是哪个，这个文件主要是来干什么用的
 index.php 文件加载 Composer 生成的自动加载设置，然后从 bootstrap/app.php 脚本中检索 Laravel 应用程序的实例。 Laravel 本身采取的第一个动作是创建一个应用程序 / 服务容器
-----Application 类继承自 Container 类，所以创建的应用实例可以使用容器的方法，同时Application 类是绑定的是一个单例，所以它的实例是唯一的
+----Application 类继承自 Container 类，所以创建的应用实例可以使用容器的方法，同时app实例是唯一的
+
+【56】有两个注册ServiceProvider和别名的地方
+一个是config/app.php文件的providers和aliases
+另一个是composer.json中的extra->laravel->providers
+和extra->laravel->aliases
+
+
+【57】当文件中同时出现__autoload和spl_autoload_register时，以spl_autoload_register为准
+----__autoload自 PHP 7.2.0 起被废弃，并自 PHP 8.0.0 起被移除
+
+【58】__autoload和spl_autoload_register的区别
+https://learnku.com/articles/4681/analysis-of-the-principle-of-php-automatic-loading-function
+
+【59】栈和堆的区别
+----栈和堆都是内存的一部分，它们只不过是不同的逻辑结构
+ 栈（stack）：有编译器自动分配和释放，存放函数的参数、局部变量、临时变量、函数返回地址等；
+
+ 堆（heap）：一般有程序员分配和释放，如果没有手动释放，在程序结束时可能由操作系统自动释放
+
+【60】spl_autoload_register ()
+这个函数主要作用就是把它的参数(一般是一个函数回调)，写入到堆栈中，然后当调用的类名在当前文件中未定义时，会调用这个堆栈，依次执行堆栈中的函数
+----这个回调函数有一个参数，默认为不存在的类的完全限定名
+
+如果我们不向这个函数输入任何参数，那么就会注册 spl_autoload () 函数
+
+spl_autoload 就是 SPL 自己的定义 _autoload () 函数，功能很简单，就是去注册的目录 (由 set_include_path 设置) 找与 classname 同名的 .php/.inc 文件
+----有两种传参方式，一种是传一个函数名称（用引号引起来）
+另一种是传一个数组，数组第一个值是类名，第二个值是类中的函数名
+e.x     [$this, 'foo'] or ['ClassName', 'foo']
+
+【61】__NAMESPACE__ 魔术常量和 namespace 关键字区别
+__NAMESPACE__ 就是常量，和变量的用法一样，它的值是一个字符串
+namespace不能当常量用，他有俩个用法，一个是定义命名空间时，一个时当当前命名空间的关键字使用
+
+【62】PSR-4    命名空间规范
+https://www.kancloud.cn/thinkphp/php-fig-psr/3144
+--完全限定的类名中，去掉最前面的命名空间分隔符，前面连续的一个或多个leading namespace和子命名空间，作为“命名空间前缀”，其必须与至少一个“文件基目录”相对应
+--“ namespace prefix”后面的连续子名称空间名称对应于“ base directory”中的子目录，其中名称空间分隔符表示目录分隔符。子目录名称必须与子命名空间名称的大小写相匹配
+--namespace prefix（命名空间前缀）
+--leading namespace(应该是指顶级命名空间？?)
+--base directory是人为定义的，名字可以任意取，可以是多层的文件路径
+
+【63】如果没有参数要传递给类的构造函数，创建实例时类名后的括号则可以省略掉
+
+【64】后期静态绑定
+https://learnku.com/articles/8964/understanding-of-static-binding-at-the-later-stage-of-php
+看下自己的评论
+
+【65】use其实导入的并不是关于类的定义代码，而是这个类的完全限定名称
+当需要用到这个类时，它会在当前文件中查找这个完全限定名称的类
+
+【66】全局空间就是最顶层的空间，它是所有命名空间的顶部，一般用反斜杠表示e.x  '\'

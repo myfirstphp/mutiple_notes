@@ -1,0 +1,21 @@
+在应用程序的入口文件index.php中
+$response = $kernel->handle(
+    $request = Illuminate\Http\Request::capture()
+);
+调用了kernel的handle方法
+这个返回有间接调用了其他方法
+其中有一个方法生成了一个
+\Illuminate\Foundation\Bootstrap\RegisterFacades::class,实例
+并调用了该实例的bootstrapper方法
+这个方法最终会获取config/app.php 文件的 aliases 字段值（Ⅰ）和composer.json文件中的extra->laravel->aliases字段值（Ⅱ）
+并同他们合并后以参数形式传给\vendor\laravel\framework\src\Illuminate\Foundation\AliasLoader的一个实例
+然后又调用这个实例的register
+这个方法通过spl_autoload_register注册了一个函数
+这个函数是\vendor\laravel\framework\src\Illuminate\Foundation\AliasLoader中的load函数
+这个函数中有如下一部分代码
+        if (isset($this->aliases[$alias])) {
+            return class_alias($this->aliases[$alias], $alias);
+        }
+aliases中的值就是Ⅰ，Ⅱ的合集，如果类名存在aliases中，那么他就会通过
+class_alias来为这个类创建一个别名，$alias就是别名的名称，也就是传入__autoload()调用堆栈的那个类名
+
