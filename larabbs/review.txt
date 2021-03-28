@@ -281,3 +281,13 @@ https://learnku.com/articles/8964/understanding-of-static-binding-at-the-later-s
 当需要用到这个类时，它会在当前文件中查找这个完全限定名称的类
 
 【66】全局空间就是最顶层的空间，它是所有命名空间的顶部，一般用反斜杠表示e.x  '\'
+
+【67】如果没有定义任何命名空间，所有的类与函数的定义都是在全局空间
+
+【68】如果定义了命名空间，假如是namespace Kakaxi;
+若在此命名空间中用限定类名调用一个类，比如 Cname::test();
+那么这个类会解析为\Kakaxi\Cname
+
+【69】假如给类起一个别名，e.g. \App\Kaa\Cname   alias as Cname
+那么在没有定义命名空间时，就可以不用use直接用Cname来调用这个类（require动态加载）
+如果，定义了命名空间，那么就要用use Cname来引入这个类
