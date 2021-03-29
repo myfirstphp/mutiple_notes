@@ -291,3 +291,6 @@ https://learnku.com/articles/8964/understanding-of-static-binding-at-the-later-s
 【69】假如给类起一个别名，e.g. \App\Kaa\Cname   alias as Cname
 那么在没有定义命名空间时，就可以不用use直接用Cname来调用这个类（require动态加载）
 如果，定义了命名空间，那么就要用use Cname来引入这个类
+
+【70】当我们执行git push没有指定分支时，自动使用当前分支，而不是报错。
+git config --global push.default simple
