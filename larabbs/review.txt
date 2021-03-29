@@ -298,3 +298,4 @@ git config --global push.default simple
 【71】git 中的origin代表什么意思
 origin指向的是一个远程仓库，远程仓库就是一个链接e.x https://github.com/user1/repository.git
 可以理解为 远程仓库链接的别名，链接太长用起来麻烦
+origin在git remote add 作用是定义 origin的映射
