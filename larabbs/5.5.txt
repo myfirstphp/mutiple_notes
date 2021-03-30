@@ -1,0 +1,20 @@
+【1】html中的{{ }}和{!! !!}的区别
+htmlspecialchars ()函数讲解
+https://www.runoob.com/php/php-form-validation.html
+
+【2】html5的字符实体是什么
+https://www.runoob.com/html/html-entities.html
+
+【3】辅助函数route()默认是以get方式发送请求，在表单中是默认以表单的
+method方法发送请求
+
+【4】分页函数links()和render()用法和功能都一样，links()函数中调用了render()函数
+它们的用法是：
+$users->links()；$users是Eloquent集合
+模型函数appends()的用法：
+方法将查询参数附加到分页链接中
+e.x  $users->appends(['sort' => 'id'])->links()
+
+【5】5.6
+debugbar工具中哪里查看执行了多少条sql
+Queries中查看

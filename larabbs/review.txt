@@ -110,13 +110,13 @@ https://www.php.net/manual/zh/language.constants.syntax.php
 ps:followings是模型中定义的关联方法
 
 【28】每个 Eloquent 模型都相当一个查询构造器，查询构造器实例可以调用诸如get(),where()，pluck()等函数
-----模型类可以静态调用where函数，然后再调用get函数获取结果
+----模型类可以静态调用where等函数，然后再调用get函数获取结果
 
-【29】Eloquent 返回的所有结果集都是 Illuminate\Database\Eloquent\Collection 对象的实例包括通过 get 方法检索或通过访问关联关系(这里应该是指通过动态属性返回的)获取到的结果
+#【29】Eloquent 返回的所有结果集都是 Illuminate\Database\Eloquent\Collection 对象的实例包括通过 get 方法检索或通过访问关联关系(这里应该是指通过动态属性返回的)获取到的结果
 
 【30】Eloquent其实就是模型，每个数据库表都有一个对应的「模型」用来与该表交互
 
-【31】html  form中get和post区别
+#【31】html  form中get和post区别
 get       form默认该方法。将表单数据（form-data）以名称/值对的形式附加到 URL 中：URL?name=value&name=value。
 post     以 HTTP post 事务（事务，在这里可以理解成sql语句）的形式发送表单数据（form-data）。
 
@@ -126,7 +126,7 @@ post     以 HTTP post 事务（事务，在这里可以理解成sql语句）的
 https://learnku.com/docs/laravel/7.x/lifecycle/7453
 https://blog.csdn.net/yu_20170610/article/details/104903479
 
-【34】初始化就是指给变量赋值，类的初始化也是如此，只不过类的初始化，有时候会放在类的构造函数中
+#【34】初始化就是指给变量赋值，类的初始化也是如此，只不过类的初始化，有时候会放在类的构造函数中
 
 【35】事件分发  你可以将事件实例传递给 event 辅助函数。该辅助函数将会把事件分发到所有该事件已注册的监听器上，event 辅助函数可以全局使用
 e.x  event(new OrderShipped($order))   $order是模型实例
@@ -141,13 +141,13 @@ protected $dispatchesEvents = [
 ];
 
 
-【38】instanceof用于确定一个变量是不是某个类或者实现了某个接口的类的实例
+#【38】instanceof用于确定一个变量是不是某个类或者实现了某个接口的类的实例
 
-【39】模型中update和save的区别
+#【39】模型中update和save的区别
 update是批量赋值，并未实际生成模型实例，不会触发模型事件
 save会触发模型事件saved
 
-【40】若要获取上一次请求所保存的旧数据，可以在 Request 的实例上使用 old 方法
+#【40】若要获取上一次请求所保存的旧数据，可以在 Request 的实例上使用 old 方法
 e.x  $username = $request->old('username');
 也可以使用Laravel 提供的全局辅助函数 old（其实这个函数里面调用的还是request->old('parameter')）
 e.x  <input type="text" name="username" value="{{ old('username') }}">
@@ -156,14 +156,14 @@ e.x  <input type="text" name="username" value="{{ old('username') }}">
 【41】所有服务提供者都是通过配置文件 config/app.php 进行注册
 放在providers中，第一步，所有服务提供者的 register 方法会被调用，然后一旦所有服务提供者均注册后， boot 方法才被调用
 
-【42】两种解析类实例的方法，
+#【42】两种解析类实例的方法，
 一个是$this->app->make(类的完全限定名)(在服务提供者中，你总是可以通过 $this->app 属性访问容器)
 另一个是全局辅助函数resolve(类的完全限定名)
 
 【43】config/app.php文件中的别名
 别名是懒加载，不会影响性能
 
-【44】关于绑定和解析的理解
+#【44】关于绑定和解析的理解
 app()->bind('rice', function (){
     return new \App\Rice();
 });
@@ -177,7 +177,7 @@ Route::get('eat', function() {
 });
 然后通过make函数传递一个键名来调用这个闭包，就生成了一个类的实例
 
-【45】Facade的实现方式，
+#【45】Facade的实现方式，
 ----原类要先注册到容器中
 首先定义一个类，这个类要继承Facade类，类的命名可以是原类名+Facade，然后在getFacadeAccessor()（static方法）方法中返回原类在容器中注册的键名
 ，这样就可以了，一般还会再为原类名+Facade定义一个别名，这样就可以
@@ -186,14 +186,14 @@ use+别名来引用了，不过上面创建的门面并不会自动创建别名
 
 【46】类的依赖不一定是类，可以是任何数据类型
 
-【47】自动依赖注入：现在只知道是通过反射来实现的，具体怎么实现不知道，在laravel中是通过类型提示来是使用自动依赖注入
+#【47】自动依赖注入：现在只知道是通过反射来实现的，具体怎么实现不知道，在laravel中是通过类型提示来是使用自动依赖注入
 
 【48】重定向在哪里修改
 一般要想改重定向的话，是在对应的控制器上，重写protected $redirectTo属性就行
 
 【49】控制反转是一种解决问题的思路，而依赖注入就是这种思路的具体实现
 
-【50】
+#【50】
 --简单绑定$this->app->bind(),参数是什么
 --绑定一个单例$this->app->singleton(),这个的意思是只解析一次，后续的对它的解析都将返回第一次解析的实例，参数是什么
 --绑定实例$this->app->instance(),参数是什么
@@ -212,12 +212,12 @@ $this->app->bind(
 extend 方法可以修改已解析的服务。比如，当一个服务被解析后，你可以添加额外的代码来修饰或者配置它。 
 extend 方法接受一个闭包，该闭包唯一的参数就是这个服务， 并返回修改过的服务
 
-【51】中间件除了过滤请求的作用外，还有重定向的功能，不通过会被重定向到另一个页面
+#【51】中间件除了过滤请求的作用外，还有重定向的功能，不通过会被重定向到另一个页面
 
-【52】命名空间的三种方式，重点
+#【52】命名空间的三种方式，重点
 https://www.php.cn/blog/detail/26466.html
 https://www.php.net/manual/zh/language.namespaces.basics.php
-【53】require和include区别
+#【53】require和include区别
 假如a.php文件中有return；b.php文件中没有return
 然后
 $a = include 'a.php';
@@ -225,7 +225,7 @@ $b = include 'b.php';
 那么$a,$b的值分别为什么
 https://www.php.net/manual/zh/function.include.php
 
-【54】中间件是在请求之前或之后执行，取决于中间件本身，是怎么实现的？
+#【54】中间件是在请求之前或之后执行，取决于中间件本身，是怎么实现的？
 https://learnku.com/docs/laravel/7.x/middleware/7459
 
 【55】Laravel 的入口文件是哪个，这个文件主要是来干什么用的
@@ -300,5 +300,20 @@ git config --global push.default simple
 
 【71】git 中的origin代表什么意思
 origin指向的是一个远程仓库，远程仓库就是一个链接e.x https://github.com/user1/repository.git
-可以理解为 远程仓库链接的别名，链接太长用起来麻烦
+origin可以理解为 远程仓库链接的别名，链接太长用起来麻烦
 origin在git remote add 作用是定义 origin的映射
+
+【72】$this和self的区别
+大体上没什么区别
+$this不能放在静态方法中，self可以；（可能是因为静态方法主要是给类调用的，你不能通过一个类去调用这个类的实例）
+
+【73】转发调用指的是三个静态调用和两个函数；非转发调用指的是静态调用或者非静态调用；
+----通过$this的调用属于非转发调用；$this指向的是实例化的那个类，不是定义它的那个类
+https://www.php.net/manual/zh/language.oop5.late-static-bindings.php
+
+【74】xss防御
+1.使用laravel的查询构造器，来更新或者写入用户数据
+2.web页面用htmlspecialchars()函数输出数据
+
+【75】CSRF防御
+加上token，laravel中一般用@csrf或者{{ csrf_token() }}
