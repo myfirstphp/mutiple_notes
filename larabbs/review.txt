@@ -1,4 +1,4 @@
-【1】Laravel 提供的三种访问类的方式
+#【1】Laravel 提供的三种访问类的方式
 依赖注入：通过类型提示的方式实现自动依赖注入
 
 门面：通过代理来访问类
@@ -6,78 +6,78 @@
 辅助函数：通过方法的方式来访问类
 https://segmentfault.com/a/1190000009171779?utm_source=weekly&utm_medium=email&utm_campaign=email_weekly
 
-【2】依赖注入，控制反转
+#【2】依赖注入，控制反转
 https://insp.top/article/learn-laravel-container
 
-【3】魔术方法：可以理解为比较神奇的方法，这些方法比一般的方法要神奇很多，具体怎么神奇，就看个人理解了
+#【3】魔术方法：可以理解为比较神奇的方法，这些方法比一般的方法要神奇很多，具体怎么神奇，就看个人理解了
 https://segmentfault.com/a/1190000007250604
 https://www.php.net/manual/zh/language.oop5.magic.php
 
-【4】反射api：---以后再看
+#【4】反射api：---以后再看
 
-【5】中间件的逻辑：每个请求都要经过中间件处理，有两种结果，通过或者不通过，中间件要放在构造函数中
+#【5】中间件的逻辑：每个请求都要经过中间件处理，有两种结果，通过或者不通过，中间件要放在控制器构造函数中
 
-【6】boot方法一般是静态的，类的初始化一般是放在__construct函数中，boot方法的执行一般在类的初始化之后
+#【6】boot方法一般是静态的，类的初始化一般是放在__construct函数中，boot方法的执行一般在类的初始化之后
 
-【7】php artisan make:migration create_tatuses_table --create=aaaa
+#【7】php artisan make:migration create_tatuses_table --create=aaaa
 这个命令会创建一个类名为CreateTatusesTable的迁移文件，迁移文件会创建一个名称为aaaa的数据表，不加--create=aaaa，表名默认取的是tatuses
 
-【8】snake case蛇形命名法，就是用下划线e.x file_name
+#【8】snake case蛇形命名法，就是用下划线e.x file_name
 camel case驼峰命名法，就是第一个字母小写，剩下其他单词的第一个字母大写e.x fileNameName2
 
-【9】命名空间都是用的反斜杠
+#【9】命名空间都是用的反斜杠
 
-【10】用户认证就是指通过Auth::attempt()来验证用户传给服务端的数据
+#【10】用户认证就是指通过Auth::attempt()来验证用户传给服务端的数据
 已认证用户，就是指通过这个方法返回true的用户
 attempt 方法的每个参数是一个关联数组。数组值用于在数据库中查找用户。在上面的例子中，将通过 email 列的值查找用户。如果找到该用户，将用存储在数据库中的哈希密码与数组中的 password 值做比较。不需要对 password 做哈希运算，框架在与数据库中的哈希密码做比较前自动对此值做哈希运算。如果两个哈希值匹配，将为该用户建立验证通过的 session。
 如果验证成功， attempt 方法返回 true ，否则返回 false
 在attempt方法里面不用再调用Auth::login()；
 ----因为attempt通过后会自动建立登录session会话
 
-【11】Auth::login($user);
+#【11】Auth::login($user);
 给一个用户实例创建登录session
 
-【12】redirect() 带参数会返回 重定向 HTTP 响应，如果不带参数调用则返回重定向器实例
+#【12】redirect() 带参数会返回 重定向 HTTP 响应，如果不带参数调用则返回重定向器实例
 
-【13】请求中放的值的键都是前端name属性中的值
+#【13】请求中放的值的键都是前端name属性中的值
 
-【14】belongsToMany是多对多关联
+#【14】belongsToMany是多对多关联
 可以接受四个参数，
 第一个是关联模型名，
 第二个是中间表表名
-第三个是定义关联的所在模型在中间表的外键名
+第三个是定义关联的所在模型在中间表的外键名（这个外键是逻辑上的，并不一定要是外键）
 第四个是关联模型在中间表的外键名
 这个模型其实不需要中间表，只要逻辑是有三个表就可以
 belongsToMany(User::class, 'followers', 'user_id', 'follower_id')
 ----如果不指定第二个参数，Eloquent 会默认中间表为按照字母顺序连接两个关联模型的名字
 
 
-【15】$user->followings和$user->followings()的区别
+#【15】$user->followings和$user->followings()的区别
 ps:follonwings是定义在模型中的关联方法
 https://learnku.com/laravel/t/8035/should-there-be-three-tables-for-many-to-many-relationships-how-can-a-users-table-and-an-intermediate-table-followers-and-fan-list-follower-be-not-if-not-how-do-i-connect-them
 也就是说动态属性访问关联模型返回的是 Eloquent：集合，而如果我们直接调用方法返回的则是 数据库请求构建器（也就是查询构造器？）。
 
-【16】laravel集合
+#【16】laravel集合
 主要是为了链式调用函数来处理数组元素，他和数组类似，但并不是数组它是类；
 所有 Eloquent 的集合都继承了 Laravel Collection 对象；因此，他们也继承了所有集合基类提供的强大的方法；
 ----注意：大多数 Eloquent 集合方法会返回新的 Eloquent 集合实例，但是 pluck, keys, zip, collapse, flatten 和 flip 方法除外，它们会返回一个 集合基类 实例。
 同样，如果 map 操作返回的集合不包括任何 Eloquent 模型，那么它会被自动转换成集合基类
 
-【17】预加载和懒加载
+#【17】预加载和懒加载
 加载是针对内存来说的
 https://learnku.com/docs/laravel/7.x/eloquent-relationships/7500#eager-loading
 
-【18】trait怎么使用
+#【18】trait怎么使用
 先在类的上面用 use trait的完全限定名称
 然后，在类里面用  use trait非完全限定名称 
 trait也可以像上面那样使用，trait也可以调用trait
 ----优先顺序是来自当前类的成员覆盖了 trait 的方法，而 trait 则覆盖了被继承的方法
 
-【19】??     当 expr1 为 null，表达式 (expr1) ?? (expr2) 等同于 expr2，否则为 expr1
+#【19】??     当 expr1 为 null，表达式 (expr1) ?? (expr2) 等同于 expr2，否则为 expr1
 
-【20】可以省略三元运算符中间那部分。表达式 expr1 ?: expr3 在 expr1 求值为 true 时返回 expr1，否则返回 expr3。
+#【20】可以省略三元运算符中间那部分。表达式 expr1 ?: expr3 在 expr1 求值为 true 时返回 expr1，否则返回 expr3。
 
-【21】insteadof
+#【21】insteadof
 为了解决多个 trait 在同一个类中的命名冲突，需要使用 insteadof 操作符来明确指定使用冲突方法中的哪一个
 e.x  
  use A, B{
@@ -86,23 +86,23 @@ e.x
     }
 意思是使用B中的smallTalk函数，放弃A中的这个函数，下面那个一样
 
-【22】{}  双引号引起来的大括号中的变量，是按变量来解析的，并不是字符串
+#【22】{}  双引号引起来的大括号中的变量，是按变量来解析的，并不是字符串
 e.x $var = 'name';   $boo = "x{$var}" 
 $boo为 xname
 
-【23】接口和抽象类主要区别
-一个类可以继承多个接口，而一个类只能继承一个抽象类！
+#【23】接口和抽象类主要区别
+一个类可以实现多个接口，而一个类只能继承一个抽象类！
 
-【24】抽象类
+#【24】抽象类
 继承一个抽象类的时候，子类必须定义父类中的所有抽象方法；另外，这些方法的访问控制必须和父类中一样（或者更为宽松）
 ----类中必须实现接口中定义的所有方法，否则会报一个致命错误
 
-【25】定义常量
+#【25】定义常量
 你可以用 define() 函数，或 const 两种方法来定义一个常量
 常量不用加美元符号
 https://www.php.net/manual/zh/language.constants.syntax.php
 
-【26】类中的静态方法和属性，主要作用就是可以不实例化，直接调用
+#【26】类中的静态方法和属性，主要作用就是可以不实例化，直接调用
 
 【27】当以属性方式（指动态属性，如$user->followings（followings是模型中定义的关联方法））访问 Eloquent 关联时，关联数据「懒加载」
 这时就要使用预加载来解决关联模型查询时出现的N+1问题
@@ -110,6 +110,7 @@ https://www.php.net/manual/zh/language.constants.syntax.php
 ps:followings是模型中定义的关联方法
 
 【28】每个 Eloquent 模型都相当一个查询构造器，查询构造器实例可以调用诸如get(),where()，pluck()等函数
+----模型类可以静态调用where函数，然后再调用get函数获取结果
 
 【29】Eloquent 返回的所有结果集都是 Illuminate\Database\Eloquent\Collection 对象的实例包括通过 get 方法检索或通过访问关联关系(这里应该是指通过动态属性返回的)获取到的结果
 
@@ -159,7 +160,8 @@ e.x  <input type="text" name="username" value="{{ old('username') }}">
 一个是$this->app->make(类的完全限定名)(在服务提供者中，你总是可以通过 $this->app 属性访问容器)
 另一个是全局辅助函数resolve(类的完全限定名)
 
-【43】config/app.php文件中的别名（aliases）注册后，就可以在任何地方通过use+别名来引入这个类，别名是懒加载，不会影响性能
+【43】config/app.php文件中的别名
+别名是懒加载，不会影响性能
 
 【44】关于绑定和解析的理解
 app()->bind('rice', function (){
@@ -227,7 +229,7 @@ https://www.php.net/manual/zh/function.include.php
 https://learnku.com/docs/laravel/7.x/middleware/7459
 
 【55】Laravel 的入口文件是哪个，这个文件主要是来干什么用的
-index.php 文件加载 Composer 生成的自动加载设置，然后从 bootstrap/app.php 脚本中检索 Laravel 应用程序的实例。 Laravel 本身采取的第一个动作是创建一个应用程序 / 服务容器
+public\index.php 文件加载 Composer 生成的自动加载设置，然后从 bootstrap/app.php 脚本中检索 Laravel 应用程序的实例。 Laravel 本身采取的第一个动作是创建一个应用程序 / 服务容器
 ----Application 类继承自 Container 类，所以创建的应用实例可以使用容器的方法，同时app实例是唯一的
 
 【56】有两个注册ServiceProvider和别名的地方
@@ -249,6 +251,7 @@ https://learnku.com/articles/4681/analysis-of-the-principle-of-php-automatic-loa
  堆（heap）：一般有程序员分配和释放，如果没有手动释放，在程序结束时可能由操作系统自动释放
 
 【60】spl_autoload_register ()
+ps:spl是一组接口；
 这个函数主要作用就是把它的参数(一般是一个函数回调)，写入到堆栈中，然后当调用的类名在当前文件中未定义时，会调用这个堆栈，依次执行堆栈中的函数
 ----这个回调函数有一个参数，默认为不存在的类的完全限定名
 
@@ -261,7 +264,7 @@ e.x     [$this, 'foo'] or ['ClassName', 'foo']
 
 【61】__NAMESPACE__ 魔术常量和 namespace 关键字区别
 __NAMESPACE__ 就是常量，和变量的用法一样，它的值是一个字符串
-namespace不能当常量用，他有俩个用法，一个是定义命名空间时，一个时当当前命名空间的关键字使用
+namespace不能当常量用，他有俩个用法，一个是定义命名空间时，一个是当前命名空间的关键字使用，e.x namespace\Subnamespace
 
 【62】PSR-4    命名空间规范
 https://www.kancloud.cn/thinkphp/php-fig-psr/3144

@@ -1,0 +1,10 @@
+【1】php artisan make:model Models/Category -m
+-m是什么意思
+
+【2】public $timestamps = false;
+模型中这个表示什么
+
+【3】seed_(数据库表名称)_data
+这个是干什么用的
+
+【4】5.3代码生成器的命令是什么

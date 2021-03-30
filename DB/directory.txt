@@ -3,17 +3,17 @@
 
 1   db_ysb_salesmen.ts_user_otherinfo     ehr_post  用户开始时间  带教期限
 2   db_ysb_salesmen.ts_user      role_id  state（1表示启用）
-3   db_ysb_salesmen.ts_user_areas
+3   db_ysb_salesmen.ts_user_areas     用户所在城市
 4   db_ysb_dictionary.ts_areas
 5   db_ysb_dictionary.ts_sys_dict   ehr_post编码
 6   db_ysb_salesmen.ts_task_area  城市负责人    个人首推金额下限系数
-7   db_ysb_salesmen.ts_salesmen_task    拼团基准值
+7   db_ysb_salesmen.ts_salesmen_task    拼团基准值；新店数目标
 8   db_ysb_form.ts_salesmen_order_month_keep
 9   db_ysb_order.ts_ws_order_after
 10 db_ysb_admin.ts_sys_config活动配置
 11 db_ysb_order.ts_teambuy_order     拼团订单  改完数据之后要mdatetime字段才能更新到es
 12 db_ysb_dictionary.ts_drugstore_branch   药店证件状态
-13 db_ysb_form.ts_salesmen_order_month_keep    药店用户类型；当月的store_tag_3
+13 db_ysb_form.ts_salesmen_order_month_keep    药店用户类型；当月的store_tag_3  ；quota_cash
 14 db_ysb_log.ts_table_log    审核记录表
 15 db_ysb_salesmen.ts_user_drugstorebranch   认领人的药店表
 16 db_ysb_admin.ts_drugstore_blacklist   业绩药店黑名单表
