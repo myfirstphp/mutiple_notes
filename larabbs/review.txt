@@ -104,23 +104,23 @@ https://www.php.net/manual/zh/language.constants.syntax.php
 
 #【26】类中的静态方法和属性，主要作用就是可以不实例化，直接调用
 
-【27】当以属性方式（指动态属性，如$user->followings（followings是模型中定义的关联方法））访问 Eloquent 关联时，关联数据「懒加载」
+#【27】当以属性方式（指动态属性，如$user->followings（followings是模型中定义的关联方法））访问 Eloquent 关联时，关联数据「懒加载」
 这时就要使用预加载来解决关联模型查询时出现的N+1问题
 就是调用模型的静态方法with，e.x  User::with('followings')
 ps:followings是模型中定义的关联方法
 
-【28】每个 Eloquent 模型都相当一个查询构造器，查询构造器实例可以调用诸如get(),where()，pluck()等函数
+#【28】每个 Eloquent 模型都相当一个查询构造器，查询构造器实例可以调用诸如get(),where()，pluck()等函数
 ----模型类可以静态调用where等函数，然后再调用get函数获取结果
 
 #【29】Eloquent 返回的所有结果集都是 Illuminate\Database\Eloquent\Collection 对象的实例包括通过 get 方法检索或通过访问关联关系(这里应该是指通过动态属性返回的)获取到的结果
 
-【30】Eloquent其实就是模型，每个数据库表都有一个对应的「模型」用来与该表交互
+#【30】Eloquent其实就是模型，每个数据库表都有一个对应的「模型」用来与该表交互
 
 #【31】html  form中get和post区别
 get       form默认该方法。将表单数据（form-data）以名称/值对的形式附加到 URL 中：URL?name=value&name=value。
 post     以 HTTP post 事务（事务，在这里可以理解成sql语句）的形式发送表单数据（form-data）。
 
-【32】 Memcached 和 Redis   都是后端缓存驱动
+#【32】 Memcached 和 Redis   都是后端缓存驱动
 
 【33】抽空总结下laravel启动过程
 https://learnku.com/docs/laravel/7.x/lifecycle/7453
@@ -229,8 +229,10 @@ https://www.php.net/manual/zh/function.include.php
 https://learnku.com/docs/laravel/7.x/middleware/7459
 
 【55】Laravel 的入口文件是哪个，这个文件主要是来干什么用的
-public\index.php 文件加载 Composer 生成的自动加载设置，然后从 bootstrap/app.php 脚本中检索 Laravel 应用程序的实例。 Laravel 本身采取的第一个动作是创建一个应用程序 / 服务容器
+public\index.php 这个文件会先加载vender/autoload.php，autoload.php文件主要负责类的自动加载的，然后从 bootstrap/app.php 脚本中检索 Laravel 应用程序的实例。
 ----Application 类继承自 Container 类，所以创建的应用实例可以使用容器的方法，同时app实例是唯一的
+https://zhuanlan.zhihu.com/p/61729937
+
 
 【56】有两个注册ServiceProvider和别名的地方
 一个是config/app.php文件的providers和aliases
@@ -253,7 +255,7 @@ https://learnku.com/articles/4681/analysis-of-the-principle-of-php-automatic-loa
 【60】spl_autoload_register ()
 ps:spl是一组接口；
 这个函数主要作用就是把它的参数(一般是一个函数回调)，写入到堆栈中，然后当调用的类名在当前文件中未定义时，会调用这个堆栈，依次执行堆栈中的函数
-----这个回调函数有一个参数，默认为不存在的类的完全限定名
+----这个回调函数有一个参数，我们传给它的就是类的完全限定名
 
 如果我们不向这个函数输入任何参数，那么就会注册 spl_autoload () 函数
 
@@ -261,6 +263,11 @@ spl_autoload 就是 SPL 自己的定义 _autoload () 函数，功能很简单，
 ----有两种传参方式，一种是传一个函数名称（用引号引起来）
 另一种是传一个数组，数组第一个值是类名，第二个值是类中的函数名
 e.x     [$this, 'foo'] or ['ClassName', 'foo']
+----回调函数的原理大致是这样的：
+根据类名确定类文件名（需要约定映射规则）
+确定类的具体路径（需要约定映射规则）
+加载类（include() 或 require() 的实现）
+
 
 【61】__NAMESPACE__ 魔术常量和 namespace 关键字区别
 __NAMESPACE__ 就是常量，和变量的用法一样，它的值是一个字符串
@@ -280,7 +287,7 @@ https://www.kancloud.cn/thinkphp/php-fig-psr/3144
 https://learnku.com/articles/8964/understanding-of-static-binding-at-the-later-stage-of-php
 看下自己的评论
 
-【65】use其实导入的并不是关于类的定义代码，而是这个类的完全限定名称
+#【65】use其实导入的并不是关于类的定义代码，而是这个类的完全限定名称
 当需要用到这个类时，它会在当前文件中查找这个完全限定名称的类
 
 【66】全局空间就是最顶层的空间，它是所有命名空间的顶部，一般用反斜杠表示e.x  '\'
@@ -317,3 +324,28 @@ https://www.php.net/manual/zh/language.oop5.late-static-bindings.php
 
 【75】CSRF防御
 加上token，laravel中一般用@csrf或者{{ csrf_token() }}
+
+【76】blade指令的（）中不用使用{{ }}，{{ }}只用在html标签中
+
+【77】查询作用域
+https://learnku.com/docs/laravel/6.x/eloquent/5176#local-scopes
+--全局作用域（意思就是给模型里面的所有查询都加上限制条件）
+有两种实现方法
+1.通过类实现接口来实现
+首先定义一个类实现这个接口Illuminate\Database\Eloquent\Scope
+然后在类的apply方法中加入类似以下语句
+$builder->where('age',  '>',  200);
+应用全局作用域的方法是，在模型的boot方法中加上static::addGlobalScope(new 上面定义的作用域类);
+2.通过匿名全局作用域来实现
+直接在模型的boot函数中加入一下类似代码
+static::addGlobalScope('age', function (Builder $builder) {
+            $builder->where('age', '>', 200);
+        });
+--本地作用域（这个解释为局部作用域更合适）
+只需要在对应的 Eloquent 模型方法前添加 scope 前缀
+不过，在调用这些方法时不必包含 scope 前缀
+e.x   scopeAaa()调用的时候就是aaa()，要变为小写，就是去掉scope后再采用单驼峰的写法
+--动态作用域（这个是应用在本地作用域的）
+有时可能地希望定义一个可以接受参数的作用域。把额外参数传递给作用域就可以达到此目的。作用域参数要放在 $query 参数之后（指形参）
+
+【78】控制器方法的传参是先从路由uri中找，若没找到再从url中的参数中找
