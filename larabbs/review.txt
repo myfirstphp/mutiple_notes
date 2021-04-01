@@ -256,6 +256,10 @@ https://learnku.com/articles/4681/analysis-of-the-principle-of-php-automatic-loa
 ps:spl是一组接口；
 这个函数主要作用就是把它的参数(一般是一个函数回调)，写入到堆栈中，然后当调用的类名在当前文件中未定义时，会调用这个堆栈，依次执行堆栈中的函数
 ----这个回调函数有一个参数，我们传给它的就是类的完全限定名
+----回调函数的原理大致是这样的：
+根据类名确定类文件名（需要约定映射规则）
+确定类的具体路径（需要约定映射规则）
+加载类（include() 或 require() 的实现）
 
 如果我们不向这个函数输入任何参数，那么就会注册 spl_autoload () 函数
 
@@ -263,10 +267,7 @@ spl_autoload 就是 SPL 自己的定义 _autoload () 函数，功能很简单，
 ----有两种传参方式，一种是传一个函数名称（用引号引起来）
 另一种是传一个数组，数组第一个值是类名，第二个值是类中的函数名
 e.x     [$this, 'foo'] or ['ClassName', 'foo']
-----回调函数的原理大致是这样的：
-根据类名确定类文件名（需要约定映射规则）
-确定类的具体路径（需要约定映射规则）
-加载类（include() 或 require() 的实现）
+
 
 
 【61】__NAMESPACE__ 魔术常量和 namespace 关键字区别
@@ -349,3 +350,20 @@ e.x   scopeAaa()调用的时候就是aaa()，要变为小写，就是去掉scope
 有时可能地希望定义一个可以接受参数的作用域。把额外参数传递给作用域就可以达到此目的。作用域参数要放在 $query 参数之后（指形参）
 
 【78】控制器方法的传参是先从路由uri中找，若没找到再从url中的参数中找
+
+【79】查询构造器中各种条件的限制操作都是可以互换位置的
+https://learnku.com/laravel/t/18518
+
+【80】php三个点的作用(...)
+1.作为形参使用，表示可变数量的参数列表
+2.作为实参使用，表示把数组中的元素拆分为一个个单独的参数传递
+https://www.php.net/manual/zh/functions.arguments.php#functions.variable-arg-list
+
+【81】前端表单提交按钮怎么加上一个确认提示
+在表单属性中加上onsubmit事件
+e.x   onsubmit="return confirm('您确定好了吗？');"
+在form表单中，当你点击提交的时候，先回执行onsubmit事件 如果返回的是false，那就不会执行action，只有返回的值为true时，才会继续执行
+confirm()方法用于显示一个带有指定消息和确认及取消按钮的对话框。
+如果访问者点击"确定"，此方法返回true，否则返回false。
+https://www.runoob.com/jsref/event-onsubmit.html
+https://www.runoob.com/jsref/met-win-confirm.html

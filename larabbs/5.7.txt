@@ -1,4 +1,6 @@
-【1】导航的选中状态样式是通过是怎么实现的
+【1】导航的选中状态样式是怎么实现的
+导航的选中状态样式是通过添加 CSS 类选择器 active 来实现的
+此样式是 Bootstrap 框架的 导航栏组件 提供
 
 【2】active_class
 if_route
@@ -9,7 +11,7 @@ if_route_param
  php artisan route:list --columns=method --columns=uri --columns=name --columns=action
 
 【4】路由的命名一般是
-模型表名.对应控制器的方法名
+控制器去掉Controller之后的名字(小写).对应控制器的方法名
 
 【5】5.8switch语句的使用
 注意每个case后都要加一个break，default后可加可不加

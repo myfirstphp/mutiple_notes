@@ -1,0 +1,6 @@
+【1】一对多关联 用哪个方法；反向 一对多关联，用哪个？
+
+【2】laravel视图中的变量 $loop用法
+https://learnku.com/laravel/wikis/26002
+
+【3】

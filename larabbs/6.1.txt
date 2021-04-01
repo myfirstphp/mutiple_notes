@@ -1,0 +1,18 @@
+【1】html<i>标签有什么功能
+
+
+【2】在页面显示一个加号图标
+<i class="fa fa-plus"></i>
+<i class="fa fa-plus">ssss</i>这个表示把ssss附加到加号后面显示
+https://www.runoob.com/font-awesome/fontawesome-tutorial.html
+
+【3】铅笔图标
+<i class="fa fa-pencil"></i>
+保存图标
+<i class="far fa-save mr-2" aria-hidden="true"></i>
+
+【4】类的继承：继承父类时，要先把它的命名空间引入，除非它们在同一个命名空间下，这时可以不引入父类命名空间
+
+【5】use 引入命名空间，顶层命名空间前面不用加上\
+
+【6】模型的fill函数用法
