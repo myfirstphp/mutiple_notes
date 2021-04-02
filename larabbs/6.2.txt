@@ -1,0 +1,11 @@
+【1】把resources/editor/js文件夹里面的所有内容，自动复制到public/js下
+怎么做？
+
+【2】性能优化，Simditor只在话题创建页面才加载，怎么实现?
+
+【3】锚点就是指 @yield
+
+【4】<hr>效果是什么
+
+【5】asset函数用法
+asset 函数使用当前的请求协议（ HTTP 或 HTTPS ）来为资产生成 URL
