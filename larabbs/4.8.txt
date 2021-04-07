@@ -4,13 +4,15 @@
 
 【3】策略在哪里注册，用几种方法
 有两种方法
-手动注册
+1）手动注册
 在AuthServiceProvider 的 policies 属性中注册，形式为模型完全限定类名=>策略完全限定类名
-也可以使用动态注册，在AuthServiceProvider的boot函数中加入
+
+2）动态注册，在AuthServiceProvider的boot函数中加入
 Gate::guessPolicyNamesUsing(function ($modelClass) {
             // 动态返回模型对应的策略名称，如：// 'App\Model\User' => 'App\Policies\UserPolicy',
             return 'App\Policies\\'.class_basename($modelClass).'Policy';
         });
+----第一种方法的优先级要高于第二种方法
 
 【4】怎么使用策略
 通过控制器辅助函数

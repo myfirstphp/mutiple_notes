@@ -6,8 +6,10 @@ https://www.runoob.com/php/php-form-validation.html
 https://www.runoob.com/html/html-entities.html
 
 【3】辅助函数route()默认是以get方式发送请求，在表单中是默认以表单的
-method方法发送请求；貌似也可以通过传递一个uri来当参数??
+method方法发送请求；route()貌似也可以通过传递一个uri来当参数??
 route函数最终会渲染出一个url
+----在网页上直接输入url默认也是get方法
+还有href中的
 
 【4】分页函数links()和render()用法和功能都一样，links()函数中调用了render()函数
 它们的用法是：

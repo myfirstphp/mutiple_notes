@@ -12,7 +12,12 @@ https://www.runoob.com/font-awesome/fontawesome-tutorial.html
 <i class="far fa-save mr-2" aria-hidden="true"></i>
 
 【4】类的继承：继承父类时，要先把它的命名空间引入，除非它们在同一个命名空间下，这时可以不引入父类命名空间
+----ps引入命名空间成员类的作用就是为了创建类实例的时候不用类的完全限定名称，而只有类名就行了，如果通过use 引入的类成员，接口或者trait有同名（指非限定名称）的话，可以用as 再起一个别名
 
 【5】use 引入命名空间，顶层命名空间前面不用加上\
+但是在另一个命名空间中，要使用顶级命名空间就必须要加上\
+use 空间名\空间名\成员类 【as 别名】将指定的空间中的成员引入到当前空间，引入空间成员只能引入类
+空间成员：所谓空间成员就是，空间所影响的，空间只影响类、函数、常量(const)
+https://blog.csdn.net/zhanghuiqi205/article/details/84671608
 
 【6】模型的fill函数用法

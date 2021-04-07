@@ -364,10 +364,17 @@ https://www.php.net/manual/zh/functions.arguments.php#functions.variable-arg-lis
 在表单属性中加上onsubmit事件
 e.x   onsubmit="return confirm('您确定好了吗？');"
 在form表单中，当你点击提交的时候，先回执行onsubmit事件 如果返回的是false，那就不会执行action，只有返回的值为true时，才会继续执行
-confirm()方法用于显示一个带有指定消息和确认及取消按钮的对话框。
+window对象的confirm()方法用于显示一个带有指定消息和确认及取消按钮的对话框。
 如果访问者点击"确定"，此方法返回true，否则返回false。
 https://www.runoob.com/jsref/event-onsubmit.html
 https://www.runoob.com/jsref/met-win-confirm.html
 
 【82】mkdir -p
 -p表示递归创建
+
+【83】laravel文档中的参数$post指的是HTTP 请求
+
+【84】array_merge和数组+的大致区别https://learnku.com/articles/26199
+1）若键名为字符串，那么对于同名键array_merge会拿传参后面的替换前面的值；而数组+会拿最前面的数组替换掉后面的同名键的值
+2） 若键名为数字，那么对于同名键array_merge不做处理，全部保存下来
+；而数组+会拿最前面的数组替换掉后面的同名键的值

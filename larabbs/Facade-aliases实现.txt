@@ -3,14 +3,16 @@ $response = $kernel->handle(
     $request = Illuminate\Http\Request::capture()
 );
 调用了kernel的handle方法
-这个返回有间接调用了其他方法
+这个返回又间接调用了其他方法
 其中有一个方法生成了一个
 \Illuminate\Foundation\Bootstrap\RegisterFacades::class,实例
 并调用了该实例的bootstrapper方法
-这个方法最终会获取config/app.php 文件的 aliases 字段值（Ⅰ）和composer.json文件中的extra->laravel->aliases字段值（Ⅱ）
-并同他们合并后以参数形式传给\vendor\laravel\framework\src\Illuminate\Foundation\AliasLoader的一个实例
+这个方法最终会获取config/app.php 文件的 aliases 字段值（Ⅰ）和所有扩展包中的composer.json文件中的extra->laravel->aliases字段值（Ⅱ）
+并把他们合并后以参数形式传给\vendor\laravel\framework\src\Illuminate\Foundation\AliasLoader的一个实例
+----ps如果Ⅰ、Ⅱ出现同名别名，那么框架是优先取扩展包中的别名的
 然后又调用这个实例的register
-这个方法通过spl_autoload_register注册了一个函数
+这个方法通过spl_autoload_register注册了一个函数到调用堆栈
+----ps当我们尝试new一个不存在的类时，就会把这个类名依次传给调用堆栈的函数
 这个函数是\vendor\laravel\framework\src\Illuminate\Foundation\AliasLoader中的load函数
 这个函数中有如下一部分代码
         if (isset($this->aliases[$alias])) {
@@ -18,4 +20,22 @@ $response = $kernel->handle(
         }
 aliases中的值就是Ⅰ，Ⅱ的合集，如果类名存在aliases中，那么他就会通过
 class_alias来为这个类创建一个别名，$alias就是别名的名称，也就是传入__autoload()调用堆栈的那个类名
+这样我们尝试调用的类就有了别名，在顶级命名空间下，便可以之际通过别名调用静态方法，这是会调用Facade基类中的__callStatic方法，这个方法会间接调用一个静态方法getFacadeAccessor,  然后拿它返回的值，作为容器解析的键名，然后拿解析出来的实例来调用（这里是非静态调用）之前通过静态调用的那个方法，这样就实现了
+那么Facade是在哪里注册的呢
+在phpstorm中全局搜索singleton('router
+----ps门面都是绑定单例的
+然后会发现这个文件是一个服务提供者(文件名为RoutingServiceProvider)，所有注册都在register方法中进行
+Application类中的构造函数中会间接调用一下代码
+    protected function registerBaseServiceProviders()
+    {
+        $this->register(new EventServiceProvider($this));
+        $this->register(new LogServiceProvider($this));
+        $this->register(new RoutingServiceProvider($this));
+    }
+
+而这个$this->register()会调用传参类的register方法
+
+
+----扩展包中的还不知道是怎么注册的
+
 

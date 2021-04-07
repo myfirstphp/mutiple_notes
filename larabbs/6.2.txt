@@ -9,3 +9,6 @@
 
 【5】asset函数用法
 asset 函数使用当前的请求协议（ HTTP 或 HTTPS ）来为资产生成 URL
+e.x   asset('js/module.js')  假如当前的url为www.baidu.com那么这个会生成rul  www.baidu.com/js/module.js
+
+【6】<script>标签的type属性，指定了标签种文件的MIME 类型，MIME 类型包括两部分：media type 和 subtype；media type是指大分类，subtype指的是小分类，javascript的type为text/javascript

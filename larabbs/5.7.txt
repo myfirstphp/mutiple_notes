@@ -19,3 +19,4 @@ if_route_param
 【6】if_query函数的用法
 判断请求url中是否有指定的参数
 e.x  if_query('order', 'recent')   这个就是指url中是否有参数?order=recent
+url就是指href中的值
