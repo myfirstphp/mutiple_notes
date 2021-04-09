@@ -378,3 +378,42 @@ https://www.runoob.com/jsref/met-win-confirm.html
 1）若键名为字符串，那么对于同名键array_merge会拿传参后面的替换前面的值；而数组+会拿最前面的数组替换掉后面的同名键的值
 2） 若键名为数字，那么对于同名键array_merge不做处理，全部保存下来
 ；而数组+会拿最前面的数组替换掉后面的同名键的值
+
+【85】中间件
+1）全局中间件
+对所有HTTP请求都做处理
+2）路由中间件
+需要在路由或者控制器上指定要使用哪个路由中间件
+3）中间件组
+就是让一个键对应多个中间件，调用这个键就可以调用多个中间件
+----RouteServiceProvider 默认将 web 中间件组自动应用到 routes/web.php
+4）还有一个比较特殊的，就是Kernel基类中的属性middlewarePriority
+这里面定义的中间件执行顺序，前面三种中间件都会按这个顺序执行
+
+【86】中间件参数
+首先要在中间件的handle方法中加入要传递的形参，放在最右边
+然后定义路由时通过一个 : 来隔开中间件名称和参数来指定中间件参数。多个参数就使用逗号分隔
+e.x  Route::put()->middleware('role:editor, parameter');
+
+【87】html中href属性有两种表示方式
+1）绝对 URL - 指向另一个网站（比如 href="http://www.example.com/theme.css"）
+2）相对 URL - 指向网站内的一个文件（比如 href="/themes/theme.css"）
+https://www.runoob.com/tags/att-link-href.html
+
+【88】注册事件的两种方式
+1）通过 EventServiceProvider 的 $listen 数组来注册的
+2) 通过 EventServiceProvider 的 boot 方法中手动的注册基于闭包的事件
+e.x Event::listen
+【89】事件的自动发现机制默认是关闭的
+
+【90】php 语言的类型转换
+e.x (array) $foo意思就是把$foo转换为数组
+
+【91】把一个闭包赋值为一个变量后，就可以通过 变量名($parameter)这种方式来调用闭包，就像调用普通函数一样
+
+【92】注册事件的监听时，如果类已存在就用类名，如果类未存在就用类要存放的文件路径的字符串
+e.x  protected $listen = [
+    'App\Events\OrderShipped' => [
+        'App\Listeners\SendShipmentNotification',
+    ],
+];

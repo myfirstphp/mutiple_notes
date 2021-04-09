@@ -18,3 +18,5 @@ e.x  redirect('dashboard')->with('status', 'Profile updated!')
 
 【5】什么时候用Auth::user(),什么时候用$user
 一般需要显示登录用户就用Auth::user()，需要显示从数据库获取的用户模型就用$user
+
+【6】app/Handlers 文件夹来存放本项目的工具类

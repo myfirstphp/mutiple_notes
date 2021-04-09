@@ -1,0 +1,9 @@
+【1】怎么测试程序对用户输入的javascript脚本，有没有过滤
+在页面直接输入<script>alert('存在 XSS 安全威胁！')</script>测试
+
+【2】 WYSIWYG 编辑器就是指会对用户的输入内容做转义，输入什么最后显示在页面的就是什么；Simditor就是这样的编辑器
+e.x  比如输入一个html标签，然后转义后存入数据库，然后页面显示的还是这个html标签
+
+【3】HTMLPurifier是干什么用的
+
+【4】Laravel 队列是什么

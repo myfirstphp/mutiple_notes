@@ -11,7 +11,7 @@ User类内部 use MustVerifyEmailTrait
 此文件中放着事件对应的监听器的配置，在$listen变量中
 事件的完全限定类名是键，值是数组，数组里面放的是监听器的完全限定类名
 
-【4】监听器的动作放在handle方法中
+【4】中间件、监听器的动作放在handle方法中
 
 【5】在哪里注册中间件
 创建中间件用来过滤用户的所有需求，然后注册中间件，在app/Http/Kernel.php的$middlewareGroups数组的web键中，位置要放在StartSession后面
@@ -19,7 +19,11 @@ User类内部 use MustVerifyEmailTrait
 
 【6】中间件的执行顺序
 先执行 Illuminate\Foundation\Http\Kernel $middlewarePriority 再执行路由中的中间件 最后执行 Controller 中的中间件
-----$middlewarePriority中的中间件会按上下放置的顺序执行
+----$middlewarePriority中定义了中间件的执行顺序，即自上而下的顺序
+----不在$middlewarePriority定义的路由，在 Route::group 里定义的，先执行外层，后执行内层
+在数组定义的，先执行写在数组前面的，后执行写在数组后面的
+https://learnku.com/articles/14174/the-execution-order-of-multiple-middleware-in-laravel
+----Route::group这个方法的作用可以简单理解为分组
 
 【7】$request->expectsJson()
 若返回的是json这个就返回true，否则返回false

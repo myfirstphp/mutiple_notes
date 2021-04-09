@@ -1,3 +1,6 @@
 【1】怎么自定义一个辅助函数
 
 composer重新加载的命令
+
+
+composer dump-autoload

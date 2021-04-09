@@ -1,6 +1,8 @@
 如何查看laravel门脸类包含方法的源码
 https://www.cnblogs.com/itbsl/p/10813018.html
 
+----HTMLPurifier for Laravel 是对 HTMLPurifier 针对 Laravel 框架的一个封装
+----HTMLPurifier,HTMLPurifier 本身就是一个独立的项目，运用『白名单机制』对 HTML 文本信息进行 XSS 过滤。这种过滤机制可以有效地防止各种 XSS 变种攻击。只通过我们认为安全的标签和属性，对于未知的全部过滤
 ----Simditor 是 tower.im 团队的开源编辑器
 ----PDO  PHP Data Objects的缩写，PHP 数据对象 （PDO） 扩展为PHP访问数据库定义了一个轻量级的一致接口；主要用来防止sql注入的，laravel
 的查询构造器就是使用的PDO

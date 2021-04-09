@@ -1,0 +1,28 @@
+【1】使用Simditor编辑器，html页面要加入哪些内容
+先引入文件
+<link rel="stylesheet" type="text/css" href="{{ asset('css/simditor.css') }}">
+然后在<textarea>标签中加入 属性id="editor"
+
+再然后在<script>中加入
+    <script>
+        $(document).ready(function() {
+            var editor = new Simditor({
+                textarea: $('#editor'),
+            });
+        });
+    </script>
+----$(document).ready()为jQuery文档就绪事件
+jQuery是一个javascript的库
+https://www.runoob.com/jquery/jquery-syntax.html
+https://simditor.tower.im/docs/doc-usage.html
+
+【2】JavaScript中的焦点是什么意思；autofocus属性的作用
+autofocus属性一般用在input和textarea中
+https://m.html.cn/qa/javascript/11940.html
+https://www.runoob.com/tags/att-textarea-autofocus.html
+
+【3】6.4
+如果你不希望将一个 Sass 的代码文件编译到一个 CSS 文件，你可以在文件名的开头添加一个下划线。这将告诉 Sass 不要将其编译到 CSS 文件。
+但是，在导入语句中我们不需要添加下划线，也不需要添加.scss后缀
+e.x 要导入文件_file_first.scss      @import('file_first');
+https://www.runoob.com/sass/sass-import-partials.html
