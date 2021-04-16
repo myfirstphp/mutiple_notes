@@ -282,6 +282,11 @@ https://www.kancloud.cn/thinkphp/php-fig-psr/3144
 --namespace prefix（命名空间前缀）
 --leading namespace(应该是指顶级命名空间？?)
 --base directory是人为定义的，名字可以任意取，可以是多层的文件路径
+e.x
+完全类名\Aura\Web\Response\Status	
+命名空间前缀Aura\Web	
+文件基路径/path/to/aura-web/src/	
+文件路径/path/to/aura-web/src/Response/Status.php
 
 【63】如果没有参数要传递给类的构造函数，创建实例时类名后的括号则可以省略掉
 
@@ -321,7 +326,7 @@ $this不能放在静态方法中，self可以；（可能是因为静态方法�
 https://www.php.net/manual/zh/language.oop5.late-static-bindings.php
 
 【74】xss防御
-1.使用laravel的查询构造器，来更新或者写入用户数据
+1.使用HTMLpurifier来进行过滤用户提交的数据
 2.web页面用htmlspecialchars()函数输出数据
 
 【75】CSRF防御
@@ -351,6 +356,7 @@ e.x   scopeAaa()调用的时候就是aaa()，要变为小写，就是去掉scope
 有时可能地希望定义一个可以接受参数的作用域。把额外参数传递给作用域就可以达到此目的。作用域参数要放在 $query 参数之后（指形参）
 
 【78】控制器方法的传参是先从路由uri中找，若没找到再从url中的参数中找
+----这个应该是错的
 
 【79】查询构造器中各种条件的限制操作都是可以互换位置的
 https://learnku.com/laravel/t/18518
@@ -364,7 +370,7 @@ https://www.php.net/manual/zh/functions.arguments.php#functions.variable-arg-lis
 在表单属性中加上onsubmit事件
 e.x   onsubmit="return confirm('您确定好了吗？');"
 在form表单中，当你点击提交的时候，先回执行onsubmit事件 如果返回的是false，那就不会执行action，只有返回的值为true时，才会继续执行
-window对象的confirm()方法用于显示一个带有指定消息和确认及取消按钮的对话框。
+window对象的confirm()方法，用于显示一个带有指定消息和确认及取消按钮的对话框。
 如果访问者点击"确定"，此方法返回true，否则返回false。
 https://www.runoob.com/jsref/event-onsubmit.html
 https://www.runoob.com/jsref/met-win-confirm.html
@@ -393,9 +399,9 @@ https://www.runoob.com/jsref/met-win-confirm.html
 【86】中间件参数
 首先要在中间件的handle方法中加入要传递的形参，放在最右边
 然后定义路由时通过一个 : 来隔开中间件名称和参数来指定中间件参数。多个参数就使用逗号分隔
-e.x  Route::put()->middleware('role:editor, parameter');
+e.x  Route::put()->middleware('role:parameter1, parameter2');
 
-【87】html中href属性有两种表示方式
+【87】html中href属性和src属性有两种表示方式
 1）绝对 URL - 指向另一个网站（比如 href="http://www.example.com/theme.css"）
 2）相对 URL - 指向网站内的一个文件（比如 href="/themes/theme.css"）
 https://www.runoob.com/tags/att-link-href.html
@@ -404,6 +410,7 @@ https://www.runoob.com/tags/att-link-href.html
 1）通过 EventServiceProvider 的 $listen 数组来注册的
 2) 通过 EventServiceProvider 的 boot 方法中手动的注册基于闭包的事件
 e.x Event::listen
+
 【89】事件的自动发现机制默认是关闭的
 
 【90】php 语言的类型转换
@@ -411,9 +418,90 @@ e.x (array) $foo意思就是把$foo转换为数组
 
 【91】把一个闭包赋值为一个变量后，就可以通过 变量名($parameter)这种方式来调用闭包，就像调用普通函数一样
 
-【92】注册事件的监听时，如果类已存在就用类名，如果类未存在就用类要存放的文件路径的字符串
+【92】注册事件的监听时，如果类已存在就用类名，如果类未存在就用类要存放的文件路径的字符串，例如要生成的文件是这样的App\Events\OrderShipped.php，就用下面的方式注册
 e.x  protected $listen = [
     'App\Events\OrderShipped' => [
         'App\Listeners\SendShipmentNotification',
     ],
 ];
+
+【93】<script>标签中的type属性
+在 HTML5 中，type 属性不再是必需的。默认值是 "text/javascript"
+----在html中引入javascript有两种方式，
+一种是直接在标签内容中添加js代码，
+另一种是通过src属性指定要执行的js文件
+----<script>的位置可以放在 HTML 页面的 <body> 或 <head> 部分中
+----js语句后面的分号是可以不加的，但是建议加上，以用来增加代码可读性
+
+【94】把子查询放在条件语句中 和 把子查询当作子表所花费的查询时间大体是一样的
+
+【95】php中的foreach 仅能够应用于数组和对象
+应用于对象时，默认情况下，所有可见属性都将被用于遍历
+----php中可见属性有三种
+public（在任何地方都可以访问）
+protected（尽在类自身和其子类以及父类中，才能被访问，ps：类的实例无法访问）
+private(仅在本类中可以被访问，ps：类的实例无法访问)
+
+【96】在C语言中指针的值是内存地址
+ps：指针只是一种概念，任何语言只要实现了这个概念，就可以说它有指针，只是名字不同而已
+
+【97】php中的引用
+1）它不同于c语言中的指针，但是又有点类似，引用的值并不是内存地址
+2）引用一般用在三个地方，1.引用赋值 2.传引用 3.引用返回
+https://www.php.net/manual/zh/language.references.whatdo.php#language.references.whatdo.pass
+3）php中的引用要慎用
+
+【98】php中所有变量都存储在名为zval的容器中
+https://www.php.net/manual/zh/features.gc.refcounting-basics.php
+
+【99】PHP写时复制（Copy On Write）
+PHP 在修改一个变量以前，会首先查看这个变量的 refcount，如果 refcount 大于1，PHP 就会执行一个分离的例程， 对于上面的代码，当执行到第三行的时候，PHP 发现 $var 指向的 zval 的 refcount 大于1，那么 PHP 就会复制一个新的 zval 出来，将原 zval 的 refcount 减 1，并修改 symbol_table，使得 $var 和 $var_dup 分离(Separation)。这个机制就是所谓的 copy on write(写时复制)
+
+在 用变量对变量 进行赋值时，这些相同值的变量指向同一块内存，只有当这些指向同一块内存的 相同值的变量 中的某一个变量的值 发生改变的时候，才需要进行变量分离，即：将 值发生改变的变量分离出来（PHP内核将这块内存复制一份，并更新其值）
+
+【100】new创建实例时，赋值给变量a，a这时的refcount是1；但是is_ref是0，a的值是实例的标识符（这个标识符指向内存地址）；
+当执行$b = &$a这个操作时，变量a，b的is_ref都变为1，它不会被引用计数回收，php7之后is_long, is_double，IS_NULL，IS_FALSE，IS_TRUE的引用计数都是0；php7之后，refcount__gc表示引用数量
+
+【101】在任何语言中，都会生成一张符号表，符号表中变量名对应的是值的地址
+----php中的引用其实就是别名，比如，有一个人有三个名字，小名叫 张1，身份证上的名字 叫张2，外号叫 张3；那么如果给张3一个苹果，那么也就是说，张1，张2，张3都有一个苹果，因为它们对应的都是同一个人
+----类似unix的文件硬链接，首先，系统找到这个文件名对应的inode号码；其次，通过inode号 码，获取inode信息；最后，根据inode信息（inode中有文件数据block的位置，也就是在磁盘上的位置），找到文件数据所在的block，读出数据
+https://www.cnblogs.com/1995hxt/p/5879539.html
+----最重要的一点是引用和指针的区别
+https://blog.csdn.net/smartgps2008/article/details/90648015
+
+【102】php中创建引用是用 $i = &$foo;
+C++中创建引用 int i = 1; int& r=i;
+C++中创建指针 int  var = 20;  int  *ip;   ip = &var;
+php中一般的变量都是通过符号表和内存地址相关联的，但是如果为某个变量起了一个别名（即引用），a是b的别名，那么这时a,b的is_ref都变为true，a和b此时在符号表中对应的是相同的内存地址；
+
+php的写时复制，当进行变量的赋值操作时，e.x $a = $b;这时，a，b在符号表中都指向同一个内存地址，但这时a并不是b的别名（a,b的is_ref都是0），对a，b中任一个做改动时，才会触发复制操——为a分配一个内存地址，也就是a,b是互不影响的。
+php中的别名更像是定义的一种规则，就是系统通过变量的is_ref字段来判断变量是否为别名，若是别名，系统就按别名的规则处理——若b，c是a的别名，那么a，b，c共用一个内存地址&&（同时）对这三个变量中任一个修改，都会影响其他两个的值；
+虽然变量赋值也是共享同一个内存地址，但是却少了这句话：（同时）对这三个变量中任一个修改，都会影响其他两个的值；因为变量赋值后的变量的is_ref是0，也就是说系统并未把它标记为别名
+
+【103】为什么要使用::class，而不直接使用类的完全限定名称字符串
+对ide友好，如果修改了类名，ide中就会显示这个类名为黄色，表示这个类名不存在；字符串的话就不会显示了
+
+【104】禁用所有模型事件
+User::withoutEvents(闭包），在闭包中的任何代码都不会触发模型事件
+
+【105】保存模型时，不会触发任何事件
+用$user->saveQuietly();
+
+【106】dirname函数：获取出去文件名的目录名
+basename函数：返回路径中的文件名部分
+
+【107】关于composer.json文件中自动加载的定义
+psr-4中定义了命名空间前缀和对应的文件基目录
+命名空间前缀必须以\\结束，要不然Foo和FooBar会被当成是相同的命名空间
+https://docs.phpcomposer.com/04-schema.html#autoload
+
+【108】$GLOBALS
+一个包含了全部变量的全局组合数组。变量的名字就是数组的键。
+https://www.php.net/manual/zh/reserved.variables.globals.php
+
+【109】=和=&的区别
+To summarize, =, replaces the 'destination's value; =&, changes the destination.
+= 替换目的地里面存放的值，=&改变目的地
+
+【110】composer dump-atoload -o
+-o这个参数一般只在生产环境使用
