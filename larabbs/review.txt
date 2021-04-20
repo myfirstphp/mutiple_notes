@@ -157,9 +157,10 @@ e.x  <input type="text" name="username" value="{{ old('username') }}">
 【41】所有服务提供者都是通过配置文件 config/app.php 进行注册
 放在providers中，第一步，所有服务提供者的 register 方法会被调用，然后一旦所有服务提供者均注册后， boot 方法才被调用
 
-#【42】两种解析类实例的方法，
+#【42】三种解析类实例的方法，
 一个是$this->app->make(类的完全限定名)(在服务提供者中，你总是可以通过 $this->app 属性访问容器)
-另一个是全局辅助函数resolve(类的完全限定名)
+另一个是全局辅助函数resolve(类的完全限定名)，这个函数内部是封装了app函数
+最后一个是通过全局辅助函数app(类的完全限定名)
 
 【43】config/app.php文件中的别名
 别名是懒加载，不会影响性能
@@ -327,7 +328,14 @@ https://www.php.net/manual/zh/language.oop5.late-static-bindings.php
 
 【74】xss防御
 1.使用HTMLpurifier来进行过滤用户提交的数据
+先设置白名单，然后调用clean函数处理，不存在白名单中的元素和属性都会被过滤掉
 2.web页面用htmlspecialchars()函数输出数据
+若数据库存的是  <script>alert('存在 XSS 安全威胁！')</script>
+那么用{{}}不会弹窗，页面显示的也是这个内容<script>alert('存在 XSS 安全威胁！')</script>
+如果用{!! !!}来显示，那么<script>alert('存在 XSS 安全威胁！')</script>；会被当作html代码，页面就会弹窗警告
+总结就是，{{ }}会对内容进行转换，比如<会被装换为&lt，&lt在html中相当于一个特殊符号<，类似于asciicode码
+而{!! !!}表示不对内容进行转换
+https://learnku.com/courses/laravel-intermediate-training/7.x/safety-problem/9038
 
 【75】CSRF防御
 加上token，laravel中一般用@csrf或者{{ csrf_token() }}
@@ -503,5 +511,17 @@ https://www.php.net/manual/zh/reserved.variables.globals.php
 To summarize, =, replaces the 'destination's value; =&, changes the destination.
 = 替换目的地里面存放的值，=&改变目的地
 
-【110】composer dump-atoload -o
+【110】composer dump-autoload -o
 -o这个参数一般只在生产环境使用
+
+【111】一般容器不能解析类实例（没有将接口与具体类进行绑定操作）就会报Uncaught ReflectionException
+这个时候，一般解决方法是执行 composer dump-autoload
+
+【112】Undefined variable
+这种错误一般是因为控制器方法少传了参数
+
+【113】用 Redis 节流
+Redis 管理速率限制方面更有效
+https://learnku.com/docs/laravel/8.x/routing/9365#c52f15
+
+【114】redirect函数的第二个参数，是要返回的http状态码,默认返回302

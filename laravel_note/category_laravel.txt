@@ -1,6 +1,9 @@
 如何查看laravel门脸类包含方法的源码
 https://www.cnblogs.com/itbsl/p/10813018.html
 
+----PinYin 是 安正超 开发的，基于 CC-CEDICT 词典的中文转拼音工具，是一套优质的汉字转拼音解决方案。我们使用 PinYin 来作为翻译的后备计划，当百度翻译 API 不可用时，程序会自动使用 PinYin 汉字转拼音方案来生成 Slug
+----Guzzle 库是一套强大的 PHP HTTP 请求套件，我们使用 Guzzle 的 HTTP 客户端来请求 百度翻译 接口
+----SEO（Search Engine Optimization）：汉译为搜索引擎优化。是一种方式：利用搜索引擎的规则提高网站在有关搜索引擎内的自然排名
 ----HTMLPurifier for Laravel 是对 HTMLPurifier 针对 Laravel 框架的一个封装
 ----HTMLPurifier,HTMLPurifier 本身就是一个独立的项目，运用『白名单机制』对 HTML 文本信息进行 XSS 过滤。这种过滤机制可以有效地防止各种 XSS 变种攻击。只通过我们认为安全的标签和属性，对于未知的全部过滤
 ----Simditor 是 tower.im 团队的开源编辑器

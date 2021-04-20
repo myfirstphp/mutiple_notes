@@ -1,0 +1,12 @@
+【1】html属性
+hidden属性：是对应元素在页面不可见
+option的disabled 属性：规定某个选项应该被禁用（能看见，但是无法被选中）
+option的selected 属性：规定在页面加载时预先选定该选项
+一般hidden  和 selected会连用，来做到让对应option作为下拉的标题使用
+
+【2】6.7
+style="display:inline-block;"的作用是什么
+
+【3】__()
+全局辅助函数，主要用来翻译用的
+e.x  当指定语言为中文时，__('Name')会返回字符串 '名字'
