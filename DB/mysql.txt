@@ -99,4 +99,4 @@ WHERE
 	AND tcr.confirm_flag = 1 
 	AND tc.STATUS = 1
 
-【5】
+【5】的
