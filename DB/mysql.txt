@@ -98,3 +98,5 @@ WHERE
 	AND tcr.company_type = 0 
 	AND tcr.confirm_flag = 1 
 	AND tc.STATUS = 1
+
+【5】

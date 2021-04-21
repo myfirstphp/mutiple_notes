@@ -1,0 +1,11 @@
+【1】所有服务提供者都是通过配置文件 config/app.php 进行注册
+放在providers中，第一步，所有服务提供者的 register 方法会被调用，然后一旦所有服务提供者均注册后，boot 方法才被调用
+别名也是在这个文件中注册
+
+【2】重定向在哪里修改
+一般要想改重定向的话，是在对应的控制器上，重写protected $redirectTo属性就行
+
+【3】有两个注册ServiceProvider和别名的地方
+一个是config/app.php文件的providers和aliases
+另一个是composer.json中的extra->laravel->providers
+和extra->laravel->aliases

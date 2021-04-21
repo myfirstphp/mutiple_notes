@@ -1,5 +1,7 @@
 如何查看laravel门脸类包含方法的源码
 https://www.cnblogs.com/itbsl/p/10813018.html
+laravel英文文档
+https://laravel.com/docs/8.x/
 
 ----PinYin 是 安正超 开发的，基于 CC-CEDICT 词典的中文转拼音工具，是一套优质的汉字转拼音解决方案。我们使用 PinYin 来作为翻译的后备计划，当百度翻译 API 不可用时，程序会自动使用 PinYin 汉字转拼音方案来生成 Slug
 ----Guzzle 库是一套强大的 PHP HTTP 请求套件，我们使用 Guzzle 的 HTTP 客户端来请求 百度翻译 接口

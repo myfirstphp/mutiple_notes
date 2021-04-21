@@ -89,6 +89,7 @@ e.x
 #【22】{}  双引号引起来的大括号中的变量，是按变量来解析的，并不是字符串
 e.x $var = 'name';   $boo = "x{$var}" 
 $boo为 xname
+----只有双引号才会解析变量，单引号不会解析变量
 
 #【23】接口和抽象类主要区别
 一个类可以实现多个接口，而一个类只能继承一个抽象类！
@@ -180,7 +181,7 @@ Route::get('eat', function() {
 然后通过make函数传递一个键名来调用这个闭包，就生成了一个类的实例
 
 #【45】Facade的实现方式，
-----原类要先注册到容器中
+----原类要先绑定到容器中
 首先定义一个类，这个类要继承Facade类，类的命名可以是原类名+Facade，然后在getFacadeAccessor()（static方法）方法中返回原类在容器中注册的键名
 ，这样就可以了，一般还会再为原类名+Facade定义一个别名，这样就可以
 use+别名来引用了，不过上面创建的门面并不会自动创建别名
@@ -206,7 +207,8 @@ $this->app->bind(
     'App\Contracts\EventPusher',
     'App\Services\RedisEventPusher'
 );
-这个是指当一个类需要实现 EventPusher 时，应该注入 RedisEventPushe
+这个是指当一个类需要一个EventPusher的实现时，应该注入 RedisEventPushe
+（这个是指通过类型提示传参时，如果用的是EventPusher类型提示，那么就注入RedisEventPusher依赖）
 --上下文绑定  这个就是指当多个类都使用了同一个接口（例如通过接口类型提示传参），但是每个类都要求注入这个接口的不同实现，此时就用这个
 --标记   $this->app->tag(['SpeedReport', 'MemoryReport'], 'reports');
 就是指‘打包’，把类似的注册，归为一类；具体用在哪里不知道，['SpeedReport', 'MemoryReport']这两个就是通过bind注册的类，把他们归为reports
@@ -225,6 +227,7 @@ https://www.php.net/manual/zh/language.namespaces.basics.php
 $a = include 'a.php';
 $b = include 'b.php';
 那么$a,$b的值分别为什么
+return的数据；如果include成功，那么$b=1，如果失败，$b=0
 https://www.php.net/manual/zh/function.include.php
 
 #【54】中间件是在请求之前或之后执行，取决于中间件本身，是怎么实现的？
@@ -325,6 +328,7 @@ $this不能放在静态方法中，self可以；（可能是因为静态方法�
 【73】转发调用指的是三个静态调用和两个函数；非转发调用指的是静态调用或者非静态调用；
 ----通过$this的调用属于非转发调用；$this指向的是实例化的那个类，不是定义它的那个类
 https://www.php.net/manual/zh/language.oop5.late-static-bindings.php
+----self，parent，static都可以通过双引号调用非静态属性和方法
 
 【74】xss防御
 1.使用HTMLpurifier来进行过滤用户提交的数据
@@ -359,6 +363,7 @@ static::addGlobalScope('age', function (Builder $builder) {
 --本地作用域（这个解释为局部作用域更合适）
 只需要在对应的 Eloquent 模型方法前添加 scope 前缀
 不过，在调用这些方法时不必包含 scope 前缀
+使用的话就是类似查询构造器的使用方法，可以链式调用
 e.x   scopeAaa()调用的时候就是aaa()，要变为小写，就是去掉scope后再采用单驼峰的写法
 --动态作用域（这个是应用在本地作用域的）
 有时可能地希望定义一个可以接受参数的作用域。把额外参数传递给作用域就可以达到此目的。作用域参数要放在 $query 参数之后（指形参）
