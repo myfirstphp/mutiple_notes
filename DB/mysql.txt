@@ -99,4 +99,52 @@ WHERE
 	AND tcr.confirm_flag = 1 
 	AND tc.STATUS = 1
 
-【5】的
+【5】统计ehr职务：BD、高级BD、BDM（协管）的人员的个人现金指标总和；可选统计月份 和 城市
+
+select sum(individual_cash) from db_ysb_salesmen.ts_salesmen_task st where st.`month` = '202104' and st.user_id in (select u.id from db_ysb_salesmen.ts_user u where u.id in (select ua.user_id from db_ysb_salesmen.ts_user_areas ua, db_ysb_salesmen.ts_user_otherinfo uo where ua.user_id = uo.user_id and ua.areas_id = '31677'  and uo.ehr_post in ('254437','303726','255538')) and u.state = 1)
+
+【6】查询个人名下药店首推现金额（剔除黑名单药店），可选月份
+
+SELECT
+	sum( af_2.drugPriceUserReal ) 
+FROM
+	(
+	SELECT
+		ROUND((od.amount - od.refund_amount) * od.purchase_price * (
+    1 - (
+        o.coupon_pay_prov + o.coupon_pay
+    ) / o.total_cost
+) - (od.coupon_pay_spe + od.sub_pay + IFNULL(ode.cash_back_pay, 0))*(1-od.refund_amount/od.amount),2)  AS drugPriceUserReal
+	FROM
+		db_ysb_order.ts_wholesale_order_detail_ext ode,
+		db_ysb_order.ts_wholesale_order_detail od,
+		db_ysb_order.ts_wholesale_order o 
+	WHERE
+		o.id = od.order_id  AND od.ws_parentid != od.wholesale_id
+		AND o.id = ode.order_id  AND od.wholesale_id = ode.wholesale_id AND ode.ws_parentid = od.ws_parentid
+		AND o.id IN (
+		SELECT
+			id 
+		FROM
+			db_ysb_order.ts_wholesale_order wo 
+		WHERE
+			wo.drugstore_branch_id IN (
+			SELECT
+				ud.drugstore_branch_id 
+			FROM
+				db_ysb_salesmen.ts_user_drugstorebranch ud,
+				db_ysb_dictionary.ts_drugstore_branch tdb 
+			WHERE
+				tdb.id = ud.drugstore_branch_id 
+				AND ud.user_id = 6710 
+				AND ud.drugstore_branch_id NOT IN ( SELECT db.drugstore_branch_id FROM db_ysb_admin.ts_drugstore_blacklist db WHERE db.black_type = 0 ) 
+				AND tdb.area_id <> 0 
+			) 
+			AND wo.pay_time BETWEEN 1614528000 
+			AND 1617206399
+		) 
+		AND ode.rec_type >0
+		and o.`status` in (1,2) AND o.order_type != 2
+
+		and o.user_id not in (select x.id from db_ysb_user.ts_user x, db_ysb_admin.ts_intestuser y where x.phone = y.phone)
+	) af_2

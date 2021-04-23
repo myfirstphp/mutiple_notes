@@ -1,6 +1,11 @@
 业务平台数据库192.168.0.42:63306  yuanshuaifeng   ysf$@KWix12
 邻药汇数据库192.168.0.25:63307   yuanshuaifeng  JKD8283JN
 
+---- ` 是 MySQL 的转义符，这个符号是对数据库名、表明、字段的特殊处理。避免和 mysql 的本身的关键字冲突。
+----备注里凡是带‘’字典‘’的都是指db_ysb_dictionary.ts_sys_dict
+----统计数据时，有效人员是指state=1，不用管ehr_status
+----mysql不支持where u.id(+) = d.id这种写法，这种写法是oracle独有的
+
 1   db_ysb_salesmen.ts_user_otherinfo     ehr_post  用户开始时间  带教期限
 2   db_ysb_salesmen.ts_user      role_id  state（1表示启用）
 3   db_ysb_salesmen.ts_user_areas     用户所在城市
@@ -20,12 +25,12 @@
 17 db_merp.ts_fr_article    业务平台文章表
 18 db_ysb_salesmen.ts_team_buy_stat   拼团店数考核基准值
 19 db_ysb_order.ts_wholesale_order   总订单表，这个表改完之后，要改下面的表的mtime字段才能升级到es；订单是根据add_time统计时间的
-20 db_ysb_order.ts_wholesale_order_ext   更改mtime为当前时间来更新到es  rec_type（推广类型）  1和2都是首推
+20 db_ysb_order.ts_wholesale_order_ext   更改mtime为当前时间来更新到es
 21 db_ysb_salesmen.ts_user_instruct  学徒关系表
 22 db_ysb_salesmen.ts_user_signed_log   签到数据
 23 db_ysb_order.ts_wholesale_order_detail        unit_price amount
 24 db_arch_form.ts_user_dyn    用户动态记录
-
+25 db_ysb_order.ts_wholesale_order_detail_ext    rec_type(1,2都是首推订单)
 
 
                 销售经理       销售组长    销售代表
