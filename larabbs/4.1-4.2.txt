@@ -8,6 +8,9 @@ e.x  Route::resource('users', 'UsersController', ['only' => ['show', 'update', '
 【4】表单请求验证，创建命令php artisan make:request UserRequest
 然后，生成的文件在App\Http\Requests中
 文件中的函数，authorize为权限验证，rules为表单数据验证，messages来自定义错误提示信息
+----所以，验证规则是如何运行的呢？
+你所需要做的就是在控制器方法中类型提示传入表单验证请求类（e.x UserRequest）
+https://learnku.com/docs/laravel/8.x/validation/9374#form-request-validation
 
 【5】unique:table,column,except,idColumn
 第一个参数可以是模型类（完全限定名），也可以是数据库表名
@@ -15,5 +18,3 @@ e.x  Route::resource('users', 'UsersController', ['only' => ['show', 'update', '
 第三个参数是要忽略的ID
 第四个参数，如果你的数据表使用的主键名称不是 id，那么你可以在第四个参数中来指定它
 e.x   'email' => 'unique:users,email_address,'.$user->id.',user_id'
-
-【6】重写表单请求验证的messages方法来，来自定义错误提示信息

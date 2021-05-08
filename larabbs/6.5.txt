@@ -8,6 +8,9 @@ e.x  比如输入一个html标签，然后转义后存入数据库，然后页�
 ----HTMLPurifier for Laravel是HTMLPurifier的框架的封装
 在config/purifier.php 文件中配置
 https://learnku.com/courses/laravel-intermediate-training/7.x/safety-problem/9038
+配置说明
+http://htmlpurifier.org/live/configdoc/plain.html
+
 【4】Laravel 队列是什么
 队列就是异步？是用来解决有些慢的请求的
 
@@ -16,7 +19,9 @@ php artisan make:observer UserObserver --model=User
 事件方法要传递一个模型参数，用类型提示
 在AppServiceProvider中的boot方法中注册
 User::observer(UserObserver::class);
-它的作用就是打包模型事件，让模型触发对应监察者中的所有事件
+它的作用就是打包模型事件，让模型可以触发对应监察者中的所有事件（并不是一定会触发所有事件）
+----和事件触发监听器不同的是，模型触发模型事件，不需要调用event函数
+e.x 当模型调用save函数时，将触发saving和saved事件
 
 还有另种方法加入模型事件
 就是在模型的boot方法中使用

@@ -1,0 +1,32 @@
+【1】@includeWhen的用法
+
+【2】Bootstrap 多媒体对象有哪些，对应的时html中的哪个类
+https://www.runoob.com/bootstrap/bootstrap-media-object.html
+
+【3】在<li>中块状元素将按行显示
+
+【4】批量赋值(create方法)可以触发模型事件，批量更新不能触发模型事件
+
+【5】怎么实现回复数实时变动
+用模型监控器，有两种方法，一种是递增，一种是统计回复总数
+
+【6】当你使用模型中的 increment 和 decrement 方法时，会触发 updating 和 updated 模型事件。而在构造器中直接使用  increment 和 decrement，不会触发模型事件。
+e.x  
+DB::table('users')->increment('votes', 5);这样不会触发模型事件
+$user->increment('votes', 5);会触发updating 和 updated 模型事件
+
+【7】clean是一个全局辅助函数，它是在purifier扩展包中的composer.json中完成加载的
+
+【8】有时，您可能希望「保存」给定的模型而不会触发任何事件，用哪个方法
+https://learnku.com/docs/laravel/8.x/eloquent/9406#events
+
+【9】您可能偶尔希望暂时「禁用」模型触发的所有事件，用哪个方法
+
+【10】注册观察者有两个方法
+1）在模型的observe方法中注册
+2）在appServerProvider中的boot方法中注册
+e.x   User::observe(UserObserve::class);
+
+【11】终止事件的传播，使用什么方法
+在处理动作中返回false，来终止事件的传播，同时save()也会失效
+https://learnku.com/docs/laravel/8.x/events/9391

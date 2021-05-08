@@ -56,6 +56,7 @@ belongsToMany(User::class, 'followers', 'user_id', 'follower_id')
 ps:follonwings是定义在模型中的关联方法
 https://learnku.com/laravel/t/8035/should-there-be-three-tables-for-many-to-many-relationships-how-can-a-users-table-and-an-intermediate-table-followers-and-fan-list-follower-be-not-if-not-how-do-i-connect-them
 也就是说动态属性访问关联模型返回的是 Eloquent：集合，而如果我们直接调用方法返回的则是 数据库请求构建器（也就是查询构造器？）。
+----$user->followings和$user->followings()->get()返回的都是集合类实例，$user->followings()->paginate(5)返回的不是集合类实例，是一个分页类实例；appends这个方法只存在分页类中，不存在集合类中
 
 #【16】laravel集合
 主要是为了链式调用函数来处理数组元素，他和数组类似，但并不是数组它是类；
@@ -530,3 +531,36 @@ Redis 管理速率限制方面更有效
 https://learnku.com/docs/laravel/8.x/routing/9365#c52f15
 
 【114】redirect函数的第二个参数，是要返回的http状态码,默认返回302
+
+【115】模型之所以可以通过User::find(1)，像这样静态调用方法是
+因为Illuminate\Database\Eloquent\Model抽象类内部实现了__callStatic()方法
+
+【116】堆栈其实指的就是栈，栈即是指逻辑结构上的，也是指内存空间上的
+https://www.cnblogs.com/guoxiaoyan/p/8664150.html
+
+【117】消息队列的讲解(mq)
+https://www.zhihu.com/question/54152397
+
+【118】自己对消息队列以及redis的理解
+消息队列是一个服务系统，主要作用是解耦，然后这个服务系统可以使用redis来存数据（因为redis符合队列的数据结构），当然也可以使用其他的任何消息队列服务
+
+【119】模型事件
+当模型第一次save()时，将按以下顺序触发以下模型事件，saving，creating，created，saved
+当已存在模型调用save()时，将按以下顺序触发以下模型事件，saving，updating，updated，saved
+当调用模型的create()方法时，将按以下顺序触发以下模型事件，saving，creating，created，saved
+ps：只有save()，create()方法可以触发以上模型事件，new一个模型实例，无法触发事件
+----ing和ed没有本质的区别，都是在方法之后执行的，ing表示业务逻辑是在事件之前执行，ed表示业务逻辑是在事件之后执行
+----若在事件中返回一个false；那么save()方法就会失败(数据库不会生成一条记录)，save()也将返回一个false，同时后续的事件将不会被触发；create()方法不知道是不是也是这样，没有实验
+
+【120】mass assignment意思是批量赋值，mass是大量，团，块，质量的意思
+
+【121】php中
+count：统计数组元素个数或 Countable 对象属性个数
+e.x   最好使用以下方法来使用count
+$countFruits = is_array($countFruits) || $countFruits instanceof Countable ? count($countFruits) : 0;
+
+mb_strlen：返回字符串中的符号个数
+strlen：返回字符串的字节个数
+
+【122】纯文本，只有文字，和基本的标点。
+富文本，可以有图，可以有各种特殊标点，分段等格式

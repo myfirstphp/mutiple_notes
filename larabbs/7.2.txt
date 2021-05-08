@@ -1,0 +1,50 @@
+【1】获取请求路径
+e.x  假如当前url为http://larabbs.test/users/1?tab=replies&kkk=ddffd
+那么Request::path()将返回  user/1
+Request::all()将返回 一个数组['tab' => 'replies', 'kkk' => 'ddffd']
+
+【2】把请求参数附加到分页url中，用哪个函数?
+用appends()函数，e.x $user->replies()->with('topic')->appends(Request::except('page'))->render()
+Request::except('page')的作用是不要把page参数放到链接中（不太懂，等后面再仔细研究吧）
+
+【3】模型关联默认是按什么字段匹配的
+hasone，hasmany这两个匹配规则一样
+belongsTo（一对一反向，一对多反向都用这一个）
+belongsToMany（多对多，多对多反向都用这个）
+https://learnku.com/docs/laravel/8.x/eloquent-relationships/9407#012e7e
+
+【4】预加载使用场合
+//获取已发布的100条文章  - 并预加载文章对应作者
+$posts = Post::with('author')->limit(100)->get();//2次查询
+
+$authors = array_map(function($post) {
+    // 对作者模型生成查询
+    return $post->author->name;//这里讲不在产生查询
+}, $posts);
+----如上如果不用with，那么$post->author->name这个将会产生查询，用了就不会产生查询；
+----这里有一个特殊情况，预加载和懒加载是有同样的性能，那就是当limit(1)时，只有大于1时，才有必要执行预加载
+----with的参数，是关联方法名
+----with方法是查询构造器的方法，不是集合的方法
+----appends是分页类的方法，不是集合的方法
+
+
+【5】嵌套预加载
+就是user加载topic，topic又加载reply
+那么可以这样User::with('topics.replies')->get();(这个表示获取所有用户数据，同时获取用户所发的文章，以及文章下的所有回复)
+
+
+【6】查询构造器（query builder）和Eloquent查询（Eloquent query）区别
+1)  查询构造器构造器一般是指通过数据库操作的
+e.x  DB::table('users')这就是个查询构造器
+2)  Eloquent查询一般是指通过模型来操作的
+e.x  User   这个模型就相当于一个查询构造器
+
+【7】link()  和 links()的区别
+links()用于分页
+link()是在教程5.8中自定义的方法
+
+【8】动态属性调用关联方法，如果只有一个结果，那么返回数据类型为模型类，若有多个，则返回集合类
+
+【9】foreach方法， 仅能够应用于数组和对象
+当遍历对象时，foreach 会遍历所有其能够访问的可见属性
+https://www.php.net/manual/zh/language.oop5.iterations.php

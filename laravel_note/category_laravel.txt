@@ -3,6 +3,11 @@ https://www.cnblogs.com/itbsl/p/10813018.html
 laravel英文文档
 https://laravel.com/docs/8.x/
 
+----Predis和PhpRedis都是用来操作redis数据库的
+----Supervisor 是一个用于 Linux 操作系统的进程监视器。如果horizon失败了，它将自动重启 horizon 进程
+https://learnku.com/docs/laravel/7.x/horizon/7514#Supervisor-%E9%85%8D%E7%BD%AE
+----Ubuntu，乌班图；一种Linux操作系统
+----Horizon 是 Laravel 生态圈里的一员，为 Laravel Redis 队列提供了一个漂亮的仪表板，允许我们很方便地查看和管理 Redis 队列任务执行的情况
 ----PinYin 是 安正超 开发的，基于 CC-CEDICT 词典的中文转拼音工具，是一套优质的汉字转拼音解决方案。我们使用 PinYin 来作为翻译的后备计划，当百度翻译 API 不可用时，程序会自动使用 PinYin 汉字转拼音方案来生成 Slug
 ----Guzzle 库是一套强大的 PHP HTTP 请求套件，我们使用 Guzzle 的 HTTP 客户端来请求 百度翻译 接口
 ----SEO（Search Engine Optimization）：汉译为搜索引擎优化。是一种方式：利用搜索引擎的规则提高网站在有关搜索引擎内的自然排名
@@ -482,7 +487,7 @@ laravel集合
 所有 Eloquent 的集合都继承了 Laravel Collection 对象；因此，他们也继承了所有集合基类提供的强大的方法；
 注意：大多数 Eloquent 集合方法会返回新的 Eloquent 集合实例，但是 pluck, keys, zip, collapse, flatten 和 flip 方法除外，它们会返回一个 集合基类 实例。同样，如果 map 操作返回的集合不包括任何 Eloquent 模型，那么它会被自动转换成集合基类
 
-预加载和懒加载
+预加载和懒加载（eager load）
 加载是针对内存来说的
 https://learnku.com/docs/laravel/7.x/eloquent-relationships/7500#eager-loading
 
@@ -531,3 +536,21 @@ https://learnku.com/courses/laravel-intermediate-training/7.x/improve-performanc
 
 【89】安装 Debugbar
 https://learnku.com/courses/laravel-intermediate-training/7.x/improve-performance/9029
+
+【90】api的分类；sapi时api的一种
+SAPI = Server Application Programming Interface
+https://www.jianshu.com/p/abd0826f3cb9
+
+【91】FastCGI
+CGI = Common Gateway Interface
+https://www.jianshu.com/p/565217337247
+
+【92】FastCGI 进程管理器（FPM）
+https://www.php.net/manual/zh/install.fpm.php
+
+【93】php CLI（Command-Line Interface的缩写）
+
+
+【94】xdebug扩展安装
+https://www.cnblogs.com/wzjwffg/p/9883790.html
+https://blog.csdn.net/yinhangbbbbb/article/details/79247331

@@ -1,0 +1,15 @@
+【1】关联模型  多态
+一般的关联模型是一个表对应一个表，而多态是指一个表对多个表
+
+【2】关联方法的命名规则
+假如是多对一，reply  和user  ，在reply中就用 user作为方法名
+假如是一对多，在user中就用replies作为方法名
+
+【3】php artisan migrate:refresh --seed
+这个命令的作用是？
+php artisan migrate:refresh这个命令是回滚所有已执行的迁移文件，然后再执行所有迁移文件（包括未执行的迁移文件）；
+seed参数的意思是执行数据生成文件
+
+【4】migration not found 错误的原因是？
+数据表migrations中有一个迁移文件的记录，而本地没有这个文件造成的
+migrations表中存的是已执行的迁移文件名

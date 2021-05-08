@@ -1,0 +1,29 @@
+【1】队列主要是用来解决什么问题的
+队列允许你异步执行消耗时间的任务，比如请求一个 API 并等待返回的结果
+
+【2】队列的配置文件是哪个
+config/queue.php
+
+【3】序列化是一个动词，比如序列化为json，序列化为二进制
+
+【4】dispatch()函数用法
+
+dispatch 函数将给定的 任务 推送到 Laravel 任务队列
+e.x  dispatch(new TranslateSlug($topic));
+
+【5】怎么生成任务
+php artisan make:job TranslateSlug
+
+【6】仅仅序列化模型的id，怎么做到
+https://learnku.com/docs/laravel/8.x/queues/9398
+
+【7】启动队列，让队列进入监听状态
+php artisan queue:listen
+安装了 Horizon 以后，我们将使用 horizon 命令（php artisan horizon）来启动队列系统和任务监控，无需使用 queue:listen
+
+【8】artisan horizon 队列工作的守护进程是一个常驻进程，它不会在你的代码改变时进行重启，当我们修改代码以后，需要在命令行中对其进行重启操作
+
+【9】redis队列的配置是在哪个文件，配置什么值
+.env文件
+QUEUE_CONNECTION=redis
+REDIS_CLIENT=predis
