@@ -1,0 +1,18 @@
+【1】生成数据库频道迁移文件
+php artisan notifications:table
+
+【2】method_exists ( mixed $object , string $method_name ) : bool 
+检查类的方法是否存在于指定的 object中
+
+【3】trait中给方法起别名，并改变其访问控制
+use ATrait {afun as protected bfun;}     ----注意顿号在大括号里面
+把ATrait中afun方法起一个别名bfun，同时更改其访问控制为protected
+----afun不受影响，还可以调用
+
+
+【step】
+【1】生成数据库频道迁移文件
+【2】在 users 表里新增 notification_count 字段
+【3】生成通知类
+php artisan make:notification TopicReplied
+【4】用户回复主题后，通知到主题作者

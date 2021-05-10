@@ -1,0 +1,15 @@
+Auth::id()  Auth::user()等等方法，
+首先会去调用门面的__callStatic();这个方法又回去调用$instance->id();
+这个$instance就是AuthManager类的实例；
+然后会去调用AuthManager类下面的__call方法
+__call方法会调用guard()方法，
+    public function __call($method, $parameters)
+    {
+        return $this->guard()->{$method}(...$parameters);
+    }
+guard()方法会调用resolve()方法，
+resolve方法会调用createSessionDriver方法；
+createSessionDriver方法会返回一个SessionGuard实例；
+最终guard()方法会返回一个SessionGuard实例；
+这个类中有定义id(),user()这些方法
+id()方法会返回用户的id

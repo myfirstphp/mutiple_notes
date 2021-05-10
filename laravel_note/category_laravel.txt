@@ -3,6 +3,8 @@ https://www.cnblogs.com/itbsl/p/10813018.html
 laravel英文文档
 https://laravel.com/docs/8.x/
 
+
+----通知频道是通知传播的途径，Laravel 自带的有数据库、邮件、短信（通过 Nexmo）以及 Slack。本章节中我们将使用数据库通知频道，后面也会使用到邮件通知频道。
 ----Predis和PhpRedis都是用来操作redis数据库的
 ----Supervisor 是一个用于 Linux 操作系统的进程监视器。如果horizon失败了，它将自动重启 horizon 进程
 https://learnku.com/docs/laravel/7.x/horizon/7514#Supervisor-%E9%85%8D%E7%BD%AE
