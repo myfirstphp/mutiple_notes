@@ -570,3 +570,16 @@ e.x   arr[]报错，代码不会执行
 arr[null]，代码可以运行，会返回NULL
 
 【124】引入trait后可以直接重写trait中的方法，和类的继承类似是可以重写的
+
+【125】die方法是exit方法的别名，退出程序并打印一条数据
+
+【126】用输出函数打印时，会以UML建模表达方式显示。
++ 代表public
+# 代表protected
+- 代表private
+#后面的数字代表转存的编号
+
+【127】生成器和yield
+1）生成器就是指一类函数，这类函数不用return，而是用yield返回，生成器是懒加载；
+2）yield关键字，每次返回一个值，并暂停生成器函数，然后再返回一个值，再次暂停函数，就这样一直循环
+https://www.php.net/manual/zh/language.generators.syntax.php

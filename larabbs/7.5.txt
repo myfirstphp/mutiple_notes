@@ -1,0 +1,9 @@
+【1】notifications和unreadNotifications的区别
+这两个都是按时间戳排序的
+https://learnku.com/docs/laravel/7.x/notifications/7489#197aad
+
+【2】框架自带的markAsRead()，功能是？
+https://laravel.com/docs/8.x/notifications
+
+【3】$this->unreadNotifications->markAsRead()
+可以在集合上直接调用markAsRead()；这样就把所有未读标记为已读了

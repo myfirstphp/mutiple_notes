@@ -1,0 +1,15 @@
+【1】邮箱发送配置文件是哪个，有两个文件都可以配置
+
+【2】noticfication中的via函数的作用
+
+【3】via每开启一个通道，都有一个什么方法与之对应；
+
+【4】toMail表示把通知发送到邮箱，toDatabase表示把通知发送到数据库
+
+【5】把消息通知加入队列，需要怎么做
+需要消息类实现ShouldQueue接口,并使用Queueable trait
+
+【6】使用队列，需要改什么
+把.env中的QUEUE_CONNECTION的值改为redis
+
+
