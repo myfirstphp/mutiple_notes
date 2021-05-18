@@ -583,3 +583,15 @@ arr[null]，代码可以运行，会返回NULL
 1）生成器就是指一类函数，这类函数不用return，而是用yield返回，生成器是懒加载；
 2）yield关键字，每次返回一个值，并暂停生成器函数，然后再返回一个值，再次暂停函数，就这样一直循环
 https://www.php.net/manual/zh/language.generators.syntax.php
+
+【128】git checkout -- <file> 是一个危险的命令。 你对那个文件在本地的任何修改都会消失——Git 会用最近提交的版本覆盖掉它
+
+【129】git所有命令在失败后，都会撤销之前成功的文件，比如git push两个文件，第一个成功了，第二个失败了，那么第一个文件也会被撤销回来
+
+【130】git reset --soft和--hard的区别
+这两个命令大体是一样的，只是--soft不会更改索引（指暂存区）和工作树（当前的工作目录），而--hard会更改
+e.x 例如有两个commit，分别为commit1和commit2（1在2前面commit），分别对一个文件a.txt做了如下修改，第一行写入1、第二行写入2，都push了，然后对a.txt文件又写入第三行3，但并未加入暂存区，然后如果用了--hard commit1,那么当前树对象就变为commit1指向的那个树对象（本地文件内容也会变为树对象对应内容），当前索引也会被清空；
+若使用了--soft commit1,则原来的工作树和索引都不会改变，a.txt文件（本地文件）的内容还是123
+
+【131】git log 只会列出当前提交及其前面的所有提交，不会列出之后的提交；git log --oneline --graph --decorate --all
+用这个命令显示所有commit
