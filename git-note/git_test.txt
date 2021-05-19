@@ -212,3 +212,15 @@ global的意思大概是指对同一个远程仓库下的所有项目都适用�
 
 【73】git pull 默认把当前所在的本地分支匹配远程同名分支并合并
 git branch -vv可以查看跟踪的所有分支
+
+【74】给命令起一个别名
+git config --global alias.co 'checkout'
+这样下面两个命令就一样了
+git checkout和git co就是同一个功能的命令了
+
+【75】git config 【--local】【--global】【--system】的区别
+执行git config -e（默认是local），会打开该项目所属的配置文件（作用域最小，值针对当前项目有效）；
+执行git config -e --global，会打开C:\Users\XiaoRui\.gitconfig下的配置文件（作用域中等，为登陆这台计算机的用户）；
+执行git config -e --system，会打开D:\Program Files\Git\etc\gitconfig（作用域最大，整台计算机，不管登陆那个帐号，不管哪个项目）；
+优先级：git config > git config --global > git config --system。
+也就是作用域范围越广的优先级越低，相信这个不难理解。
