@@ -584,7 +584,7 @@ arr[null]，代码可以运行，会返回NULL
 2）yield关键字，每次返回一个值，并暂停生成器函数，然后再返回一个值，再次暂停函数，就这样一直循环
 https://www.php.net/manual/zh/language.generators.syntax.php
 
-【128】git checkout -- <file> 是一个危险的命令。 你对那个文件在本地的任何修改都会消失——Git 会用最近提交的版本覆盖掉它
+【128】git checkout -- <file> 是一个危险的命令。 你对那个文件在本地的任何修改都会消失——Git 会用最近提交(指git add)的版本覆盖掉它
 
 【129】git所有命令在失败后，都会撤销之前成功的文件，比如git push两个文件，第一个成功了，第二个失败了，那么第一个文件也会被撤销回来
 
@@ -601,5 +601,26 @@ https://www.jianshu.com/p/c6927e80a01d
 
 【132】本地版本低于远程版本push时就会报错，必须要大于等于
 
-【133】the current branch head就是指当前分支；而HEAD永远指向当前分支
-，分支指向提交对象，提交对象指向树对象，树对象指向的时工作目录
+【133】the current branch head就是指当前分支；
+而HEAD永远指向当前分支；
+分支会在每次提交时自动向前移动；
+分支指向提交对象，提交对象指向树对象，树对象指向的时工作目录
+
+【134】编译型和解释型语言
+https://blog.csdn.net/u010429424/article/details/78028699
+
+【135】暂存区（stage或者叫index）
+查看暂存区文件 git ls-files
+清空暂存区  git rm --cached '*'
+清空暂存区指定文件   git rm --cached 'file.txt'
+git checkout path这个命令是从暂存区拿文件到工作目录（working tree）
+----不在暂存区的工作目录文件，都会被标记为untracked
+
+【136】git status
+Displays paths that have differences between the index file and the current HEAD commit, paths that have differences between the working tree and the index file, and paths in the working tree that are not tracked by Git
+
+【137】如果有两个分支指向了同一个提交对象，那么这两个分支上分别再次
+提交后，会生成两个提交对象，这两个提交对象的父对象是同一个
+
+【138】git merge的作用其实就是将一个分支的指向变为另一个分支的指向
+e.x 有两个分支test1和test2，在test2上执行git merge test1后，那么此时test2和test1指向的是同一个提交对象

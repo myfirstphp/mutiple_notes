@@ -1,0 +1,20 @@
+【1】策略中的before()方法
+before 方法会在策略中其它所有方法之前执行，这样提供了一种全局授权的方案。在 before 方法中存在三种类型的返回值:
+返回 true 是直接通过授权；
+返回 false，会拒绝用户所有的授权；
+如果返回的是 null，则通过其它的策略方法来决定授权通过与否。
+
+【2】代码生成器所生成的授权策略，都会统一继承 App\Policies\Policy 基类，这样我们只需要在基类的 before() 方法里做下角色权限判断即可作用到所有的授权类；这就是说before()方法返回true那么就会然角色获得所有权限
+
+【3】安装用户切换工具 sudo-su
+
+【4】app()->isLocal()判断是不是本地环境，
+就是.env中的APP_ENV键对应的值
+
+【5】修改文件config/sudosu.php
+1）指定TLD;    2)指定用户模型类全称
+
+【6】authorize()和can()的区别就是can()是在用户模型上定义的，authorize()是在控制器上定义的
+----laravel-permission中策略以门面形式实现
+Because all permissions will be registered on Laravel's gate, you can check if a user has a permission with Laravel's default can function
+如果为给定模型 注册了策略，can 方法将自动调用适当的策略并返回布尔结果。如果没有为模型注册策略，can 方法将尝试调用匹配给定操作名称的基于闭包的 Gate

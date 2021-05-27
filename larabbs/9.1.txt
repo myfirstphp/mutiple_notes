@@ -1,0 +1,13 @@
+【1】Redis 是内存缓存系统，将数据存放于内存中，读取速度飞快，是其他存储方式遥不可及的。不过因为内存大小有限，我们一般只用来存放『不经常修改，但是经常被读取』的数据
+
+【2】在 .env 文件中将 CACHE_DRIVER 环境变量的值改为redis
+
+【3】生成命令类指令
+php artisan make:command CalculateActiveUser --command=larabbs:calculate-active-user
+CalculateActiveUser为定义生成的文件名，  larabbs:calculate-active-user为命令
+
+【4】调度在 app/Console/Kernel.php 文件的 schedule 方法中定义
+
+【5】只有设置了 name 属性的表单元素才能在提交表单时传递它们的值。
+
+【6】input中disabled不会传值给后端，type="hidden"在前端不显示，但是会传值给后端

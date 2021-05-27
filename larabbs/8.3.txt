@@ -1,0 +1,12 @@
+【1】 使用Laravel Administrator构建管理后台
+
+【2】 安装依赖包命令
+composer require "summerblue/administrator:7.*"
+要指定版本号，要不会报错
+
+【3】发布资源（publish assets）
+php artisan vendor:publish --provider="Frozennode\Administrator\AdministratorServiceProvider"
+这个命令会生出两个文件
+config/administrator.php —— 配置信息；public/packages/summerblue/administrator —— 前端资源文件，这是用来做页面渲染的。
+
+【4】Administrator 会监测 settings_config_path 和 model_config_path 选项目录是否能正常访问，否则会报错

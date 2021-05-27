@@ -1,0 +1,11 @@
+【1】配置角色和权限
+'menu' => [
+        '用户与权限' => [
+            'users',
+            'roles',
+            'permissions',
+      ],
+],
+用户和权限这个是字符串，会被系统当作菜单显示，'users','roles','permissions',这三个是模型配置文件
+
+【2】Administrator 允许我们对 CRUD 动作做单独的权限控制

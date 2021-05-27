@@ -19,4 +19,5 @@ Gate::guessPolicyNamesUsing(function ($modelClass) {
 $this->authorize('update', $post)
 通过用户模型
 $user->can('update', $post)
-update为策略动作，$post为要访问的用户模型
+update为策略动作，$post为要访问的用户模型，也就是实例
+----其实不要第二个参数也可以，主要看定义的策略需不需要第二个参数

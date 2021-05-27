@@ -1,0 +1,13 @@
+【1】后台设置站点配置信息
+
+【2】代码中使用配置信息
+
+【3】Administrator中的setting辅助函数
+
+【4】8.8无权限提醒页面
+
+【5】匿名函数不用加访问控制
+
+【6】config('administrator.permission')()
+config('administrator.permission')返回的是一个闭包，闭包就相当于函数名，所以这个是不会报错的
+https://learnku.com/laravel/t/9449/i-cant-understand-config-administratorpermission-here-can-you-explain-it

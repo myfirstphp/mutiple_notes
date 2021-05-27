@@ -1,0 +1,5 @@
+【1】配置内容管理后台，分别是 categories, topics 和 replies
+
+【2】『数据表格』中使用 output 选项输出 HTML 时，Administrator 将无法保护你
+
+【3】其他的用户数据，输出时请使用 Laravel 自带的 e() 函数对其做转义处理

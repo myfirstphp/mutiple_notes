@@ -1,0 +1,17 @@
+【1】安装 Laravel-permission扩展
+
+【2】在user模型中使用Spatie\Permission\Traits\HasRoles  trait
+
+【3】管理员和站长角色都拥有 manage_contents 权限
+管理员可以管理内容，但是却不能管理用户
+站长拥有管理用户这个权限，我们将此权限定义为 manage_users
+
+【4】app()->runningInConsole()
+此函数确定应用是否在控制台运行，是的话返回true
+
+【5】laravel中类、trait、接口命名都是双驼峰；
+方法命名用的是蛇形
+
+【6】Laravel-permission中权限和角色都是通过name字段操作的
+
+【7】laravel-permission 允许用户跳过角色，直接拥有权限。不过在本项目中，为了方便管理，我们设定：用户只能通过角色来获取到权限，用户不单独拥有权限。例如：用户 Summer 必须是『站长』角色，才能行使『用户管理』权限

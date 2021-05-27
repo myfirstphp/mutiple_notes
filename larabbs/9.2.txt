@@ -1,0 +1,4 @@
+【1】创建资源推荐模型，同时创建数据库迁移
+php artisan make:model Link -m
+
+【2】生成假数据

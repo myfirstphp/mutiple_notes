@@ -1,0 +1,25 @@
+【1】Administrator 的运行机制是通过解析『模型配置信息』来生成后台，每一个模型配置文件对应一个数据模型，同时也对应一个页面
+
+【2】配置信息主要由三个布局选项，再加上其他如数据模型、权限控制、表单验证规则等选项构成
+
+【3】三个布局选项
+1). 数据表格 —— 对应选项 columns，用来列表数据，支持分页和批量删除；
+2). 模型表单 —— 对应选项 edit_fields，用来新建和编辑模型数据；
+3). 数据过滤 —— 对应选项 filters，与数据表格实时响应的表单，用来筛选数据。
+
+【4】Administrator 并未提供给我们修改用户提交数据的方法，不过这种针对模型属性的操作，Eloquent 已经为我们提供了非常便捷的方法 —— Eloquent 修改器 
+----所以修改密码的逻辑要改下，因为Administrator并不会对密码进行加密操作
+
+【5】我们须在模型上定义一个 setPasswordAttribute 方法，注意命名规范是 set{属性的驼峰式命名}Attribute，当我们给属性赋值时，如 $user->password = Hash::make($password)，该修改器将被自动调用；
+Hash::make($password)将作为参数传递给setPasswordAttribute；
+----也就是说setPasswordAttribute 方法的调用是在$user->password = Hash::make($password)之后；
+
+【6】$this->attributes['password']
+注意attribute要加s
+
+【7】config()辅助函数
+访问配置中的值
+e.x   config(app.url)将返回app文件中url这个值
+
+【8】Str::startsWith($str1, $str2)
+判断$str1是否以$str2开头
